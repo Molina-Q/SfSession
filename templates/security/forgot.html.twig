@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <h1>Forgot password</h1>
+
+    
+    {{ form_start(forgotPassword) }}
+    
+        {{ form_errors(forgotPassword) }}
+
+        {{ form_row(forgotPassword.email) }}
+
+        {{ form_row(forgotPassword.agreeTerms) }}
+        
+        <button type="submit" class="btn btn-primary">Confirm</button>
+    {{ form_end(forgotPassword) }}
+
+{% endblock %}

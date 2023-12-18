@@ -11,7 +11,34 @@
 
 
     </head>
+
     <body>
+        {% block header %}
+
+            <a href="{{path('app_home')}}">
+                <p>Home</p>
+            </a>
+
+            {% if app.user %}
+                <a href="{{path('app_logout')}}">
+                    <p>Logout</p>
+                </a>
+
+                <a href="{{path('details_user')}}">
+                    <p>Profile</p>
+                </a>
+            {% else %}
+                <a href="{{path('app_register')}}">
+                    <p>Register</p>
+                </a>
+
+                <a href="{{path('app_login')}}">
+                    <p>Login</p>
+                </a>
+            {% endif %}
+
+        {% endblock %}  
+
         {% block body %}{% endblock %}        
         
         {% block javascripts %}

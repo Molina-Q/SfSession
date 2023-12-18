@@ -15,4 +15,12 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
         ]);
     }
+
+    #[Route('/user/details', name: 'details_user')]
+    public function details(): Response
+    {
+        return $this->render('user/details.html.twig', [
+            'controller_name' => 'UserController',
+        ]);
+    }
 }
