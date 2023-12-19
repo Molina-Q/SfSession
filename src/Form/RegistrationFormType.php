@@ -41,21 +41,21 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('plainPassword', RepeatedType::class, [
+                'constraints' => [
+                    // new NotBlank(), 
+                    new Regex([
+                        'pattern' => ('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/'),
+                        'message' => 'your password is too weak'
+                    ])  
+                ],
                 'mapped' => false,
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirm Password'],
+                'second_options' => ['label' => 'Confirm Password']
 
-                'constraints' => [
-                    new NotBlank(), 
-                    new Regex([
-                        'pattern' => ('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/'),
-                        'message' => 'your password is too weak'
-                    ])  
-                ],
             ])
         ;
     }

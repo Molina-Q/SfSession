@@ -28,11 +28,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    #[Regex(
-        pattern: '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/',
-        match: true,
-        message: 'Your password is not safe enough',
-    )]
     #[ORM\Column]
     private ?string $password = null;
 

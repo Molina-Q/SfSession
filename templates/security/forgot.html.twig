@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Forgot{% endblock %}
 
 {% block body %}
 
     <h1>Forgot password</h1>
 
+    {{ form_errors(forgotPassword) }}
     
     {{ form_start(forgotPassword) }}
     
-        {{ form_errors(forgotPassword) }}
 
         {{ form_row(forgotPassword.email) }}
 
