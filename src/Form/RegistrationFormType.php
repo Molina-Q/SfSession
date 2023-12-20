@@ -24,13 +24,14 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('last_name', TextType::class)
             ->add('first_name', TextType::class)
-            // ->add('gender', TextType::class)
-            // ->add('birthDate', DateType::class)
+            ->add('birthDate', DateType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('email', EmailType::class)
-            // ->add('phone', TextType::class)
-            // ->add('adress', TextType::class)
-            // ->add('postcode', TextType::class)
-            // ->add('city', TextType::class)
+            ->add('phone', TextType::class)
+            ->add('adress', TextType::class)
+            ->add('postcode', TextType::class)
+            ->add('city', TextType::class)
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

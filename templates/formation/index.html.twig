@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our formation{% endblock %}
+{% block metadesc %}All of our formation{% endblock %}
+
+{% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="">Create formation +</a>
+    {% endif %} 
+
+    <div id="formation-list">
+
+        {% for formation in formations %}
+            <div class="formation-list-block">
+
+                
+                {{ formation }}
+                {# later nb sessions will be put #}
+                
+                
+            </div>
+        {% endfor %}
+       
+    </div>
+
+{% endblock %}

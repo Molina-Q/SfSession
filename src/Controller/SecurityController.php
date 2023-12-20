@@ -34,9 +34,9 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -80,11 +80,7 @@ class SecurityController extends AbstractController
                 $url = $this->generateUrl('reset_password', ['token' => $token], 
                 UrlGeneratorInterface::ABSOLUTE_URL);
 
-                // on crée les données du mail
-                $context = compact('url', 'user');
-
-                // envoie mail
-                // generate a signed url and email it to the user
+                // envoie le mail avec le lien générer au dessus
                 $this->emailVerifier->sendEmail('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('no-reply@exemple.com', 'Mail Bot'))
