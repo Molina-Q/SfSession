@@ -28,7 +28,27 @@ class EmailVerifier
         );
 
         $context = $email->getContext();
+        $context['fullName'] = $user->getFirstName().' '.$user->GetLastName();
         $context['signedUrl'] = $signatureComponents->getSignedUrl();
+        $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
+        $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
+
+        $email->context($context);
+
+        $this->mailer->send($email);
+    }
+
+    public function sendEmail(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email, string $url ): void
+    {
+        $signatureComponents = $this->verifyEmailHelper->generateSignature(
+            $verifyEmailRouteName,
+            $user->getId(),
+            $user->getEmail()
+        );
+
+        $context = $email->getContext();
+        $context['fullName'] = $user->getFirstName().' '.$user->GetLastName();
+        $context['signedUrl'] = $url;
         $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
         $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
 
