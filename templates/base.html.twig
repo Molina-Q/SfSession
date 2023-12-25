@@ -27,11 +27,15 @@
                         </li>
 
                         <li>
-                            <a href="">Students</a>
+                            <a href="{{ path('app_session') }}">Sessions</a>
                         </li>
 
                         <li>
-                            <a href="">Tags</a>
+                            <a href="{{ path('app_tag') }}">Tags</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ path('app_user') }}">Students</a>
                         </li>
                         
                         {% if is_granted("ROLE_ADMIN") %}
@@ -45,9 +49,6 @@
                         Logout
                     </a>
 
-                    <a href="{{ path('details_user') }}">
-                        Profile
-                    </a>
 
                 {% else %}
                     <a href="{{ path('app_register') }}">

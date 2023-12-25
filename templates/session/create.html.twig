@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create a session{% endblock %}
+
+{% block metadesc %}Create a session via the form{% endblock %}
+
+{% block body %}
+
+    <h1>Create a session</h1>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {{ form_start(createSessionForm) }}
+        {{ form_errors(createSessionForm) }}
+
+        {{ form_row(createSessionForm.title) }}
+        {{ form_row(createSessionForm.Formation) }}
+        {{ form_row(createSessionForm.dateStart) }}
+        {{ form_row(createSessionForm.dateEnd) }}
+        {{ form_row(createSessionForm.nb_place) }}
+
+        <button type="submit" class="btn btn-primary" >Submit</button>
+    {{ form_end(createSessionForm) }}
+
+{% endblock %}

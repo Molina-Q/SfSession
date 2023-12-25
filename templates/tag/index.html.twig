@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our tags!{% endblock %}
+
+{% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('create_tag') }}">Create tag +</a>
+    {% endif %} 
+
+<div id="tag-list">
+
+{% for tag in tags %}
+    <div class="tag-list-block">
+
+        
+        {{ tag }}
+        {# later nb sessions will be put #}
+        
+        
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

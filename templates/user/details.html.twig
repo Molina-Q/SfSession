@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User profile{% endblock %}
+
+    
+{% block title %}{{ user }} profile{% endblock %}
 
 {% block body %}
-<h1>{{ app.user }}</h1>
+<h1>{{ user }}</h1>
 <ul>
-    <li>{{ app.user.email }}</li>
-    <li>{{ app.user.adress }}</li>
-    <li>{{ app.user.postcode }}, {{ app.user.city }}</li>
-
+    <li>{{ user.formatedBirthDate }} ({{ user.showAge }})</li>
+    <li>{{ user.email }}</li>
+    <li>{{ user.adress }}</li>
+    <li>{{ user.postcode }}, {{ user.city }}</li>
+    
 </ul>
 {% endblock %}
+
+

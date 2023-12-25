@@ -300,4 +300,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString() {
         return $this->first_name." ".$this->last_name;
     }
+
+    public function formatedBirthDate() {
+        $formatedDate = $this->birthDate;
+        return $formatedDate->format("d/m/Y");
+    }
+
+    public function showAge() {
+        $currentDate = new \DateTime("now");
+        $birthDate = $this->birthDate;
+
+        $age = date_diff($currentDate, $birthDate)->format("%Y years old");
+
+        return $age;
+    }
 }

@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create a formation{% endblock %}
-{% block metadesc %}Create a formation via the form{% endblock %}
+{% block title %}Create a tag{% endblock %}
+
+{% block metadesc %}Create a tag via the form{% endblock %}
 
 {% block body %}
 
-    <h1>Create a formation</h1>
+    <h1>Create a tag</h1>
 
 
     {# read and display all flash messages #}
@@ -17,11 +18,11 @@
         {% endfor %}
     {% endfor %}
 
-    {{ form_start(createFormationForm) }}
-        {{ form_errors(createFormationForm) }}
-        {{ form_row(createFormationForm.label) }}
+    {{ form_start(createTagForm) }}
+        {{ form_errors(createTagForm) }}
+        {{ form_row(createTagForm.label) }}
 
         <button type="submit" class="btn btn-primary" >Submit</button>
-    {{ form_end(createFormationForm) }}
+    {{ form_end(createTagForm) }}
 
 {% endblock %}
