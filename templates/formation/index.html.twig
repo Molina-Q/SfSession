@@ -1,27 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Our formation{% endblock %}
-{% block metadesc %}All of our formation{% endblock %}
+{% block title %}Our formations{% endblock %}
+{% block metadesc %}All of our formations{% endblock %}
 
 {% block body %}
+<div id="wrapper-formation-list">
+
+    <h1 class="primary-title">Our formations</h1>
 
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('create_formation') }}">Create formation +</a>
     {% endif %} 
 
-    <div id="formation-list">
+    <div class="table-list">
+
+        <div class="table-row table-header">
+            <p class="table-item">Title</p>
+        </div>
 
         {% for formation in formations %}
-            <div class="formation-list-block">
 
-                
-                {{ formation }}
+            <div class="table-row">
+                <p class="table-item">{{ formation }}</p>
                 {# later nb sessions will be put #}
-                
-                
             </div>
         {% endfor %}
-       
+    
     </div>
 
+</div>
 {% endblock %}

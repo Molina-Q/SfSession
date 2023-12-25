@@ -4,29 +4,31 @@
 {% block metadesc %}My home page{% endblock %}
 
 {% block body %}
-    <h2>Welcome {{ app.user }}</h1>
+    <h2 class="primary-title">Welcome {{ app.user }}</h1>
 
-    <h1>Home Page</h1>
+    <h1 class="secondary-title">Home Page</h1>
 
         {% if is_granted('ROLE_ADMIN') %}
         <div class="create-entities">
-
-            <a href="">Create session +</a>
             <a href="{{ path('create_formation') }}">Create formation +</a>
-            <a href="">Create tag +</a>
+            <a href="{{ path('create_session') }}">Create session +</a>
+            <a href="{{ path('create_module') }}">Create module +</a>
+            <a href="{{ path('create_tag') }}">Create tag +</a>
         </div>
         {% endif %}
 
+    <h2>Our formations</h2>
 
-    <div id="home-formation">
-        <h2>Our formations</h2>
+    <div class="home-formation-container">
+
         {% for formation in formations %}
 
-            <div class="home-formation-block">
-                <a href="">
-                    <strong>{{ formation }}</strong>
-                </a>
+            <div class="home-formation-items">
+                <p><strong>{{ formation }}</strong></p>
 
+                <a href="">
+                    details
+                </a>
             </div>
 
         {% endfor %}

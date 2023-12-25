@@ -5,7 +5,33 @@
 
 
 {% block body %}
-<h1>Our sessions</h1>
+<div id="wrapper-session-list">
 
-<a href="{{ path('create_session') }}">Create session +</a>
+    <h1 class="primary-title">Our sessions</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('create_session') }}">Create session +</a>
+    {% endif %} 
+
+    <div class="table-list">
+
+        <div class="table-row table-header">
+            <p class="table-item">Title</p>
+            <p class="table-item">Dates</p>
+            <p class="table-item">nbPlace</p>
+            <p class="table-item">Formation</p>
+        </div>
+
+        {% for session in sessions %}
+        <div class="table-row">
+            <p class="table-item">{{ session }}</p> 
+            <p class="table-item">{{ session.showDates }}</p>
+            <p class="table-item">{{ session.nbPlace }}</p>
+            <p class="table-item">{{ session.Formation }}</p>
+        </div>
+        {% endfor %}
+        
+    </div>
+</div>
+
 {% endblock %}

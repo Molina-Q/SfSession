@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our modules{% endblock %}
+{% block metadesc %}List of all our modules{% endblock %}
+
+{% block body %}
+<div id="wrapper-module-list">
+
+    <h1 class="primary-title">Our modules</h1>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('create_module') }}">Create module +</a>
+        <a href="{{ path('create_tag') }}">Create tag +</a>
+        {% endif %} 
+
+    <div class="table-list">
+
+        {% for module in modules %}
+        <div class="table-row table-header">
+            <h2 class="table-item">{{ module.tag }}</h2>
+
+        </div>
+        
+        <div class="table-row">
+            <p class="table-item">{{ module }}</p>
+
+        </div>
+    
+        {% endfor %}
+        
+    </div>
+</div>
+{% endblock %}

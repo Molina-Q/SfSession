@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create a tag{% endblock %}
+{% block title %}Create a modukle{% endblock %}
 
-{% block metadesc %}Create a tag via the form{% endblock %}
+{% block metadesc %}Create a module via the form{% endblock %}
 
 {% block body %}
 
-   
-    <h1 class="primary-title">Create a tag</h1>
-   
+    <h1 class="primary-title">Create a module</h1>
 
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
@@ -19,11 +17,13 @@
         {% endfor %}
     {% endfor %}
 
-    {{ form_start(createTagForm) }}
-        {{ form_errors(createTagForm) }}
-        {{ form_row(createTagForm.label) }}
+    {{ form_start(createModuleForm) }}
+        {{ form_errors(createModuleForm) }}
+
+        {{ form_row(createModuleForm.Tag) }}
+        {{ form_row(createModuleForm.label) }}
 
         <button type="submit" class="btn btn-primary" >Submit</button>
-    {{ form_end(createTagForm) }}
+    {{ form_end(createModuleForm) }}
 
 {% endblock %}

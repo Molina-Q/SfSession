@@ -1,26 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Our tags!{% endblock %}
+{% block title %}All of our tags{% endblock %}
+{% block metadesc %}List of all our tags adn the modules tied to them{% endblock %}
 
 {% block body %}
+<div id="wrapper-tag-list">
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('create_tag') }}">Create tag +</a>
-    {% endif %} 
+    <h1 class="primary-title">Our tags and their modules</h1>
 
-<div id="tag-list">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('create_tag') }}"><p>Create tag +</p></a>
+            <a href="{{ path('create_module') }}"><p>Create module +</p></a>
+        {% endif %} 
 
-{% for tag in tags %}
-    <div class="tag-list-block">
+    <div id="table-list">
+        {% for tag in tags %}
+            <div class="table-row table-header">  
+                <h2 class="table-item">{{ tag }}</h2>
+            </div>
 
-        
-        {{ tag }}
-        {# later nb sessions will be put #}
-        
-        
+            {% if tag.Modules | length > 0 %}
+                
+                {% for module in tag.Modules %}
+                    <div class="table-row">
+                        <p class="table-item">{{ module }}</p>
+                    </div>
+                {% endfor %}
+               
+            {% else %}
+
+                <div class="table-row">
+                    <p class="table-item">This tag doesnt have any modules</p>
+                </div>
+               
+            {% endif %}
+
+        {% endfor %}
+
     </div>
-{% endfor %}
 
 </div>
-
 {% endblock %}
