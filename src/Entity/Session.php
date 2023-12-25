@@ -187,4 +187,8 @@ class Session
     public function __toString() {
         return $this->title;
     }
+
+    public function showDates() {
+        return $this->dateStart->format('d-m-Y').' To '.$this->dateEnd->format('d-m-Y');
+    }
 }

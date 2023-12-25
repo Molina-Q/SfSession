@@ -37,7 +37,7 @@ class TagController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $tag = new Tag;
+            $tag = new Tag();
             $tag->setLabel($form->get('label')->getData());
 
             $entityManager->persist($tag);
