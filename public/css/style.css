@@ -1,6 +1,5 @@
 /************************* General *************************/
 /***********************************************************/
-
 :root {
     --primary-color: #1F816F;
     
@@ -31,10 +30,13 @@
 
 body {
     background-color: var(--primary-background);
+
+    display: flex;
+    flex-direction: row;
 }
 
 main {
-
+    flex: 5;
 }
 
 #wrapper {
@@ -49,29 +51,46 @@ main {
     font-weight: var(--weight-bold);
 }
 
+em {
+    font-weight: var(--weight-black);
+}
+
 /************************* Header *************************/
 /**********************************************************/
-
-
 header {
+    flex: 0.8;
+    height: 100vh;
+
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
 
     background-color: var(--secondary-background);
 }
 
-header ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-
-    color: var(--secondary-color-text);
-    width: 50%;
-    list-style: none;
+header a:first-child {
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
-header ul li a {
+header a:last-child {
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+header a:not(:first-child, :last-child) {
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+
+header a:not(:first-child, :last-child):hover {
+    color: var(--primary-color-text);
+    transition: 0.3s;
+
+}
+
+header a {
+    padding: 0 25px ;
     text-decoration: none;
     color: var(--secondary-color-text);
 }
@@ -126,23 +145,30 @@ header ul li a {
     font-weight: var(--weight-bold);
 }
 
-
 /************************* HomePage ************************/
 /***********************************************************/
-
 .create-entities {
     display: flex;
     flex-direction: column;
 }
 
+.create-entities a {
+    color: var(--primary-color-text);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.create-entities a:hover {
+    color: var(--secondary-color-text);
+    transition: 0.3s;
+}
 
 .home-formation-container {
     display: grid;
 
-    column-gap:10px;
-    row-gap: 10px;
-
     grid-template-columns: auto auto;
+    column-gap: 10px;
+    row-gap: 10px;
 }
 
 .home-formation-items {
