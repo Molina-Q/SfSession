@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update a session{% endblock %}
+
+{% block metadesc %}Update a session via the form{% endblock %}
+
+{% block body %}
+
+    <h1 class="primary-title">Update a session</h1>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {{ form_start(updateSessionForm) }}
+        {{ form_errors(updateSessionForm) }}
+
+        {{ form_row(updateSessionForm.title) }}
+        {{ form_row(updateSessionForm.Formation) }}
+        {{ form_row(updateSessionForm.dateStart) }}
+        {{ form_row(updateSessionForm.dateEnd) }}
+        {{ form_row(updateSessionForm.nb_place) }}
+
+        <button type="submit" class="btn btn-primary" >Submit</button>
+    {{ form_end(updateSessionForm) }}
+
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Form\CreateSessionFormType;
+use App\Form\UpdateSessionFormType;
 use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,22 @@ class SessionController extends AbstractController
         $sessions = $sessionRepository->findBy([], ['title' => 'ASC']);
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
+        ]);
+    }
+
+    #[Route('/session/{id}', name: 'details_session')]
+    public function details(
+        int $id,
+        SessionRepository $sessionRepository,
+        EntityManagerInterface $entityManager,
+        Request $request,
+        ): Response
+    {
+
+        $session = $sessionRepository->findOneById($id);
+
+        return $this->render('session/details.html.twig', [
+            'session' => $session,
         ]);
     }
 
@@ -47,6 +64,34 @@ class SessionController extends AbstractController
 
         return $this->render('session/create.html.twig', [
             'createSessionForm' => $form->createView(),
+        ]);
+    }
+    
+    #[Route('/session/update/{id}', name: 'update_session')]
+    public function update(
+        SessionRepository $sessionRepository,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        int $id,
+    ): Response
+    {
+
+        $session = $sessionRepository->findOneById($id);
+
+        $form = $this->createForm(UpdateSessionFormType::class, $session);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->persist($session);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'The session '.$session->getTitle().' was successfully updated');
+            return $this->redirectToRoute('app_session');
+        }
+
+        return $this->render('session/update.html.twig', [
+            'updateSessionForm' => $form->createView(),
         ]);
     }
 }
