@@ -9,6 +9,15 @@
 
     <h1 class="primary-title">Our sessions</h1>
 
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('create_session') }}">Create session +</a>
     {% endif %} 
@@ -24,10 +33,21 @@
 
         {% for session in sessions %}
         <div class="table-row">
-            <p class="table-item">{{ session }}</p> 
+            <a href="{{ path('details_session', {id: session.id}) }}" class="table-item">
+                {{ session }}
+            </a>
+            
             <p class="table-item">{{ session.showDates }}</p>
             <p class="table-item">{{ session.nbPlace }}</p>
             <p class="table-item">{{ session.Formation }}</p>
+
+            <a href="{{ path('update_session', {id: session.id}) }}">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+
+            <a href="">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
         </div>
         {% endfor %}
         
