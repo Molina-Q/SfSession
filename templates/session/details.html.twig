@@ -20,7 +20,17 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('create_session') }}">Create session +</a>
+    <div class="form-add-programme">
+    {{ form_start(addProgrammeForm) }}
+        {{ form_errors(addProgrammeForm) }}
+
+        {{ form_row(addProgrammeForm.Module) }}
+        {{ form_row(addProgrammeForm.Session) }}
+        {{ form_row(addProgrammeForm.duration) }}
+
+        <button type="submit" class="btn btn-primary" >Submit</button>
+    {{ form_end(addProgrammeForm) }}
+    </div>
     {% endif %} 
 
     <div class="row-unique table-header">
@@ -70,10 +80,9 @@
                 <i class="fa-solid fa-xmark"></i>
             </a>
         </div>   
-
         {% endfor %}
 
     </div>
-</div>
 
+</div>
 {% endblock %}

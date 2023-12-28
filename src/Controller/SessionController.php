@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Entity\Programme;
 use App\Form\CreateSessionFormType;
 use App\Form\UpdateSessionFormType;
+use App\Form\CreateProgrammeFormType;
 use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,22 +23,6 @@ class SessionController extends AbstractController
         $sessions = $sessionRepository->findBy([], ['title' => 'ASC']);
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
-        ]);
-    }
-
-    #[Route('/session/{id}', name: 'details_session')]
-    public function details(
-        int $id,
-        SessionRepository $sessionRepository,
-        EntityManagerInterface $entityManager,
-        Request $request,
-        ): Response
-    {
-
-        $session = $sessionRepository->findOneById($id);
-
-        return $this->render('session/details.html.twig', [
-            'session' => $session,
         ]);
     }
 
@@ -66,6 +52,40 @@ class SessionController extends AbstractController
             'createSessionForm' => $form->createView(),
         ]);
     }
+    
+    #[Route('/session/{id}', name: 'details_session')]
+    public function details(
+        int $id,
+        SessionRepository $sessionRepository,
+        EntityManagerInterface $entityManager,
+        Request $request,
+        ): Response
+    {
+
+        $programme = new Programme();
+
+        $form = $this->createForm(CreateProgrammeFormType::class, $programme);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->persist($programme);
+            $entityManager->flush();
+
+            // $this->addFlash('success', 'The programme '.$programme->getLabel().' was successfully added');
+            return $this->redirectToRoute('details_session', ['id' => $id]);
+        }
+        
+
+        $session = $sessionRepository->findOneById($id);
+
+        return $this->render('session/details.html.twig', [
+            'addProgrammeForm' => $form->createView(),
+            'session' => $session,
+        ]);
+    }
+
+
     
     #[Route('/session/update/{id}', name: 'update_session')]
     public function update(
