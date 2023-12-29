@@ -20,16 +20,18 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="form-add-programme">
-    {{ form_start(addProgrammeForm) }}
-        {{ form_errors(addProgrammeForm) }}
+    <div class="form-create">
+        {{ form_start(addProgrammeForm) }}
 
-        {{ form_row(addProgrammeForm.Module) }}
-        {{ form_row(addProgrammeForm.Session) }}
-        {{ form_row(addProgrammeForm.duration) }}
+            {{ form_errors(addProgrammeForm) }}
 
-        <button type="submit" class="btn btn-primary" >Submit</button>
-    {{ form_end(addProgrammeForm) }}
+            <div class="form-content">
+                {{ form_row(addProgrammeForm.Module) }}
+                {{ form_row(addProgrammeForm.duration) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary" >Submit</button>
+        {{ form_end(addProgrammeForm) }}
     </div>
     {% endif %} 
 
@@ -69,12 +71,8 @@
         </div>
 
         <div class="table-row">
-            <p class="table-item">{{ programme.module }}</p>
+            <p class="table-item">{{ programme }}</p>
             <p class="table-item">{{ programme.duration }} days</p>       
-
-            <a href="{{ path('update_session', {id: session.id}) }}">  
-                <i class="fa-solid fa-pen-to-square"></i>
-            </a>
 
             <a href="">
                 <i class="fa-solid fa-xmark"></i>

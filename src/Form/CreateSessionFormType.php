@@ -18,15 +18,32 @@ class CreateSessionFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('title', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
             ->add('dateStart', DateType::class, [
                 'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-input-date',
+                ]
             ])
             ->add('dateEnd', DateType::class, [
                 'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-input-date',
+                ]
             ])
-            ->add('nb_place', NumberType::class)
+            ->add('nb_place', NumberType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
             ->add('Formation', EntityType::class, [
+                'attr' => [
+                    'class' => 'form-input-select',
+                ],
                 'class' => Formation::class,
                 'choice_label' => 'label',
             ])

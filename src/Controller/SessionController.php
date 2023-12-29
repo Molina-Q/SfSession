@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Entity\Programme;
+use App\Repository\TagRepository;
 use App\Form\CreateSessionFormType;
 use App\Form\UpdateSessionFormType;
 use App\Form\CreateProgrammeFormType;
 use App\Repository\SessionRepository;
+use App\Repository\FormationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +38,7 @@ class SessionController extends AbstractController
 
         $session = new Session();
 
-        $form = $this->createForm(CreateSessionFormType::class, $session);
+        $form = $this->createForm(CreateSessionFormType::class, $session, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -57,17 +59,22 @@ class SessionController extends AbstractController
     public function details(
         int $id,
         SessionRepository $sessionRepository,
+        TagRepository $tagRepository,
         EntityManagerInterface $entityManager,
         Request $request,
         ): Response
     {
 
+        $session = $sessionRepository->findOneById($id);
+
         $programme = new Programme();
 
-        $form = $this->createForm(CreateProgrammeFormType::class, $programme);
+        $form = $this->createForm(CreateProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
+            $programme->setSession($session);
 
             $entityManager->persist($programme);
             $entityManager->flush();
@@ -75,9 +82,6 @@ class SessionController extends AbstractController
             // $this->addFlash('success', 'The programme '.$programme->getLabel().' was successfully added');
             return $this->redirectToRoute('details_session', ['id' => $id]);
         }
-        
-
-        $session = $sessionRepository->findOneById($id);
 
         return $this->render('session/details.html.twig', [
             'addProgrammeForm' => $form->createView(),

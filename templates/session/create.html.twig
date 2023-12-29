@@ -17,16 +17,16 @@
         {% endfor %}
     {% endfor %}
 
-    {{ form_start(createSessionForm) }}
-        {{ form_errors(createSessionForm) }}
-
-        {{ form_row(createSessionForm.title) }}
-        {{ form_row(createSessionForm.Formation) }}
-        {{ form_row(createSessionForm.dateStart) }}
-        {{ form_row(createSessionForm.dateEnd) }}
-        {{ form_row(createSessionForm.nb_place) }}
-
-        <button type="submit" class="btn btn-primary" >Submit</button>
-    {{ form_end(createSessionForm) }}
+        {{ form_start(createSessionForm) }}
+            {{ form_errors(createSessionForm) }}
+            
+            {{ form_row(createSessionForm.Formation) }}
+            {{ form_row(createSessionForm.title) }}
+            {{ form_row(createSessionForm.nb_place) }}
+            {{ form_row(createSessionForm.dateStart) }}
+            {{ form_row(createSessionForm.dateEnd) }}
+            
+            <button type="submit" class="form-btn-submit" >Submit</button>
+        {{ form_end(createSessionForm) }}
 
 {% endblock %}

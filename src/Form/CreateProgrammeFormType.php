@@ -16,14 +16,15 @@ class CreateProgrammeFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('duration', NumberType::class)
+            ->add('duration', NumberType::class,[
+                'attr' => [
+                    'class' => 'form-label',
+                ]
+            ])
+    
             ->add('Module', EntityType::class, [
                 'class' => Module::class,
                 'choice_label' => 'label',
-            ])
-            ->add('Session', EntityType::class, [
-                'class' => Session::class,
-                'choice_label' => 'title',
             ])
         ;
     }
