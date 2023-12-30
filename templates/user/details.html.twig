@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
-
-    
 {% block title %}{{ user }} profile{% endblock %}
+
+{% block metadesc %}{{ user }}' profile containing all his information{% endblock %}
+
+{% block pageWrapper %}details-user{% endblock %}
+
 
 {% block body %}
 <h1 class="primary-title">{{ user }}</h1>

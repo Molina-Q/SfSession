@@ -2,6 +2,8 @@
 
 {% block title %}Create a formation{% endblock %}
 {% block metadesc %}Create a formation via the form{% endblock %}
+{% block pageWrapper %}create-formation{% endblock %}
+
 
 {% block body %}
 
@@ -21,7 +23,7 @@
         {{ form_errors(createFormationForm) }}
         {{ form_row(createFormationForm.label) }}
 
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" class="form-btn-submit" >Submit</button>
     {{ form_end(createFormationForm) }}
 
 {% endblock %}

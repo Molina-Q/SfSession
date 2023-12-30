@@ -2,6 +2,7 @@
 
 {% block title %}Log in{% endblock %}
 {% block metadesc %}Log into your account{% endblock %}
+{% block pageWrapper %}login{% endblock %}
 
 
 {% block body %}
@@ -14,30 +15,37 @@
             </div>
         {% endfor %}
     {% endfor %}
-
+    
     {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
+    
     {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
+    <div class="mb-3">
+        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    </div>
     {% endif %}
+    
+    <h1 class="primary-title">Please log in</h1>
+    
+    <div class="form-create">
+        <div class="form-content">
 
-    <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" name="email" id="inputEmail" class="form-control" required>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <label for="inputEmail">Email</label>
+            <input type="email" name="email" class="form-input-text" id="inputEmail" required>
 
-    <input type="hidden" name="_csrf_token"
-        value="{{ csrf_token('authenticate') }}"
-    >
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Log in
-    </button>
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" class="form-input-text" id="inputPassword" autocomplete="current-password" required>
+            
+            <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+            >
+        </div>
+        
+        <button class="form-btn-submit" type="submit">
+            Log in
+        </button>
+    </div>
 </form>
 
 <a href="{{ path('forgot_password')}}">

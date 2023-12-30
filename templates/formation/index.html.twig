@@ -2,14 +2,14 @@
 
 {% block title %}Our formations{% endblock %}
 {% block metadesc %}All of our formations{% endblock %}
+{% block pageWrapper %}index-formation{% endblock %}
 
 {% block body %}
-<div id="wrapper-formation-list">
 
     <h1 class="primary-title">Our formations</h1>
 
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('create_formation') }}">Create formation +</a>
+        <a href="{{ path('create_formation') }}">Create formation <b>+</b></a>
     {% endif %} 
 
     <div class="table-list">
@@ -27,6 +27,4 @@
         {% endfor %}
     
     </div>
-
-</div>
 {% endblock %}

@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
+{% block metadesc %}Form to create an account{% endblock %}
+
+{% block pageWrapper %}register{% endblock %}
 
 {% block body %}
-    <h1 class="primary-title">Register</h1>
 
+    <h1 class="primary-title">Register</h1>
     {{ form_start(registrationForm) }}
         {{ form_errors(registrationForm) }}
-    
+
+        <div class="form-content">
         {{ form_row(registrationForm.last_name) }}
         {{ form_row(registrationForm.first_name) }}
 
@@ -21,8 +25,9 @@
         {{ form_row(registrationForm.plainPassword) }}
         
         {{ form_row(registrationForm.agreeTerms) }}
+        </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="form-btn-submit">Register</button>
     {{ form_end(registrationForm) }}
 
 {% endblock %}

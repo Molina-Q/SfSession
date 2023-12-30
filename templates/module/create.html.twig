@@ -3,6 +3,8 @@
 {% block title %}Create a modukle{% endblock %}
 
 {% block metadesc %}Create a module via the form{% endblock %}
+{% block pageWrapper %}create-module{% endblock %}
+
 
 {% block body %}
 
@@ -16,14 +18,17 @@
             </div>
         {% endfor %}
     {% endfor %}
-
-    {{ form_start(createModuleForm) }}
-        {{ form_errors(createModuleForm) }}
-
-        {{ form_row(createModuleForm.Tag) }}
-        {{ form_row(createModuleForm.label) }}
-
-        <button type="submit" class="btn btn-primary" >Submit</button>
-    {{ form_end(createModuleForm) }}
+    <div class="form-create">
+        {{ form_start(createModuleForm) }}
+            {{ form_errors(createModuleForm) }}
+        
+            <div class="form-content">
+                {{ form_row(createModuleForm.Tag) }}
+                {{ form_row(createModuleForm.label) }}
+            </div>
+        
+            <button type="submit" class="form-btn-submit" >Submit</button>
+        {{ form_end(createModuleForm) }}
+    </div>
 
 {% endblock %}

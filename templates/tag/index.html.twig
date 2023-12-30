@@ -2,6 +2,8 @@
 
 {% block title %}All of our tags{% endblock %}
 {% block metadesc %}List of all our tags adn the modules tied to them{% endblock %}
+{% block pageWrapper %}index-tag{% endblock %}
+
 
 {% block body %}
 <div id="wrapper-tag-list">
@@ -9,8 +11,8 @@
     <h1 class="primary-title">Our tags and their modules</h1>
 
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('create_tag') }}"><p>Create tag +</p></a>
-            <a href="{{ path('create_module') }}"><p>Create module +</p></a>
+            <a href="{{ path('create_tag') }}"><p>Create tag <b>+</b></p></a>
+            <a href="{{ path('create_module') }}"><p>Create module <b>+</b></p></a>
         {% endif %} 
 
     <div id="table-list">

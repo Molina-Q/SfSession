@@ -13,7 +13,11 @@ class CreateTagFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('label', TextType::class)
+            ->add('label', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
         ;
     }
 

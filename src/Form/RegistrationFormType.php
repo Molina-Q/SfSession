@@ -22,22 +22,56 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('last_name', TextType::class)
-            ->add('first_name', TextType::class)
-            ->add('birthDate', DateType::class, [
-                'widget' => 'single_text'
+            ->add('last_name', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
             ])
-            ->add('email', EmailType::class)
-            ->add('phone', TextType::class)
-            ->add('adress', TextType::class)
-            ->add('postcode', TextType::class)
-            ->add('city', TextType::class)
+            ->add('first_name', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
+            ->add('birthDate', DateType::class, [
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-input-date',
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
+            ->add('phone', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
+            ->add('adress', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
+            ->add('postcode', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
+            ->add('city', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
                     ]),
+                ],
+                'attr' => [
+                    'class' => 'form-input-check',
                 ],
             ])
 
@@ -48,14 +82,22 @@ class RegistrationFormType extends AbstractType
                         'pattern' => ('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/'),
                         'message' => 'your password is too weak'
                     ])  
+                ], 
+                
+                'attr' => [
+                    'class' => 'form-input-text',
                 ],
                 'mapped' => false,
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirm Password']
+                'first_options' => ['label' => 'Password', 'attr' => [
+                    'class' => 'form-input-text',
+                ],],
+                'second_options' => ['label' => 'Confirm Password', 'attr' => [
+                    'class' => 'form-input-text',
+                ],]
 
             ])
         ;

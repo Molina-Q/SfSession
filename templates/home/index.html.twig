@@ -2,6 +2,8 @@
 
 {% block title %}HomePage{% endblock %}
 {% block metadesc %}My home page{% endblock %}
+{% block pageWrapper %}home{% endblock %}
+
 
 {% block body %}
     <h1 class="secondary-title">Home Page</h1>
@@ -11,10 +13,10 @@
 
         {% if is_granted('ROLE_ADMIN') %}
         <div class="create-entities">
-            <a href="{{ path('create_formation') }}">Create formation <em>+</em></a>
-            <a href="{{ path('create_session') }}">Create session <em>+</em></a>
-            <a href="{{ path('create_module') }}">Create module <em>+</em></a>
-            <a href="{{ path('create_tag') }}">Create tag <em>+</em></a>
+            <a href="{{ path('create_formation') }}">Create formation <b>+</b></a>
+            <a href="{{ path('create_session') }}">Create session <b>+</b></a>
+            <a href="{{ path('create_module') }}">Create module <b>+</b></a>
+            <a href="{{ path('create_tag') }}">Create tag <b>+</b></a>
         </div>
         {% endif %}
 

@@ -2,11 +2,9 @@
 
 {% block title %}All of our incoming sessions{% endblock %}
 {% block metadesc %}Log into your account{% endblock %}
-
+{% block pageWrapper %}index-session{% endblock %}
 
 {% block body %}
-<div id="wrapper-session-list">
-
     <h1 class="primary-title">Our sessions</h1>
 
     {# read and display all flash messages #}
@@ -19,7 +17,7 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('create_session') }}">Create session +</a>
+    <a href="{{ path('create_session') }}">Create session <b>+</b></a>
     {% endif %} 
 
     <div class="table-list">
@@ -52,6 +50,5 @@
         {% endfor %}
         
     </div>
-</div>
 
 {% endblock %}

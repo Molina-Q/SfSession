@@ -18,8 +18,15 @@ class CreateModuleFormType extends AbstractType
             ->add('Tag', EntityType::class, [
                 'class' => Tag::class,
                 'choice_label' => 'label',
+                'attr' => [
+                    'class' => 'form-input-select',
+                ]
             ])
-            ->add('label', TextType::class)
+            ->add('label', TextType::class, [
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
+            ])
         ;
     }
 

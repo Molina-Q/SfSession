@@ -18,13 +18,16 @@ class CreateProgrammeFormType extends AbstractType
         $builder
             ->add('duration', NumberType::class,[
                 'attr' => [
-                    'class' => 'form-label',
+                    'class' => 'form-input-text',
                 ]
             ])
     
             ->add('Module', EntityType::class, [
                 'class' => Module::class,
                 'choice_label' => 'label',
+                'attr' => [
+                    'class' => 'form-input-text',
+                ]
             ])
         ;
     }

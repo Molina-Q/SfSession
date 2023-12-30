@@ -2,10 +2,9 @@
 
 {% block title %}Details session{% endblock %}
 {% block metadesc %}Detail of the session {{ session }}{% endblock %}
-
+{% block pageWrapper %}details-session{% endblock %}
 
 {% block body %}
-<div class="wrapper-grid">
 
     <h2 class="secondary title">Details of the session</h2>
     <h1 class="primary-title">{{ session }}</h1>
@@ -20,7 +19,6 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="form-create">
         {{ form_start(addProgrammeForm) }}
 
             {{ form_errors(addProgrammeForm) }}
@@ -30,9 +28,8 @@
                 {{ form_row(addProgrammeForm.duration) }}
             </div>
 
-            <button type="submit" class="btn btn-primary" >Submit</button>
+            <button type="submit" class="form-btn-submit" >Submit</button>
         {{ form_end(addProgrammeForm) }}
-    </div>
     {% endif %} 
 
     <div class="row-unique table-header">
@@ -81,6 +78,4 @@
         {% endfor %}
 
     </div>
-
-</div>
 {% endblock %}

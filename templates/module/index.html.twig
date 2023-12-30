@@ -2,15 +2,14 @@
 
 {% block title %}Our modules{% endblock %}
 {% block metadesc %}List of all our modules{% endblock %}
+{% block pageWrapper %}index-module{% endblock %}
 
 {% block body %}
-<div id="wrapper-module-list">
-
     <h1 class="primary-title">Our modules</h1>
 
         {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('create_module') }}">Create module +</a>
-        <a href="{{ path('create_tag') }}">Create tag +</a>
+        <a href="{{ path('create_module') }}">Create module <b>+</b></a>
+        <a href="{{ path('create_tag') }}">Create tag <b>+</b></a>
         {% endif %} 
 
     <div class="table-list">
@@ -29,5 +28,4 @@
         {% endfor %}
         
     </div>
-</div>
 {% endblock %}
