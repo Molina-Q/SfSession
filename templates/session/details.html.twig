@@ -19,17 +19,30 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-        {{ form_start(addProgrammeForm) }}
+    {{ form_start(addStudentForm) }}
+    <h3>Add student</h3>
 
-            {{ form_errors(addProgrammeForm) }}
+        {{ form_errors(addStudentForm) }}
 
-            <div class="form-content">
-                {{ form_row(addProgrammeForm.Module) }}
-                {{ form_row(addProgrammeForm.duration) }}
-            </div>
+        <div class="form-content">
+            {{ form_row(addStudentForm.Student) }}
+        </div>
 
-            <button type="submit" class="form-btn-submit" >Submit</button>
-        {{ form_end(addProgrammeForm) }}
+        <button type="submit" class="form-btn-submit" >Submit</button>
+    {{ form_end(addStudentForm) }}
+
+    {{ form_start(addProgrammeForm) }}
+    <h3>Add Programme</h3>
+
+        {{ form_errors(addProgrammeForm) }}
+
+        <div class="form-content">
+            {{ form_row(addProgrammeForm.Module) }}
+            {{ form_row(addProgrammeForm.duration) }}
+        </div>
+
+        <button type="submit" class="form-btn-submit" >Submit</button>
+    {{ form_end(addProgrammeForm) }}
     {% endif %} 
 
     <div class="row-unique table-header">
@@ -51,7 +64,14 @@
         </div>
 
         <div class="table-row">
-            <p>Total places {{ session.nbPlace }}</p>
+            <p>Places left</p> 
+            <p>{{ session.nbPlace }}</p>
+
+            <p>Places taken</p> 
+            <p>{{ session.nbPlace }}</p>
+
+            <p>Total places</p> 
+            <p>{{ session.nbPlace }}</p>
         </div>
 
         <div class="table-row">
