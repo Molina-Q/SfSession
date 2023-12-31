@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Entity\Programme;
+use App\Entity\RegisterSession;
 use App\Repository\TagRepository;
 use App\Form\CreateSessionFormType;
 use App\Form\UpdateSessionFormType;
 use App\Form\CreateProgrammeFormType;
 use App\Repository\SessionRepository;
+use App\Form\RegisterToSessionFormType;
 use App\Repository\FormationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,10 +71,10 @@ class SessionController extends AbstractController
 
         $programme = new Programme();
 
-        $form = $this->createForm(CreateProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
-        $form->handleRequest($request);
+        $formProgramme = $this->createForm(CreateProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
+        $formProgramme->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if($formProgramme->isSubmitted() && $formProgramme->isValid()) {
 
             $programme->setSession($session);
 
@@ -83,14 +85,48 @@ class SessionController extends AbstractController
             return $this->redirectToRoute('details_session', ['id' => $id]);
         }
 
+        $registerSession = new RegisterSession();
+
+        $formStudent = $this->createForm(RegisterToSessionFormType::class, $registerSession, ['attr' => ['class' => 'form-create']]);
+        $formStudent->handleRequest($request);
+
+        if($formStudent->isSubmitted() && $formStudent->isValid()) {
+
+            $registerSession->setSession($session);
+
+            $entityManager->persist($registerSession);
+            $entityManager->flush();
+
+            // $this->addFlash('success', 'The programme '.$programme->getLabel().' was successfully added');
+            return $this->redirectToRoute('details_session', ['id' => $id]);
+        }
+
         return $this->render('session/details.html.twig', [
-            'addProgrammeForm' => $form->createView(),
+            'addProgrammeForm' => $formProgramme->createView(),
+            'addStudentForm' => $formStudent->createView(),
             'session' => $session,
         ]);
     }
 
+    #[Route('/session/formation/{id}', name: 'list_session')]
+    public function listByFormation(
+        int $id,
+        SessionRepository $sessionRepository,
+        FormationRepository $formationRepository,
+        EntityManagerInterface $entityManager,
+        Request $request,
+        ): Response
+    {
 
-    
+        // $sessions = $sessionRepository->findByFormation($id);
+        $formation = $formationRepository->findOneById($id);
+
+        return $this->render('session/listByFormation.html.twig', [
+            // 'sessions' => $sessions,
+            'formation' => $formation,
+        ]);
+    }
+
     #[Route('/session/update/{id}', name: 'update_session')]
     public function update(
         SessionRepository $sessionRepository,
@@ -102,7 +138,7 @@ class SessionController extends AbstractController
 
         $session = $sessionRepository->findOneById($id);
 
-        $form = $this->createForm(UpdateSessionFormType::class, $session);
+        $form = $this->createForm(UpdateSessionFormType::class, $session, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {

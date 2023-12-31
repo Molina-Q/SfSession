@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update a module{% endblock %}
+
+{% block metadesc %}Update the module: {{ module }} via the form{% endblock %}
+{% block pageWrapper %}Update-module{% endblock %}
+
+
+{% block body %}
+
+    <h1 class="primary-title">Update a module</h1>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+        {{ form_start(updateModuleForm) }}
+            {{ form_errors(updateModuleForm) }}
+        
+            <div class="form-content">
+                {{ form_row(updateModuleForm.Tag) }}
+                {{ form_row(updateModuleForm.label) }}
+            </div>
+        
+            <button type="submit" class="form-btn-submit" >Submit</button>
+        {{ form_end(updateModuleForm) }}
+
+{% endblock %}

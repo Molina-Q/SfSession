@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update a formation{% endblock %}
+{% block metadesc %}Update the formation: {{ formation }} via the form{% endblock %}
+{% block pageWrapper %}Update-formation{% endblock %}
+
+
+{% block body %}
+
+    <h1>Update a formation</h1>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endfor %}
+
+    {{ form_start(updateFormationForm) }}
+        {{ form_errors(updateFormationForm) }}
+        {{ form_row(updateFormationForm.label) }}
+
+        <button type="submit" class="form-btn-submit" >Submit</button>
+    {{ form_end(updateFormationForm) }}
+
+{% endblock %}

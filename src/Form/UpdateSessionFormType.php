@@ -23,11 +23,13 @@ class UpdateSessionFormType extends AbstractType
                 ]
             ])
             ->add('dateStart', DateType::class, [
+                'widget' => 'single_text',
                 'attr' => [
                     'class' => 'form-input-date',
                 ]
             ])
             ->add('dateEnd', DateType::class, [
+                'widget' => 'single_text',
                 'attr' => [
                     'class' => 'form-input-date',
                 ]
@@ -35,7 +37,8 @@ class UpdateSessionFormType extends AbstractType
             ->add('nb_place', NumberType::class, [
                 'attr' => [
                     'class' => 'form-input-text',
-                ]
+                ],
+                'label' => 'Places available',
             ])
             ->add('Formation', EntityType::class, [
                 'attr' => [

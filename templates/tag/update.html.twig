@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update a tag{% endblock %}
+
+{% block metadesc %}Update the tag {{ tag }} via the form{% endblock %}
+{% block pageWrapper %}Update-tag{% endblock %}
+
+
+{% block body %}
+
+   
+    <h1 class="primary-title">Update a tag</h1>
+   
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {{ form_start(updateTagForm) }}
+        {{ form_errors(updateTagForm) }}
+
+        <div class="form-content">
+            {{ form_row(updateTagForm.label) }}
+        </div>
+        
+        <button type="submit" class="form-btn-submit" >Submit</button>
+    {{ form_end(updateTagForm) }}
+
+{% endblock %}

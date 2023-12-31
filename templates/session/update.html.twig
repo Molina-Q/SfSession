@@ -2,7 +2,7 @@
 
 {% block title %}Update a session{% endblock %}
 
-{% block metadesc %}Update a session via the form{% endblock %}
+{% block metadesc %}Update the session: {{ session }} via the form{% endblock %}
 {% block pageWrapper %}update-session{% endblock %}
 
 
@@ -28,7 +28,7 @@
         {{ form_row(updateSessionForm.dateEnd) }}
         {{ form_row(updateSessionForm.nb_place) }}
 
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" class="form-btn-submit" >Submit</button>
     {{ form_end(updateSessionForm) }}
 
 {% endblock %}

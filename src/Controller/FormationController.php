@@ -31,13 +31,12 @@ class FormationController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response
     {
+        $formation = new Formation();
 
-        $form = $this->createForm(CreateFormationRequestFormType::class);
+        $form = $this->createForm(CreateFormationRequestFormType::class, $formation, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $formation = new Formation;
-            $formation->setLabel($form->get('label')->getData());
 
             $entityManager->persist($formation);
             $entityManager->flush();
@@ -47,10 +46,36 @@ class FormationController extends AbstractController
             return $this->redirectToRoute('create_formation');
         }
 
-        $formations = $formationRepository->findBy([], ['label' => 'ASC']);
-
         return $this->render('formation/create.html.twig', [
             'createFormationForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/formation/create/{id}', name: 'update_formation')]
+    public function update(
+        int $id,
+        FormationRepository $formationRepository,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+        $formation = $formationRepository->findOneById($id);
+
+        $form = $this->createForm(CreateFormationRequestFormType::class, $formation, ['attr' => ['class' => 'form-create']]);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->persist($formation);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'The formation '.$formation->getLabel().' was successfully updated');
+
+            return $this->redirectToRoute('app_formation');
+        }
+
+        return $this->render('formation/update.html.twig', [
+            'updateFormationForm' => $form->createView(),
         ]);
     }
 }

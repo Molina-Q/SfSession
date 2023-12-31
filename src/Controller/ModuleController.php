@@ -37,7 +37,7 @@ class ModuleController extends AbstractController
 
         $module = new Module;
 
-        $form = $this->createForm(CreateModuleFormType::class, $module);
+        $form = $this->createForm(CreateModuleFormType::class, $module, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -51,6 +51,36 @@ class ModuleController extends AbstractController
 
         return $this->render('module/create.html.twig', [
             'createModuleForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/module/update/{id}', name: 'update_module')]
+    public function update(
+        int $id,
+        ModuleRepository $moduleRepository,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+
+        $module = $moduleRepository->findOneById($id);
+
+        $form = $this->createForm(CreateModuleFormType::class, $module, ['attr' => ['class' => 'form-create']]);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+    
+            $entityManager->persist($module);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'The module '.$module->getLabel().' was successfully updated');
+            return $this->redirectToRoute('app_tag');
+        }
+
+        return $this->render('module/update.html.twig', [
+            'updateModuleForm' => $form->createView(),
+            'module' => $module
+
         ]);
     }
 }
