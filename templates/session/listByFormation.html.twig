@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sessions by formation{% endblock %}
+{% block metadesc %}Sessions by formation: {{ formation }}{% endblock %}
+{% block pageWrapper %}list-session{% endblock %}
+
+{% block body %}
+    <h2 class="secondary-title">List of sessions per formation</h2>
+    <h1 class="primary-title">{{ formation }}</h1>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('create_session') }}">Create session <b>+</b></a>
+    {% endif %} 
+
+    <div class="table-list">
+
+        <div class="table-row table-header">
+            <p class="table-item">Title</p>
+            <p class="table-item">Dates</p>
+            <p class="table-item">Places</p>
+        </div>
+
+        {% for session in formation.sessions %}
+        <div class="table-row">
+            <a href="{{ path('details_session', {id: session.id}) }}" class="table-item">
+                {{ session }}
+            </a>
+            
+            <p class="table-item">{{ session.showDates }}</p>
+            <p class="table-item">{{ session.nbPlace }}</p>
+
+            <a href="{{ path('update_session', {id: session.id}) }}">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+
+            <a href="">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+{% endblock %}
