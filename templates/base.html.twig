@@ -16,30 +16,31 @@
     <body>
         {% block header %}
         <header>
-            <a href="{{ path('app_home') }}">Home</a>
-
-            {% if app.user %}
+            <nav>
+                <a href="{{ path('app_home') }}" class="nav-main">Home</a>
+    
+                {% if app.user %}
+                    
+                    <a href="{{ path('app_formation') }}"><i class="fa-solid fa-caret-right"></i> Formations</a>
+                                
+                    <a href="{{ path('app_session') }}"><i class="fa-solid fa-caret-right"></i> Sessions</a>
+                                
+                    <a href="{{ path('app_tag') }}"><i class="fa-solid fa-caret-right"></i> Tags and Modules</a>
                 
-                <a href="{{ path('app_formation') }}">Formations</a>
-                            
-                <a href="{{ path('app_session') }}">Sessions</a>
-                            
-                <a href="{{ path('app_tag') }}">Tags and Modules</a>
+                    <a href="{{ path('app_user') }}"><i class="fa-solid fa-caret-right"></i> Students</a>
             
-                <a href="{{ path('app_user') }}">Students</a>
-        
-                <a href="{{ path('app_logout') }}">Logout</a>
-
-            {% else %}
-                <a href="{{ path('app_register') }}">
-                    Register
-                </a>
-
-                <a href="{{ path('app_login') }}">
-                    Login
-                </a>
-            {% endif %}
-            
+                    <a href="{{ path('app_logout') }}" class="nav-main">Logout</a>
+    
+                {% else %}
+                    <a href="{{ path('app_register') }}" class="nav-main">
+                        Register
+                    </a>
+    
+                    <a href="{{ path('app_login') }}" class="nav-main">
+                        Login
+                    </a>
+                {% endif %}
+            </nav>
         </header>
         {% endblock %}  
         

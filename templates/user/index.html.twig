@@ -5,9 +5,36 @@
 {% block pageWrapper %}index-user{% endblock %}
 
 {% block body %}
-<div>
+
+<h1>Registered user</h1>
+
+<div class="table-list">
+    
+    <div class="table-row table-header">
+        <p class="table-item">Name</p>
+        <p class="table-item">BirthDate</p>
+        <p class="table-item">City</p>
+    </div>
+    
     {% for user in users %} 
-        <p>{{ user }} <span><a href=" {{ path('details_user', {id: user.id}) }}">Click here for details</a></span></p>
+    <div class="table-row">
+        <a href="{{ path('details_user', {id: user.id}) }}" class="table-item">
+            {{ user }}
+        </a>
+            
+        <p class="table-item">{{ user.formatedBirthDate }}</p>
+        <p class="table-item">{{ user.city }}</p>
+
+        <a href="">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+
+        <a href="">
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+    </div>
     {% endfor %}
+        
 </div>
+
 {% endblock %}

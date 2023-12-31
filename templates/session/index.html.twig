@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}All of our incoming sessions{% endblock %}
-{% block metadesc %}Log into your account{% endblock %}
+{% block metadesc %}Our sessions{% endblock %}
 {% block pageWrapper %}index-session{% endblock %}
 
 {% block body %}
@@ -17,8 +17,11 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('create_session') }}">Create session <b>+</b></a>
+    <div class="create-entities">
+        <a href="{{ path('create_session') }}">Create session <b>+</b></a>
+    </div>
     {% endif %} 
+    
 
     <div class="table-list">
 

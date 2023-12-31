@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create a modukle{% endblock %}
+{% block title %}Create a module{% endblock %}
 
 {% block metadesc %}Create a module via the form{% endblock %}
 {% block pageWrapper %}create-module{% endblock %}
@@ -18,7 +18,6 @@
             </div>
         {% endfor %}
     {% endfor %}
-    <div class="form-create">
         {{ form_start(createModuleForm) }}
             {{ form_errors(createModuleForm) }}
         
@@ -29,6 +28,5 @@
         
             <button type="submit" class="form-btn-submit" >Submit</button>
         {{ form_end(createModuleForm) }}
-    </div>
 
 {% endblock %}

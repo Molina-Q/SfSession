@@ -9,7 +9,6 @@
 
     <h1>Create a formation</h1>
 
-
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
@@ -17,6 +16,7 @@
                 {{ message }}
             </div>
         {% endfor %}
+
     {% endfor %}
 
     {{ form_start(createFormationForm) }}

@@ -11,14 +11,31 @@
     <h1 class="primary-title">Our tags and their modules</h1>
 
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('create_tag') }}"><p>Create tag <b>+</b></p></a>
-            <a href="{{ path('create_module') }}"><p>Create module <b>+</b></p></a>
+        <div class="create-entities">
+
+            <a href="{{ path('create_tag') }}">
+                <p>Create tag <b>+</b></p>
+            </a>
+
+            <a href="{{ path('create_module') }}">
+                <p>Create module <b>+</b></p>
+            </a>
+        </div>
+  
         {% endif %} 
 
     <div id="table-list">
         {% for tag in tags %}
             <div class="table-row table-header">  
                 <h2 class="table-item">{{ tag }}</h2>
+
+                <a href="{{ path('update_tag', {id:tag.id}) }}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+    
+                <a href="">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
             </div>
 
             {% if tag.Modules | length > 0 %}
@@ -26,6 +43,14 @@
                 {% for module in tag.Modules %}
                     <div class="table-row">
                         <p class="table-item">{{ module }}</p>
+
+                        <a href="{{ path('update_module', {id:module.id}) }}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+            
+                        <a href="">
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
                     </div>
                 {% endfor %}
                

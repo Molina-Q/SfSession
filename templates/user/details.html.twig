@@ -8,14 +8,32 @@
 
 
 {% block body %}
+<h2 class="secondary-title">Details of a user</h2>
 <h1 class="primary-title">{{ user }}</h1>
-<ul>
-    <li>{{ user.formatedBirthDate }} ({{ user.showAge }})</li>
-    <li>{{ user.email }}</li>
-    <li>{{ user.adress }}</li>
-    <li>{{ user.postcode }}, {{ user.city }}</li>
+
+<div class="table-list">
+    <div class="table-row table-header">
+        <h2>Personal information</h1>
+
+        <a href="">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+
+        <a href="">
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+    </div>
+    <div class="table-free">
+        <p class="table-item">BirthDate: {{ user.formatedBirthDate }} ({{ user.showAge }})</p>
+        <p class="table-item">Email: {{ user.email }}</p>
+        <p class="table-item">Postcode: {{ user.postcode }}</p>
+        <p class="table-item">City: {{ user.city }}</p>
+        <p class="table-item">Adress: {{ user.adress }}</p>
+    </div>
+</div>
+
     
-</ul>
+
 {% endblock %}
 
 

@@ -8,8 +8,10 @@
     <h1 class="primary-title">Our modules</h1>
 
         {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('create_module') }}">Create module <b>+</b></a>
-        <a href="{{ path('create_tag') }}">Create tag <b>+</b></a>
+        <div class="create-entities">
+            <a href="{{ path('create_module') }}">Create module <b>+</b></a>
+            <a href="{{ path('create_tag') }}">Create tag <b>+</b></a>
+        </div>
         {% endif %} 
 
     <div class="table-list">
