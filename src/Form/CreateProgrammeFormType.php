@@ -17,6 +17,7 @@ class CreateProgrammeFormType extends AbstractType
     {
         $builder
             ->add('duration', NumberType::class,[
+                'label' => 'Duration (in days)',
                 'attr' => [
                     'class' => 'form-input-text',
                 ]
