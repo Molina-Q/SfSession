@@ -1,7 +1,7 @@
 /************************* General *************************/
 /***********************************************************/
 :root {
-    --primary-color: #1F816F;
+    /* --primary-color: #1F816F;
     
     --primary-color-text: #29c7aa;
     --secondary-color-text: #ffffff;
@@ -10,7 +10,18 @@
     --active-color:#12574a;
     
     --primary-background: #131E1C;
-    --secondary-background: #0A2E27;
+    --secondary-background: #0A2E27; */
+
+    --primary-color: #6BB6A8;
+    
+    --primary-color-text: #36786C;
+    --secondary-color-text: #153D35;
+
+    --hover-color: #20a38b;
+    --active-color:#12574a;
+    
+    --primary-background: #B5E5DD;
+    --secondary-background: #87D6C6;
 
     --danger-color: #9C1414;
     --alert-color:#C07300;
