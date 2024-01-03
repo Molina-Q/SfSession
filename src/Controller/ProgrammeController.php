@@ -10,13 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProgrammeController extends AbstractController
 {
-    #[Route('/programme', name: 'app_programme')]
+    #[Route('profile/programme', name: 'app_programme')]
     public function index(): Response
     {
         return $this->redirectToRoute('app_session');
     }
 
-    #[Route('/programme/update/{id}', name: 'update_programme')]
+    #[Route('secretary/programme/update/{id}', name: 'update_programme')]
     public function update(
         int $id,
         ProgrammeRepository $programmeRepository,
@@ -44,7 +44,7 @@ class ProgrammeController extends AbstractController
         ]);
     }
 
-    #[Route('/programme/delete/{id}', name: 'delete_programme')]
+    #[Route('admin/programme/delete/{id}', name: 'delete_programme')]
     public function delete(
         int $id,
         TagRepository $tagRepository,
@@ -60,5 +60,4 @@ class ProgrammeController extends AbstractController
         $this->addFlash('success', 'The tag '.$tag->getLabel().' was successfully deleted');
         return $this->redirectToRoute('app_tag');
     }
-}
 }

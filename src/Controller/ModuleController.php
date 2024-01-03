@@ -15,13 +15,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ModuleController extends AbstractController
 {
-    #[Route('/module', name: 'app_module')]
+    #[Route('profile/module', name: 'app_module')]
     public function index(ModuleRepository $moduleRepository, TagRepository $tagRepository): Response
     {
         return $this->redirectToRoute('app_tag');
     }
 
-    #[Route('/module/create', name: 'create_module')]
+    #[Route('secretary/module/create', name: 'create_module')]
     public function create(
         ModuleRepository $moduleRepository,
         Request $request,
@@ -48,7 +48,7 @@ class ModuleController extends AbstractController
         ]);
     }
 
-    #[Route('/module/update/{id}', name: 'update_module')]
+    #[Route('secretary/module/update/{id}', name: 'update_module')]
     public function update(
         int $id,
         ModuleRepository $moduleRepository,
@@ -78,7 +78,7 @@ class ModuleController extends AbstractController
         ]);
     }
 
-    #[Route('/module/delete/{id}', name: 'delete_module')]
+    #[Route('admin/module/delete/{id}', name: 'delete_module')]
     public function delete(
         int $id,
         ModuleRepository $moduleRepository,

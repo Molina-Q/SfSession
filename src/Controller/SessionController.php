@@ -12,6 +12,7 @@ use App\Form\CreateProgrammeFormType;
 use App\Repository\SessionRepository;
 use App\Form\RegisterToSessionFormType;
 use App\Repository\FormationRepository;
+use App\Repository\ProgrammeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
-    #[Route('/session', name: 'app_session')]
+    #[Route('profile/session', name: 'app_session')]
     public function index(SessionRepository $sessionRepository): Response
     {
 
@@ -30,7 +31,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/create', name: 'create_session')]
+    #[Route('secretary/session/create', name: 'create_session')]
     public function create(
         SessionRepository $sessionRepository,
         Request $request,
@@ -57,17 +58,19 @@ class SessionController extends AbstractController
         ]);
     }
     
-    #[Route('/session/{id}', name: 'details_session')]
+    #[Route('profile/session/{id}', name: 'details_session')]
     public function details(
         int $id,
         SessionRepository $sessionRepository,
         TagRepository $tagRepository,
+        ProgrammeRepository $programmeRepository,
         EntityManagerInterface $entityManager,
         Request $request,
         ): Response
     {
 
         $session = $sessionRepository->findOneById($id);
+        
 
         $programme = new Programme();
 
@@ -101,14 +104,17 @@ class SessionController extends AbstractController
             return $this->redirectToRoute('details_session', ['id' => $id]);
         }
 
+        $tags = $programmeRepository->findProgrammesByTags($id);
+
         return $this->render('session/details.html.twig', [
             'addProgrammeForm' => $formProgramme->createView(),
             'addStudentForm' => $formStudent->createView(),
             'session' => $session,
+            'tags' => $tags
         ]);
     }
 
-    #[Route('/session/formation/{id}', name: 'list_session')]
+    #[Route('profile/session/formation/{id}', name: 'list_session')]
     public function listByFormation(
         int $id,
         SessionRepository $sessionRepository,
@@ -127,7 +133,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/update/{id}', name: 'update_session')]
+    #[Route('secretary/session/update/{id}', name: 'update_session')]
     public function update(
         SessionRepository $sessionRepository,
         Request $request,
@@ -155,7 +161,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/delete/{id}', name: 'delete_session')]
+    #[Route('admin/session/delete/{id}', name: 'delete_session')]
     public function delete(
         int $id,
         SessionRepository $sessionRepository,

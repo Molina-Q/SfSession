@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FormationController extends AbstractController
 {
-    #[Route('/formation', name: 'app_formation')]
+    #[Route('profile/formation', name: 'app_formation')]
     public function index(FormationRepository $formationRepository): Response
     {
         $formations = $formationRepository->findBy([], ['label' => 'ASC']);
@@ -24,7 +24,7 @@ class FormationController extends AbstractController
         ]);
     }
 
-    #[Route('/formation/create', name: 'create_formation')]
+    #[Route('secretary/formation/create', name: 'create_formation')]
     public function create(
         FormationRepository $formationRepository,
         Request $request,
@@ -51,7 +51,7 @@ class FormationController extends AbstractController
         ]);
     }
 
-    #[Route('/formation/create/{id}', name: 'update_formation')]
+    #[Route('secretary/formation/update/{id}', name: 'update_formation')]
     public function update(
         int $id,
         FormationRepository $formationRepository,
@@ -76,10 +76,11 @@ class FormationController extends AbstractController
 
         return $this->render('formation/update.html.twig', [
             'updateFormationForm' => $form->createView(),
+            'formation' => $formation,
         ]);
     }
 
-    #[Route('/formation/delete/{id}', name: 'delete_formation')]
+    #[Route('admin/formation/delete/{id}', name: 'delete_formation')]
     public function delete(
         int $id,
         FormationRepository $formationRepository,

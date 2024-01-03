@@ -45,4 +45,30 @@ class ProgrammeRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+    public function findProgrammesByTags($session_id) {
+        $entityManager = $this->getEntityManager();
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('t, m, p') /* alias de ce que je veux selectionner*/ 
+            ->from('App\Entity\Tag', 't') /* from comme en sql */
+            ->leftJoin('t.modules', 'm') /* modules ne prends pas de maj et un s car c'est une collection (car sa rel avec t est ManyToOne) */
+            ->leftJoin('m.programmes', 'p') /* idem */
+            ->where('p.Session = :id') /* Session prends une maj et n'as pas de S (car sa rel avec p est OneToMany) */
+            ->orderBy('t.label, m.label') /* order en priorité par le label de tag puis par le label de module */
+            ->setParameter('id', $session_id); /* donne les champs paramétrés */
+        
+        // $qb->select('p')
+        //     ->from('App\Entity\Programme', 'p')
+        //     // ->innerJoin('t.modules', 'm')
+        //     // ->innerJoin('p.', 'm')
+        //     ->leftJoin('p.Module', 'm')
+        //     ->leftJoin('m.Tag', 't')
+        //     ->where('p.Session = :id')
+        //     ->setParameter('id', $session_id);
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
 }

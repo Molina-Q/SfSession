@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TagController extends AbstractController
 {
-    #[Route('/tag', name: 'app_tag')]
+    #[Route('profile/tag', name: 'app_tag')]
     public function index(TagRepository $tagRepository): Response
     {
         $tags = $tagRepository->findBy([], ['label' => 'ASC']);
@@ -24,7 +24,7 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route('/tag/create', name: 'create_tag')]
+    #[Route('secretary/tag/create', name: 'create_tag')]
     public function create(
         TagRepository $tagRepository,
         Request $request,
@@ -50,7 +50,7 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route('/tag/update/{id}', name: 'update_tag')]
+    #[Route('secretary/tag/update/{id}', name: 'update_tag')]
     public function update(
         int $id,
         TagRepository $tagRepository,
@@ -78,7 +78,7 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route('/tag/delete/{id}', name: 'delete_tag')]
+    #[Route('admin/tag/delete/{id}', name: 'delete_tag')]
     public function delete(
         int $id,
         TagRepository $tagRepository,

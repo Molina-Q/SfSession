@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
+    #[Route('profile/user', name: 'app_user')]
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findBy([], ["last_name" => "ASC"]);
@@ -23,7 +23,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/{id}', name: 'details_user')]
+    #[Route('profile/user/{id}', name: 'details_user')]
     public function details(User $user): Response
     {
         return $this->render('user/details.html.twig', [
@@ -31,7 +31,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/update/{id}', name: 'update_user')]
+    #[Route('admin/user/update/{id}', name: 'update_user')]
     public function update(
         int $id,
         UserRepository $userRepository,
@@ -59,7 +59,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/delete/{id}', name: 'delete_user')]
+    #[Route('admin/user/delete/{id}', name: 'delete_user')]
     public function delete(
         int $id,
         UserRepository $userRepository,

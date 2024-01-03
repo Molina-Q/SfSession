@@ -82,7 +82,7 @@
 
     <div id="table-formation-module" class="table-list">
 
-        {% for programme in session.programmes %}
+        {# {% for programme in session.programmes %}
         <div class="table-row table-header">
             <p class="table-item">{{ programme.module.Tag }}</p>
         </div>
@@ -99,6 +99,30 @@
                 <i class="fa-solid fa-xmark"></i>
             </a>
         </div>   
+        {% endfor %} #}
+        
+        
+        {% for tag in tags %}
+        <div class="table-row table-header">
+            <p class="table-item">{{ tag }}</p>
+        </div>
+            {% for module in tag.modules %}
+            
+                {% for programme in module.programmes %}
+                <div class="table-row">
+                    <p class="table-item">{{ programme }}</p>
+                    <p class="table-item">{{ programme.duration }} days</p>      
+                    
+                    <a href="{{ path('update_programme', {id: programme.id}) }}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+
+                    <a href="{{ path('delete_programme', {id: programme.id}) }}" class="deleteIcon">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                </div>   
+                {% endfor %}
+            {% endfor %}
         {% endfor %}
 
     </div>
