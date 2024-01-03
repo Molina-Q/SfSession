@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `gender` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `birth_date` date NOT NULL,
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `postcode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_verified` tinyint(1) NOT NULL,
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfsession.user : ~1 rows (environ)
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `roles`, `password`, `gender`, `birth_date`, `phone`, `adress`, `postcode`, `city`, `is_verified`, `reset_token`) VALUES
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `roles`, `password`, `gender`, `birth_date`, `phone`, `address`, `postcode`, `city`, `is_verified`, `reset_token`) VALUES
 	(1, 'Quentin', 'Molina', 'quentin@exemple.com', '["ROLE_ADMIN"]', '$2y$13$wXllHh0/H89ZRDWYCllgseVtQqUsVgpAH3qb3Y1hryTF8CHahGqMS', 'M', '2000-02-12', '0611111111', '3 rue des pommes', '67000', 'Strasbourg', 0, '');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

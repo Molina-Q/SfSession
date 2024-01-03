@@ -41,7 +41,7 @@ class UpdateUserFormType extends AbstractType
                 'class' => 'form-input-text',
             ]
         ])
-        ->add('adress', TextType::class, [
+        ->add('address', TextType::class, [
             'attr' => [
                 'class' => 'form-input-text',
             ]

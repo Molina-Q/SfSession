@@ -38,9 +38,9 @@
                 </a>
             </div>
 
-            {% if tag.Modules | length > 0 %}
+            {% if tag.Modules|length > 0 %}
                 
-                {% for module in tag.Modules %}
+                {% for module in tag.Modules|sort((a, b) => a.label <=> b.label)  %}
                     <div class="table-row">
                         <p class="table-item">{{ module }}</p>
 

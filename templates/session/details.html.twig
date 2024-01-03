@@ -19,30 +19,26 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    {{ form_start(addStudentForm) }}
-    <h3>Add student</h3>
 
-        {{ form_errors(addStudentForm) }}
+        {{ form_start(addStudentForm) }}
+            {{ form_errors(addStudentForm) }}
+            <h3>Add Student</h3>
+            <div class="form-content">
+                {{ form_row(addStudentForm.Student) }}
+            </div>
+            <button type="submit" class="form-btn-submit" >Submit</button>
+        {{ form_end(addStudentForm) }}
 
-        <div class="form-content">
-            {{ form_row(addStudentForm.Student) }}
-        </div>
+        {{ form_start(addProgrammeForm) }}
+            {{ form_errors(addProgrammeForm) }}
+            <h3>Add Programme</h3>
+            <div class="form-content">
+                {{ form_row(addProgrammeForm.Module) }}
+                {{ form_row(addProgrammeForm.duration) }}
+            </div>
+            <button type="submit" class="form-btn-submit" >Submit</button>
+        {{ form_end(addProgrammeForm) }}
 
-        <button type="submit" class="form-btn-submit" >Submit</button>
-    {{ form_end(addStudentForm) }}
-
-    {{ form_start(addProgrammeForm) }}
-    <h3>Add Programme</h3>
-
-        {{ form_errors(addProgrammeForm) }}
-
-        <div class="form-content">
-            {{ form_row(addProgrammeForm.Module) }}
-            {{ form_row(addProgrammeForm.duration) }}
-        </div>
-
-        <button type="submit" class="form-btn-submit" >Submit</button>
-    {{ form_end(addProgrammeForm) }}
     {% endif %} 
 
     <div class="row-unique table-header">
@@ -107,20 +103,19 @@
             <p class="table-item">{{ tag }}</p>
         </div>
             {% for module in tag.modules %}
-            
                 {% for programme in module.programmes %}
-                <div class="table-row">
-                    <p class="table-item">{{ programme }}</p>
-                    <p class="table-item">{{ programme.duration }} days</p>      
-                    
-                    <a href="{{ path('update_programme', {id: programme.id}) }}">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </a>
+                    <div class="table-row">
+                        <p class="table-item">{{ programme }}</p>
+                        <p class="table-item">{{ programme.duration }} days</p>      
+                        
+                        <a href="{{ path('update_programme', {id: programme.id}) }}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
 
-                    <a href="{{ path('delete_programme', {id: programme.id}) }}" class="deleteIcon">
-                        <i class="fa-solid fa-xmark"></i>
-                    </a>
-                </div>   
+                        <a href="{{ path('delete_programme', {id: programme.id}) }}" class="deleteIcon">
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
+                    </div>   
                 {% endfor %}
             {% endfor %}
         {% endfor %}
