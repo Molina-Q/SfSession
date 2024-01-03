@@ -138,7 +138,7 @@ class SessionController extends AbstractController
 
         $session = $sessionRepository->findOneById($id);
 
-        $form = $this->createForm(UpdateSessionFormType::class, $session, ['attr' => ['class' => 'form-create']]);
+        $form = $this->createForm(CreateSessionFormType::class, $session, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -153,5 +153,22 @@ class SessionController extends AbstractController
         return $this->render('session/update.html.twig', [
             'updateSessionForm' => $form->createView(),
         ]);
+    }
+
+    #[Route('/session/delete/{id}', name: 'delete_session')]
+    public function delete(
+        int $id,
+        SessionRepository $sessionRepository,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+
+        $session = $sessionRepository->findOneById($id);
+
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'The session '.$session->getLabel().' was successfully deleted');
+        return $this->redirectToRoute('app_tag');
     }
 }

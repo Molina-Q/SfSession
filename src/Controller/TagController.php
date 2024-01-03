@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Tag;
 use App\Form\CreateTagFormType;
+use App\Form\UpdateTagFormType;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,5 +76,22 @@ class TagController extends AbstractController
             'updateTagForm' => $form->createView(),
             'tag' => $tag
         ]);
+    }
+
+    #[Route('/tag/delete/{id}', name: 'delete_tag')]
+    public function delete(
+        int $id,
+        TagRepository $tagRepository,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+
+        $tag = $tagRepository->findOneById($id);
+
+        $entityManager->remove($tag);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'The tag '.$tag->getLabel().' was successfully deleted');
+        return $this->redirectToRoute('app_tag');
     }
 }

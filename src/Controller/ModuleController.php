@@ -18,13 +18,7 @@ class ModuleController extends AbstractController
     #[Route('/module', name: 'app_module')]
     public function index(ModuleRepository $moduleRepository, TagRepository $tagRepository): Response
     {
-        $tags = $tagRepository->findBy([], ['label' => 'ASC']);
-        $modules = $moduleRepository->findBy([], ['label' => 'ASC']);
-
-        return $this->render('module/index.html.twig', [
-            'tags' => $tags,
-            'modules' => $modules,
-        ]);
+        return $this->redirectToRoute('app_tag');
     }
 
     #[Route('/module/create', name: 'create_module')]
@@ -82,5 +76,22 @@ class ModuleController extends AbstractController
             'module' => $module
 
         ]);
+    }
+
+    #[Route('/module/delete/{id}', name: 'delete_module')]
+    public function delete(
+        int $id,
+        ModuleRepository $moduleRepository,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+
+        $module = $moduleRepository->findOneById($id);
+
+        $entityManager->remove($module);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'The module '.$module->getLabel().' was successfully deleted');
+        return $this->redirectToRoute('app_tag');
     }
 }
