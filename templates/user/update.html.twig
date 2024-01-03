@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update your informations{% endblock %}
+{% block metadesc %}Update your account informations{% endblock %}
+
+{% block pageWrapper %}update-user{% endblock %}
+
+{% block body %}
+
+    <h1 class="primary-title">Update user info</h1>
+    {{ form_start(updateUserForm) }}
+        {{ form_errors(updateUserForm) }}
+
+      
+        {{ form_row(updateUserForm.last_name) }}
+        {{ form_row(updateUserForm.first_name) }}
+
+        {{ form_row(updateUserForm.email) }}
+        {{ form_row(updateUserForm.phone) }}
+        {{ form_row(updateUserForm.birthDate) }}
+        {{ form_row(updateUserForm.adress) }}
+        {{ form_row(updateUserForm.postcode) }}
+        {{ form_row(updateUserForm.city) }}
+  
+        <button type="submit" class="form-btn-submit">Submit</button>
+    {{ form_end(updateUserForm) }}
+
+{% endblock %}

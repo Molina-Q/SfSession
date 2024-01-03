@@ -1,7 +1,7 @@
 /************************* General *************************/
 /***********************************************************/
 :root {
-    /* --primary-color: #1F816F;
+    --primary-color: #1F816F;
     
     --primary-color-text: #29c7aa;
     --secondary-color-text: #ffffff;
@@ -10,18 +10,18 @@
     --active-color:#12574a;
     
     --primary-background: #131E1C;
-    --secondary-background: #0A2E27; */
+    --secondary-background: #0A2E27;
 
-    --primary-color: #6BB6A8;
+    /* --primary-color: #6BB6A8;
     
-    --primary-color-text: #36786C;
-    --secondary-color-text: #153D35;
+    --primary-color-text: #296e62;
+    --secondary-color-text: #122c27;
 
     --hover-color: #20a38b;
     --active-color:#12574a;
     
     --primary-background: #B5E5DD;
-    --secondary-background: #87D6C6;
+    --secondary-background: #87D6C6; */
 
     --danger-color: #9C1414;
     --alert-color:#C07300;
@@ -74,9 +74,11 @@ em {
 /************************* Header *************************/
 /**********************************************************/
 nav {
+    width: 250px;
+    min-height: 100vh;
+    height: 100%;
+    
     flex: 0.8;
-    height: 100vh;
-
     display: flex;
     flex-direction: column;
 
@@ -92,7 +94,7 @@ nav a {
 nav .nav-main {
     font-size: 25px;
     font-weight: var(--weight-bold);
-    margin: 25px 0;  
+    margin: 25px 0 20px;  
     transition: 0.3s;
 }
 
@@ -103,11 +105,9 @@ nav a:hover {
 
 nav a:not(.nav-main) {
     font-size: 20px;
+    margin: 5px 0;
     transition: 0.3s;
 }
-
-
-
 
 /************************* Wrapper ***************************/
 /*************************************************************/
@@ -281,21 +281,23 @@ nav a:not(.nav-main) {
 
 }
 
-.form-create div:not(:has(>.form-input-date)) { /* affect all div that doesn't have a date input */
+
+.form-create div { /* affect all div that doesn't have a date input */
     grid-column: 1 / 5;
 }
 
-.form-create div:has(>.form-input-date) { /* affect all div that do have a date input */
-    grid-row: 4;
+.wrap-create-session .form-create div:has(>.form-input-date) { /* affect all div that do have a date input */
+    /* grid-row: 4; */
     grid-column: span 2;
 }
 
-.form-input-select {
-
+div input[type=checkbox] {
+    width: 25px;
+    margin-left: 15px;
 }
 
 .form-btn-submit {
-    width: 80px;
+    /* width: 80px; */
     height: 35px;
 
     color: var(--secondary-color-text);
@@ -307,6 +309,8 @@ nav a:not(.nav-main) {
 
     cursor: pointer;
     transition: 0.3s;
+
+    align-self: center;
 }
 
 .form-btn-submit:hover {
@@ -319,8 +323,8 @@ nav a:not(.nav-main) {
     transition: 0.3s;
 }
 
-/************************* FormRegister ***************************/
-/******************************************************************/
+/*************************** RegisterForm & UpdateUserForm ***************************/
+/*************************************************************************************/
 .wrap-register {
     padding: 0 15%!;
 }
@@ -334,13 +338,34 @@ nav a:not(.nav-main) {
     row-gap: 15px;
 }
 
-.wrap-register .form-create div:nth-child(-n + 2) { /* input text / number */
-    grid-column: span 3;
-    grid-row: 1 / 1 ;
+/* lastName & firstName */
+.wrap-update-user form div:nth-child(-n + 2), .wrap-register form div:nth-child(-n + 2) { 
+    grid-column: span 2;
+    padding-bottom: 25px;
+} 
+
+/* email & phone */
+.wrap-update-user form div:nth-child(3), .wrap-register form div:nth-child(3),
+.wrap-update-user form div:nth-child(4), .wrap-register form div:nth-child(4) {
+    grid-column: span 2;
+} 
+
+/* postCode & City */
+.wrap-update-user form div:nth-child(7), .wrap-register form div:nth-child(7),
+.wrap-update-user form div:nth-child(8), .wrap-register form div:nth-child(8) {
+    grid-column: span 2;
+    padding-bottom: 25px;
+} 
+
+/* birthDate */
+.wrap-update-user form div:nth-child(5), .wrap-register form div:nth-child(5) {
+    padding-bottom: 25px;
 }
 
-/************************* GridDetailsSession ***************************/
-/**********************************************************/
+
+
+/*************************** GridDetailsSession ***************************/
+/**************************************************************************/
 .wrap-details-session {
     margin: 25px 0;
     display: grid;
@@ -378,7 +403,6 @@ nav a:not(.nav-main) {
 .wrap-details-session #table-formation-module {
     grid-column: 1 / span 4;
 }
-
 
 /************************* HomePage ************************/
 /***********************************************************/
@@ -423,6 +447,10 @@ nav a:not(.nav-main) {
     border-radius: 5px;
 }
 
+.home-formation-items p {
+    font-size: 22px;
+}
+
 .home-formation-items a {
     display: inline-block;
     text-decoration: none;
@@ -445,3 +473,4 @@ nav a:not(.nav-main) {
     padding: 0 15%;
 }
 
+/**/

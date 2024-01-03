@@ -34,7 +34,7 @@
 
         {% for session in sessions %}
         <div class="table-row">
-            <a href="{{ path('details_session', {id: session.id}) }}" class="table-item">
+            <a href="{{ path('details_session', {id: session.id}) }}" class="table-item ">
                 {{ session }}
             </a>
             
@@ -46,12 +46,12 @@
                 <i class="fa-solid fa-pen-to-square"></i>
             </a>
 
-            <a href="">
+            <a href="{{ path('delete_session', {id: session.id}) }}" class="deleteIcon">
                 <i class="fa-solid fa-xmark"></i>
             </a>
-        </div>
+        </div>  
         {% endfor %}
-        
+
     </div>
 
 {% endblock %}

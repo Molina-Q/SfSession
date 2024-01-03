@@ -25,11 +25,11 @@
         <p class="table-item">{{ user.formatedBirthDate }}</p>
         <p class="table-item">{{ user.city }}</p>
 
-        <a href="">
+        <a href="{{ path('update_user', {id: user.id}) }}">
             <i class="fa-solid fa-pen-to-square"></i>
         </a>
 
-        <a href="">
+        <a href="{{ path('delete_user', {id: user.id}) }}" class="deleteIcon">
             <i class="fa-solid fa-xmark"></i>
         </a>
     </div>
