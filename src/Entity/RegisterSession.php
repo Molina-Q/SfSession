@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RegisterSessionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RegisterSessionRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: RegisterSessionRepository::class)]
+#[UniqueEntity(fields: ['Student', 'Session'], message: 'This student is already registered to this session')]
+
 class RegisterSession
 {
     #[ORM\Id]

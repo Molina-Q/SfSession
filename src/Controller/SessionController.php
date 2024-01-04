@@ -6,6 +6,7 @@ use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\RegisterSession;
 use App\Repository\TagRepository;
+use App\Repository\UserRepository;
 use App\Form\CreateSessionFormType;
 use App\Form\UpdateSessionFormType;
 use App\Form\CreateProgrammeFormType;
@@ -25,7 +26,7 @@ class SessionController extends AbstractController
     public function index(SessionRepository $sessionRepository): Response
     {
 
-        $sessions = $sessionRepository->findBy([], ['title' => 'ASC']);
+        $sessions = $sessionRepository->findBy([], ['dateStart' => 'DESC']);
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
         ]);
@@ -64,6 +65,7 @@ class SessionController extends AbstractController
         SessionRepository $sessionRepository,
         TagRepository $tagRepository,
         ProgrammeRepository $programmeRepository,
+        UserRepository $userRepository,
         EntityManagerInterface $entityManager,
         Request $request,
         ): Response
@@ -106,11 +108,17 @@ class SessionController extends AbstractController
 
         $tags = $programmeRepository->findProgrammesByTags($id);
 
+        $unregisteredUser = $userRepository->findUnregisteredUser($id);
+        
+        $registeredUser = $userRepository->findRegisteredUser($id);
+
         return $this->render('session/details.html.twig', [
             'addProgrammeForm' => $formProgramme->createView(),
             'addStudentForm' => $formStudent->createView(),
             'session' => $session,
-            'tags' => $tags
+            'tags' => $tags,
+            'unregisteredUser' => $unregisteredUser,
+            'registeredUser' => $registeredUser,
         ]);
     }
 

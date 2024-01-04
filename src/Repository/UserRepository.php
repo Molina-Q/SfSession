@@ -63,4 +63,43 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findRegisteredUser($session_id) {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('u')
+            ->from('App\Entity\User', 'u')
+            ->leftJoin('u.sessions', 'se')
+            ->where('se.id = :id')
+            ->setParameter('id', $session_id)
+            ->orderBy('u.last_name, u.first_name');
+
+    
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findUnregisteredUser($session_id) {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+
+        $qb->select('u')
+            ->from('App\Entity\User', 'u')
+            ->leftJoin('u.sessions', 'se')
+            ->where('se.id = :id');
+
+        $sub = $em->createQueryBuilder();
+        // sub query ou je recherche tous les student qui ne sont pas reliés à la session actuelle
+        $sub->select('us')
+            ->from('App\Entity\User', 'us')
+            ->where($sub->expr()->notIn('us.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('us.last_name, us.first_name');
+    
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
 }
