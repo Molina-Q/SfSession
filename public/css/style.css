@@ -171,7 +171,6 @@ nav a:not(.nav-main) {
     text-align: center;
 
     background-color: var(--secondary-background);
-
     position: relative;
 }
 
@@ -181,23 +180,56 @@ nav a:not(.nav-main) {
     flex-direction: column;
     justify-content: space-around;
 
+    background-color: var(--secondary-background);
+
+    position: relative;
+}
+
+.table-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
     background-color: var(--secondary-background);
 
     position: relative;
 }
 
-.table-row:first-child, .table-free:first-child {
+.table-section:not(:nth-child(3)) {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+.table-section div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    text-align: center;
+}
+
+.table-section p, .table-section strong {
+    text-align: center;
+}
+
+.table-row:first-child, 
+.table-free:first-child, 
+.table-section:first-child {
     border-top-left-radius: 8px ;
     border-top-right-radius: 8px ;
 }
 
-.table-row:last-child, .table-free:last-child {
+.table-row:last-child, 
+.table-free:last-child, 
+.table-section:last-child  {
     border-bottom-left-radius: 8px ;
     border-bottom-right-radius: 8px ;
 }
 
-.table-row:not(:last-child, :first-child) {
+.table-row:not(:last-child, :first-child), 
+.table-section:not(:last-child, :first-child) {
     border-bottom: 1px solid var(--primary-color);
 }
 
@@ -473,8 +505,7 @@ div input[type=checkbox] {
 
 /************************* detailsSession ************************/
 /*****************************************************************/
-#table-information .table-row:not(.table-header) {
-    flex-direction: column;
+#table-information .table-section {
     text-align: left;
     padding: 0 15%;
 }
