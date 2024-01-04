@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Form\CreateProgrammeFormType;
+use App\Repository\SessionRepository;
 use App\Repository\ProgrammeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,48 +18,49 @@ class ProgrammeController extends AbstractController
         return $this->redirectToRoute('app_session');
     }
 
-    #[Route('secretary/programme/update/{id}', name: 'update_programme')]
-    public function update(
-        int $id,
-        ProgrammeRepository $programmeRepository,
-        Request $request,
-        EntityManagerInterface $entityManager
-    ): Response
-    {
-        $programme = $programmeRepository->findOneById($id);
+    // #[Route('secretary/programme/update/{id}', name: 'update_programme')]
+    // public function update(
+    //     int $id,
+    //     ProgrammeRepository $programmeRepository,
+    //     Request $request,
+    //     EntityManagerInterface $entityManager
+    // ): Response
+    // {
+    //     $programme = $programmeRepository->findOneById($id);
 
-        $form = $this->createForm(CreaterProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
-        $form->handleRequest($request);
+    //     $form = $this->createForm(CreaterProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
+    //     $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+    //     if($form->isSubmitted() && $form->isValid()) {
 
-            $entityManager->persist($programme);
-            $entityManager->flush();
+    //         $entityManager->persist($programme);
+    //         $entityManager->flush();
 
-            $this->addFlash('success', 'The programme '.$programme->getModule()->getLabel().' was successfully updated');
-            return $this->redirectToRoute('details_session', ['id' => $programme->getSession()->getId() ]);
-        }
+    //         $this->addFlash('success', 'The programme '.$programme->getModule()->getLabel().' was successfully updated');
+    //         return $this->redirectToRoute('details_session', ['id' => $programme->getSession()->getId() ]);
+    //     }
 
-        return $this->render('programme/create.html.twig', [
-            'upgradeProgrammeForm' => $form->createView(),
-            'programme' => $programme
-        ]);
-    }
+    //     return $this->render('programme/create.html.twig', [
+    //         'upgradeProgrammeForm' => $form->createView(),
+    //         'programme' => $programme
+    //     ]);
+    // }
 
     #[Route('admin/programme/delete/{id}', name: 'delete_programme')]
     public function delete(
         int $id,
-        TagRepository $tagRepository,
+        ProgrammeRepository $programmeRepository,
         EntityManagerInterface $entityManager
     ): Response
     {
 
-        $tag = $tagRepository->findOneById($id);
+        $programme = $programmeRepository->findOneById($id);
+        $session_id = $programme->getSession()->getId();
 
-        $entityManager->remove($tag);
+        $entityManager->remove($programme);
         $entityManager->flush();
 
-        $this->addFlash('success', 'The tag '.$tag->getLabel().' was successfully deleted');
-        return $this->redirectToRoute('app_tag');
+        $this->addFlash('success', 'The module '.$programme->getModule()->getLabel().' was successfully deleted');
+        return $this->redirectToRoute('details_session', ['id' => $session_id ]);
     }
 }

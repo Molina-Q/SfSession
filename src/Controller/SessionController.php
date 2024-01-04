@@ -102,14 +102,13 @@ class SessionController extends AbstractController
             $entityManager->persist($registerSession);
             $entityManager->flush();
 
-            // $this->addFlash('success', 'The programme '.$programme->getLabel().' was successfully added');
             return $this->redirectToRoute('details_session', ['id' => $id]);
         }
 
         $tags = $programmeRepository->findProgrammesByTags($id);
 
         $unregisteredUser = $userRepository->findUnregisteredUser($id);
-        
+
         $registeredUser = $userRepository->findRegisteredUser($id);
 
         return $this->render('session/details.html.twig', [
