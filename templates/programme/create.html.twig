@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}update a programme{% endblock %}
+{% block metadesc %}update a programme via the form{% endblock %}
+{% block pageWrapper %}update-programme{% endblock %}
+
+{% block body %}
+
+    <h1 class="primary-title">update a programme</h1>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
+    {{ form_start(updateProgrammeForm) }}
+        {{ form_errors(updateProgrammeForm) }}
+
+            {{ form_row(updateProgrammeForm.Formation) }}
+            {{ form_row(updateProgrammeForm.title) }}
+            {{ form_row(updateProgrammeForm.nb_place) }}
+            {{ form_row(updateProgrammeForm.dateStart) }}
+            {{ form_row(updateProgrammeForm.dateEnd) }}
+        
+        <button type="submit" class="form-btn-submit" >Submit</button>
+    {{ form_end(createProgrammeForm) }}
+    
+{% endblock %}

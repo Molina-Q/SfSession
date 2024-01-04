@@ -64,21 +64,22 @@ main {
 .secondary-title {
     color: var(--secondary-color-text);
     font-size: var(--font-size-big);
-font-weight:normal;
+    font-weight:normal;
 }
 
-em {
+b {
     font-weight: var(--weight-black);
+    font-size: 18px;
 }
 
 /************************* Header *************************/
 /**********************************************************/
 nav {
-    width: 250px;
+    /* width: 250px; */
     min-height: 100vh;
     height: 100%;
     
-    flex: 0.8;
+    flex: 1;
     display: flex;
     flex-direction: column;
 
@@ -94,8 +95,11 @@ nav a {
 nav .nav-main {
     font-size: 25px;
     font-weight: var(--weight-bold);
-    margin: 25px 0 20px;  
+    margin: 20px 0 20px;  
     transition: 0.3s;
+
+    display: flex;
+    flex-direction: column;
 }
 
 nav a:hover {
@@ -113,14 +117,6 @@ nav a:not(.nav-main) {
 /*************************************************************/
 #wrapper {
     margin: 25px 0;
-    /* display: grid;
-
-    grid-template-columns: 15% 15% 15% 15% 15% 15%;
-    grid-template-rows: auto;
-
-    column-gap: 25px;
-    row-gap: 15px;*/
-
     padding: 0 3%;
     color: var(--secondary-color-text);
 }
@@ -274,7 +270,7 @@ nav a:not(.nav-main) {
 }
 
 .form-input-text { /* input text / number */
-     
+    
 }
 
 .form-input-date { /* date / dateTime */
@@ -326,7 +322,7 @@ div input[type=checkbox] {
 /*************************** RegisterForm & UpdateUserForm ***************************/
 /*************************************************************************************/
 .wrap-register {
-    padding: 0 15%!;
+    padding: 0 15%;
 }
 .wrap-register .form-create { /* input text / number */
     display: grid;
@@ -367,18 +363,17 @@ div input[type=checkbox] {
 /*************************** GridDetailsSession ***************************/
 /**************************************************************************/
 .wrap-details-session {
-    margin: 25px 0;
     display: grid;
 
-    grid-template-columns: 15% 15% 15% 15% 15% 15%;
+    grid-template-columns: auto auto auto auto auto auto;
     grid-template-rows: auto;
 
     column-gap: 25px;
     row-gap: 15px;
 
-    padding: 0 3%;
     color: var(--secondary-color-text);
 }
+
 .wrap-details-session h1 {
     grid-column: 1 / -1;
 }
@@ -388,20 +383,30 @@ div input[type=checkbox] {
 }
 
 .wrap-details-session .form-create {
-    grid-column: span 3;
+    grid-column: -1 / -2;
+}
+.wrap-details-session .form-create .form-input-text {
+    width: 100%;
+}
+.wrap-details-session .row-unique {
+    grid-column: 1 / -1;
 }
 
-.wrap-details-session .row-unique {
-    grid-column: 1 / span 4;
+.wrap-details-session .header-student {
+    grid-column: 1 / -1;
 }
 
 .wrap-details-session #table-information {
-    grid-column: 5 / span 2;
-    grid-row: 4 / span 3 ;
+    grid-column: 1 / span 5;
+    /* grid-row: 4 / span 2 ; */
 }
 
 .wrap-details-session #table-formation-module {
-    grid-column: 1 / span 4;
+    grid-column: 1 / -1;
+}
+
+.wrap-details-session .table-list {
+    grid-column: 1 / -1;
 }
 
 /************************* HomePage ************************/
@@ -429,9 +434,10 @@ div input[type=checkbox] {
 }
 
 .home-formation-container {
+    padding-top: 15px;
     display: grid;
 
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     column-gap: 10px;
     row-gap: 10px;
 }
@@ -473,4 +479,84 @@ div input[type=checkbox] {
     padding: 0 15%;
 }
 
-/**/
+/**********************************************************************************/
+/*********************************** Responsive ***********************************/
+/**********************************************************************************/
+
+/****************************** Tablet ******************************/
+/********************************************************************/
+@media only screen
+and (max-device-width : 768px) {
+    /* body {
+        background-color: var(--primary-color-text);
+    
+        display: flex;
+        flex-direction: row;
+    }
+    
+    main {
+        flex: 5;
+    }
+    
+    .primary-title {
+        color: var(--primary-color-text);
+        font-size: var(--font-size-big);
+        font-weight: var(--weight-bold);
+    }
+    
+    .secondary-title {
+        color: var(--secondary-color-text);
+        font-size: var(--font-size-big);
+        font-weight:normal;
+    }
+    
+    b {
+        font-weight: var(--weight-black);
+        font-size: 18px;
+    } */
+    
+    /************************* Header *************************/
+    /**********************************************************/
+    /* nav {
+        width: 250px;
+        min-height: 100vh;
+        height: 100%;
+        
+        flex: 0.5;
+        display: flex;
+        flex-direction: column;
+    
+        background-color: var(--secondary-background);
+    }
+    
+    nav a {
+        padding: 0 25px ;
+        text-decoration: none;
+        color: var(--secondary-color-text);
+    }
+    
+    nav .nav-main {
+        font-size: 25px;
+        font-weight: var(--weight-bold);
+        margin: 25px 0 20px;  
+        transition: 0.3s;
+    }
+    
+    nav a:hover {
+        color: var(--primary-color-text);
+        transition: 0.3s;
+    }
+    
+    nav a:not(.nav-main) {
+        font-size: 20px;
+        margin: 5px 0;
+        transition: 0.3s;
+    } */
+}
+
+/****************************** Phone ******************************/
+/*******************************************************************/
+@media only screen
+and (max-device-width : 480px) {
+
+}

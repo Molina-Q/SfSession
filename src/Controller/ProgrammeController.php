@@ -26,7 +26,7 @@ class ProgrammeController extends AbstractController
     {
         $programme = $programmeRepository->findOneById($id);
 
-        $form = $this->createForm(CreateProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
+        $form = $this->createForm(CreaterProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -39,7 +39,7 @@ class ProgrammeController extends AbstractController
         }
 
         return $this->render('programme/create.html.twig', [
-            'createProgrammeForm' => $form->createView(),
+            'upgradeProgrammeForm' => $form->createView(),
             'programme' => $programme
         ]);
     }

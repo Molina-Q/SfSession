@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ProgrammeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProgrammeRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ProgrammeRepository::class)]
+#[UniqueEntity(fields: ['Module', 'Session'], message: 'This programme already exist')]
 class Programme
 {
     #[ORM\Id]
