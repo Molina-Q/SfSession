@@ -6,7 +6,6 @@
 
 
 {% block body %}
-<div id="wrapper-tag-list">
 
     <h1 class="primary-title">Our tags and their modules</h1>
 
@@ -24,7 +23,7 @@
   
         {% endif %} 
 
-    <div id="table-list">
+    <div class="table-list">
         {% for tag in tags %}
             <div class="table-row table-header">  
                 <h2 class="table-item">{{ tag }}</h2>
@@ -34,7 +33,7 @@
                 </a>
                 
                 <a href="{{ path('delete_tag', {id: tag.id}) }}" class="deleteIcon">
-                    <i class="fa-solid fa-xmark  "></i>
+                    <i class="fa-solid fa-trash"></i>
                 </a>
             </div>
 
@@ -49,7 +48,7 @@
                         </a>
             
                         <a href="{{ path('delete_module', {id:module.id}) }}" class="deleteIcon">
-                            <i class="fa-solid fa-xmark"></i>
+                            <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
                 {% endfor %}
@@ -65,6 +64,4 @@
         {% endfor %}
 
     </div>
-
-</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 /************************* General *************************/
 /***********************************************************/
 :root {
-    --primary-color: #1F816F;
+    /* --primary-color: #1F816F;
     
     --primary-color-text: #29c7aa;
     --secondary-color-text: #ffffff;
@@ -12,16 +12,16 @@
     --primary-background: #131E1C;
     --secondary-background: #0A2E27;
 
-    /* --primary-color: #6BB6A8;
+    --primary-color: #e4e2e2;
     
-    --primary-color-text: #296e62;
-    --secondary-color-text: #122c27;
+    --primary-color-text: #464646;
+    --secondary-color-text: #434343;
 
     --hover-color: #20a38b;
     --active-color:#12574a;
     
-    --primary-background: #B5E5DD;
-    --secondary-background: #87D6C6; */
+    --primary-background: #EFEFEF;
+    --secondary-background: #FEFEFE; */
 
     --danger-color: #9C1414;
     --alert-color:#C07300;
@@ -43,6 +43,10 @@
 }
 
 body {
+
+}
+
+#body-wrapper {
     background-color: var(--primary-background);
 
     display: flex;
@@ -50,6 +54,7 @@ body {
 
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
 }
+
 
 main {
     flex: 5;
@@ -72,6 +77,45 @@ b {
     font-size: 18px;
 }
 
+.dark-mode {
+    --primary-color: #1F816F;
+    
+    --primary-color-text: #29c7aa;
+    --secondary-color-text: #ffffff;
+
+    --hover-color: #20a38b;
+    --active-color:#12574a;
+    
+    --hover-background: #11493e;
+
+    --primary-background: #131E1C;
+    --secondary-background: #0A2E27;
+}
+
+.light-mode {
+    --primary-color: #e4e2e2;
+    
+    --primary-color-text: #464646;
+    --secondary-color-text: #434343;
+
+    --hover-color: #20a38b;
+    --active-color:#12574a;
+    
+    --primary-background: #EFEFEF;
+    --secondary-background: #FEFEFE;
+}
+
+#switch-mode {
+    background:none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+#switch-mode i {
+    font-size: 20px;
+}
+
 /************************* Header *************************/
 /**********************************************************/
 nav {
@@ -86,7 +130,7 @@ nav {
     background-color: var(--secondary-background);
 }
 
-nav a {
+nav a, nav button {
     padding: 0 25px ;
     text-decoration: none;
     color: var(--secondary-color-text);
@@ -135,12 +179,26 @@ nav a:not(.nav-main) {
     transition: 0.3s;
 }
 
+/* grid */
+
+[class*="wrap-"] {
+    display: grid;
+
+    row-gap: 15px;
+    column-gap: 15px;
+
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
 
 /************************* Table ***************************/
 /***********************************************************/
 .table-list {
     display: flex; 
     flex-direction: column; 
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .table-item {
@@ -172,6 +230,11 @@ nav a:not(.nav-main) {
 
     background-color: var(--secondary-background);
     position: relative;
+}
+
+.table-row:hover {
+    background-color: var(--hover-background);
+    transition: 0.5s;
 }
 
 .table-free {
@@ -242,6 +305,12 @@ nav a:not(.nav-main) {
     font-weight: var(--weight-bold);
 }
 
+/* .table-row a {
+    position: absolute;
+    top: 25%;
+    right: 50px;
+} */
+
 /* edit btn */
 .fa-pen-to-square { 
     font-size: 22px;
@@ -256,16 +325,16 @@ nav a:not(.nav-main) {
 }
 
 /* delete btn */
-.fa-xmark {
-    font-size: 28px;
+.fa-trash {
+    font-size: 23px;
 
     color: var(--danger-color);
     border: none;
     border-radius: 50%;
 
     position: absolute;
-    top: 20%;
-    right: 8px;
+    top: 25%;
+    right: 10px;
 }
 
 
@@ -284,6 +353,9 @@ nav a:not(.nav-main) {
 
     column-gap: 25px;
     row-gap: 15px;
+
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
 }
 
 .form-create div {
@@ -356,6 +428,7 @@ div input[type=checkbox] {
 .wrap-register {
     padding: 0 15%;
 }
+
 .wrap-register .form-create { /* input text / number */
     display: grid;
 
@@ -441,6 +514,7 @@ div input[type=checkbox] {
     grid-column: 1 / -1;
 }
 
+
 /************************* HomePage ************************/
 /***********************************************************/
 .create-entities {
@@ -471,18 +545,31 @@ div input[type=checkbox] {
 
     grid-template-columns: 50% 50%;
     column-gap: 10px;
-    row-gap: 10px;
+    row-gap: 20px;
 }
 
 .home-formation-items {
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
     background-color: var(--secondary-background);
     border: 1px solid var(--primary-color);
 
-    /* width: 45%; */
 
     text-align: center;
     color: var(--primary-color-text);
     border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+    transition: 0.4s;
+}
+
+.home-formation-items:hover {
+    transform: translateY(-5px);
+    transition: 0.4s;
 }
 
 .home-formation-items p {
@@ -490,17 +577,27 @@ div input[type=checkbox] {
 }
 
 .home-formation-items a {
-    display: inline-block;
-    text-decoration: none;
-
-    color: var(--secondary-color-text);
-    background-color: var(--primary-color);
-
-    width: 80px;
-    height: 30px;
+    width: 100px;
+    height: 40px;
     border-radius: 5px;
 
     margin-bottom: 8px;
+
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color-text);
+}
+
+#wrapper .home-formation-container .home-formation-items a:hover {
+    background-color: var(--hover-color);
+    color: var(--secondary-color-text);
+
 }
 
 /************************* detailsSession ************************/

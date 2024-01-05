@@ -58,15 +58,6 @@ class ProgrammeRepository extends ServiceEntityRepository
             ->where('p.Session = :id') /* Session prends une maj et n'as pas de S (car sa rel avec p est OneToMany) */
             ->orderBy('t.label, m.label') /* order en priorité par le label de tag puis par le label de module */
             ->setParameter('id', $session_id); /* donne les champs paramétrés */
-        
-        // $qb->select('p')
-        //     ->from('App\Entity\Programme', 'p')
-        //     // ->innerJoin('t.modules', 'm')
-        //     // ->innerJoin('p.', 'm')
-        //     ->leftJoin('p.Module', 'm')
-        //     ->leftJoin('m.Tag', 't')
-        //     ->where('p.Session = :id')
-        //     ->setParameter('id', $session_id);
 
         $query = $qb->getQuery();
         return $query->getResult();

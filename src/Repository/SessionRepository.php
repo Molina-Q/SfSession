@@ -60,4 +60,36 @@ class SessionRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findIncomingSessions() {
+        $entityManager = $this->getEntityManager();
+        $qb = $entityManager->createQueryBuilder();
+
+        $dateNow = new \DateTime('now');
+
+        $qb->select('se') /* alias de ce que je veux selectionner*/ 
+            ->from('App\Entity\Session', 'se') /* from comme en sql */
+            ->where('se.dateStart > :date') /* Session prends une maj et n'as pas de S (car sa rel avec p est OneToMany) */
+            ->orderBy('se.dateStart', 'DESC')
+            ->setParameter('date', $dateNow); /* donne les champs paramétrés */
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findPassedSessions() {
+        $entityManager = $this->getEntityManager();
+        $qb = $entityManager->createQueryBuilder();
+
+        $dateNow = new \DateTime('now');
+
+        $qb->select('se') /* alias de ce que je veux selectionner*/ 
+            ->from('App\Entity\Session', 'se') /* from comme en sql */
+            ->where('se.dateStart < :date') /* Session prends une maj et n'as pas de S (car sa rel avec p est OneToMany) */
+            ->orderBy('se.dateStart', 'DESC')
+            ->setParameter('date', $dateNow); /* donne les champs paramétrés */
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
 }

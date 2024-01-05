@@ -26,9 +26,13 @@ class SessionController extends AbstractController
     public function index(SessionRepository $sessionRepository): Response
     {
 
-        $sessions = $sessionRepository->findBy([], ['dateStart' => 'DESC']);
+        $sessions = $sessionRepository->findIncomingSessions();
+
+        $passedSessions = $sessionRepository->findPassedSessions();
+
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
+            'passed' => $passedSessions
         ]);
     }
 
