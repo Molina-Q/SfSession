@@ -3,18 +3,40 @@ function toggleTheme() {
     if(body.classList.contains("dark-mode")) {
         body.classList.remove("dark-mode");
         body.classList.add("light-mode");
+        console.log("storage "+localStorage.getItem("themeIs"))
     } else {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
+        console.log("storage "+localStorage.getItem("themeIs"))
+
     }
 }
 
+/* return the current theme */
 function checkTheme() {
     if(body.classList.contains("dark-mode")) {
-        return "dark-mode"
+        return "dark-mode";
     } else {
-        return "light-mode"
+        return "light-mode";
     }
+}
+
+/* set the current theme in the storage */ 
+function applyStoragedTheme($theme) {
+   switch ($theme) {
+    case "dark-mode":
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+        break;
+    case "light-mode":
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+        break;
+   
+    default:
+        break;
+   }
+   console.log("echo 1, apply")
 }
 
 /* my body wrapper */
@@ -53,31 +75,15 @@ for (let i = 0; i < deleteIcon.length; i++) {
 * check if there is a theme in the locale storage
 */
 if(!localStorage.getItem("themeIs")) {
-    localStorage.setItem("themeIs", "dark-mode");
+    localStorage.setItem("themeIs", 'light-mode');
 }
 
-function applyStoragedTheme() {
-    storagedTheme = localStorage.getItem("themeIs");
-
-    switch (storagedTheme) {
-        case 'light-mode':
-            
-            break;
-
-        case 'dark-mode':
-            
-            break;
-    
-        default:
-            break;
-    }
-}
-
-window.addEventListener("load", () => checkTheme());
+window.addEventListener("load", function() {
+    applyStoragedTheme(localStorage.getItem("themeIs"))
+});
 
 switchMode.addEventListener("click", function() {
     switch (localStorage.getItem("themeIs")) {
-
         case "light-mode":
                 toggleTheme();
                 localStorage.removeItem("themeIs");
@@ -94,6 +100,5 @@ switchMode.addEventListener("click", function() {
             
             break;
     }
+    applyStoragedTheme(localStorage.getItem("themeIs"));
 })
-
-// switchMode.addEventListener('click', () => toggleTheme());
