@@ -3,12 +3,9 @@ function toggleTheme() {
     if(body.classList.contains("dark-mode")) {
         body.classList.remove("dark-mode");
         body.classList.add("light-mode");
-        console.log("storage "+localStorage.getItem("themeIs"))
     } else {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
-        console.log("storage "+localStorage.getItem("themeIs"))
-
     }
 }
 
@@ -36,7 +33,6 @@ function applyStoragedTheme($theme) {
     default:
         break;
    }
-   console.log("echo 1, apply")
 }
 
 /* my body wrapper */

@@ -138,14 +138,14 @@ CREATE TABLE IF NOT EXISTS `session` (
   `date_start` datetime NOT NULL,
   `date_end` datetime NOT NULL,
   `closed` binary(50) DEFAULT '0x30\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
-  `nb_place` int NOT NULL,
+  `nb_slot` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D044D5D45200282E` (`formation_id`),
   CONSTRAINT `FK_D044D5D45200282E` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfsession.session : ~3 rows (environ)
-INSERT INTO `session` (`id`, `formation_id`, `title`, `date_start`, `date_end`, `closed`, `nb_place`) VALUES
+INSERT INTO `session` (`id`, `formation_id`, `title`, `date_start`, `date_end`, `closed`, `nb_slot`) VALUES
 	(1, 1, 'Initiation to PHP', '2023-12-15 10:23:04', '2023-12-31 10:23:09', _binary 0x3000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, 20),
 	(2, 1, 'Initiation to SQL', '2024-01-04 00:00:00', '2024-01-08 00:00:00', _binary 0x3000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, 25),
 	(4, 2, 'Initiation to word', '2023-12-27 00:00:00', '2023-12-30 00:00:00', _binary 0x3000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, 12);

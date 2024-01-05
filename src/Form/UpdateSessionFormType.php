@@ -34,7 +34,7 @@ class UpdateSessionFormType extends AbstractType
                     'class' => 'form-input-date',
                 ]
             ])
-            ->add('nb_place', NumberType::class, [
+            ->add('nb_slot', NumberType::class, [
                 'attr' => [
                     'class' => 'form-input-text',
                 ],

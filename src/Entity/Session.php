@@ -29,7 +29,7 @@ class Session
     private $closed = null;
 
     #[ORM\Column]
-    private ?int $nb_place = null;
+    private ?int $nb_slot = null;
 
     #[ORM\ManyToOne(inversedBy: 'sessions')]
     #[ORM\JoinColumn(nullable: false)]
@@ -100,14 +100,14 @@ class Session
         return $this;
     }
 
-    public function getNbPlace(): ?int
+    public function getNbSlot(): ?int
     {
-        return $this->nb_place;
+        return $this->nb_slot;
     }
 
-    public function setNbPlace(int $nb_place): static
+    public function setNbSlot(int $nb_slot): static
     {
-        $this->nb_place = $nb_place;
+        $this->nb_slot = $nb_slot;
 
         return $this;
     }
@@ -191,4 +191,20 @@ class Session
     public function showDates() {
         return $this->dateStart->format('d-m-Y').' To '.$this->dateEnd->format('d-m-Y');
     }
+
+    public function slotTaken() {
+        $students = count($this->students);
+
+        return $students;
+    }
+    public function slotFree() {
+        $nb_slot = $this->nb_slot;
+        $students = count($this->students);
+
+        $slotFree = $nb_slot - $students;
+
+        return $slotFree;
+    }
+
+   
 }
