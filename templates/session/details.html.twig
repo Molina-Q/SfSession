@@ -24,10 +24,10 @@
         </div>
 
         <div class="table-section">
-            <p>From</p> 
+            <p><b>From</b></p> 
             <p>{{ session.dateStart | date('d/m/Y') }}</p>
 
-            <p>To</p> 
+            <p><b>To</b></p> 
             <p>{{ session.dateEnd | date('d/m/Y') }}</p>
         </div>
 
@@ -50,7 +50,7 @@
         </div>
 
         <div class="table-section">
-            <p>Formation</p>
+            <p><b>Formation</b></p>
             <strong>{{ session.Formation }}</strong>
         </div>
     </div>
@@ -118,9 +118,12 @@
                 <p class="table-item">{{ student.city }}</p>
                 <p class="table-item">{{ student.formatedBirthDate }}</p>
 
-                <a href="delete_register_session" class="table-item">
+                {% for sessions in student.sessions %}
+                <a href="{{ path('delete_register_session', {id:sessions.id}) }}" class="table-item">
                     <b>-</b>
                 </a>
+                {% endfor %}
+           
             </div>  
             {% endfor %}
         
@@ -145,16 +148,17 @@
 
         {% for student in unregisteredUser %}
         <div class="table-row">
-            <a href="{{ path('details_user', {id: student.id}) }}" class="table-item ">
-                {{ student }}
-            </a>
+                <a href="{{ path('details_user', {id: student.id}) }}" class="table-item ">
+                    {{ student }}
+                </a>
+                
+                <p class="table-item">{{ student.city }}</p>
+                <p class="table-item">{{ student.formatedBirthDate }}</p>
             
-            <p class="table-item">{{ student.city }}</p>
-            <p class="table-item">{{ student.formatedBirthDate }}</p>
-
-            <a href="create_register_session" class="table-item">
-                <b>+</b>
-            </a>
+                
+                <a href="{{ path('create_register_session', {id_se: session.id, id_us: student.id}) }}" class="table-item">
+                    <b>+</b>
+                </a>
         </div>  
         {% endfor %}
 
