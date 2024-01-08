@@ -9,6 +9,7 @@ use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Form\CreateSessionFormType;
 use App\Form\UpdateSessionFormType;
+use App\Repository\ModuleRepository;
 use App\Form\CreateProgrammeFormType;
 use App\Repository\SessionRepository;
 use App\Form\RegisterToSessionFormType;
@@ -70,17 +71,22 @@ class SessionController extends AbstractController
         TagRepository $tagRepository,
         ProgrammeRepository $programmeRepository,
         UserRepository $userRepository,
+        ModuleRepository $moduleRepository,
         EntityManagerInterface $entityManager,
         Request $request,
         ): Response
     {
 
         $session = $sessionRepository->findOneById($id);
-        
 
         $programme = new Programme();
+        $modules = $moduleRepository->findUnusedModule($id);
 
-        $formProgramme = $this->createForm(CreateProgrammeFormType::class, $programme, ['attr' => ['class' => 'form-create']]);
+        $formProgramme = $this->createForm(CreateProgrammeFormType::class, $programme, [
+            'attr' => ['class' => 'form-create'],
+            'session_id' => $id,
+        ]);
+
         $formProgramme->handleRequest($request);
 
         if($formProgramme->isSubmitted() && $formProgramme->isValid()) {
@@ -88,22 +94,6 @@ class SessionController extends AbstractController
             $programme->setSession($session);
 
             $entityManager->persist($programme);
-            $entityManager->flush();
-
-            // $this->addFlash('success', 'The programme '.$programme->getLabel().' was successfully added');
-            return $this->redirectToRoute('details_session', ['id' => $id]);
-        }
-
-        $registerSession = new RegisterSession();
-
-        $formStudent = $this->createForm(RegisterToSessionFormType::class, $registerSession, ['attr' => ['class' => 'form-create']]);
-        $formStudent->handleRequest($request);
-
-        if($formStudent->isSubmitted() && $formStudent->isValid()) {
-
-            $registerSession->setSession($session);
-
-            $entityManager->persist($registerSession);
             $entityManager->flush();
 
             return $this->redirectToRoute('details_session', ['id' => $id]);
@@ -115,9 +105,10 @@ class SessionController extends AbstractController
 
         $registeredUser = $userRepository->findRegisteredUser($id);
 
+        // dd($registeredUser);
+
         return $this->render('session/details.html.twig', [
             'addProgrammeForm' => $formProgramme->createView(),
-            'addStudentForm' => $formStudent->createView(),
             'session' => $session,
             'tags' => $tags,
             'unregisteredUser' => $unregisteredUser,

@@ -36,7 +36,7 @@
             </a>
             
             <p class="table-item">{{ session.showDates }}</p>
-            <p class="table-item">{{ session.nbSlot }}</p>
+            <p class="table-item">{{ session.slotFree }} Slot left ({{ session.nbSlot }} total)</p>
             <p class="table-item">{{ session.Formation }}</p>
 
             <a href="{{ path('update_session', {id: session.id}) }}">
@@ -53,18 +53,26 @@
 
     <div class="table-list">
 
-        <div class="table-row table-header">
+        <div class="table-row table-header" id="passed-sessions-head">
             <p class="table-item">Passed Sessions</p>
+
+            <i class="fa-solid fa-chevron-down arrow"></i>
         </div>
 
         {% for session in passed %}
-        <div class="table-row">
-            <a href="{{ path('details_session', {id: session.id}) }}" class="table-item ">
+        <div class="table-row passed-sessions-content" >
+            <a href="{{ path('details_session', {id: session.id}) }}" class="table-item">
                 {{ session }}
             </a>
             
             <p class="table-item">{{ session.showDates }}</p>
-            <p class="table-item">{{ session.nbSlot }}</p>
+
+            {% if session.slotFree == 0 %}
+                <p class="table-item"><b>Full</b></p>
+            {% else %}
+                <p class="table-item">{{ session.slotFree }} Slot left ({{ session.nbSlot }} total)</p>
+            {% endif %}
+
             <p class="table-item">{{ session.Formation }}</p>
 
             <a href="{{ path('update_session', {id: session.id}) }}">

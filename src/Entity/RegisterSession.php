@@ -52,4 +52,8 @@ class RegisterSession
 
         return $this;
     }
+
+    function __toString() {
+        return $this->Session->getTitle();
+    }
 }

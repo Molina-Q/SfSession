@@ -71,11 +71,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $qb->select('u')
             ->from('App\Entity\User', 'u')
             ->leftJoin('u.sessions', 'se')
-            ->where('se.id = :id')
+            ->where('se.Session = :id')
             ->setParameter('id', $session_id)
-            ->orderBy('u.last_name, u.first_name');
+            ->orderBy('u.last_name');
 
-    
         $query = $qb->getQuery();
         return $query->getResult();
     }
@@ -89,7 +88,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $qb->select('u')
             ->from('App\Entity\User', 'u')
             ->leftJoin('u.sessions', 'se')
-            ->where('se.id = :id');
+            ->where('se.Session = :id');
 
         $sub = $em->createQueryBuilder();
         // sub query ou je recherche tous les student qui ne sont pas reliés à la session actuelle

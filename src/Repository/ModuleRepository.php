@@ -45,4 +45,27 @@ class ModuleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function findUnusedModule($session_id) {
+    $em = $this->getEntityManager();
+    $sub = $em->createQueryBuilder();
+
+    $qb = $sub;
+
+    $qb->select('m')
+        ->from('App\Entity\Module', 'm')
+        ->leftJoin('m.programmes', 'p')
+        ->where('p.Session = :id');
+
+    $sub = $em->createQueryBuilder();
+    // sub query ou je recherche tous les student qui ne sont pas reliés à la session actuelle
+    $sub->select('mo')
+        ->from('App\Entity\Module', 'mo')
+        ->where($sub->expr()->notIn('mo.id', $qb->getDQL()))
+        ->setParameter('id', $session_id)
+        ->orderBy('mo.label');
+
+    $query = $sub->getQuery();
+    return $query->getResult();
+}
 }
