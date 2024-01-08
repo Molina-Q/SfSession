@@ -30,6 +30,16 @@
         <p class="table-item"><b>City:</b> {{ user.city }}</p>
         <p class="table-item"><b>Address:</b> {{ user.address }}</p>
     </div>
+
+    <div class="table-list">
+        <div class="table-free">
+            {% for session in user.sessions %}
+            {{ session }}
+
+            {% endfor %}
+        </div>
+    </div>
+
 </div>
 
     

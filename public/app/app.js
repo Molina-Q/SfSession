@@ -35,6 +35,17 @@ function applyStoragedTheme($theme) {
    }
 }
 
+/**
+ * toggle the arrow's icon and their class name so they change visually
+ * @param {HTMLCollectionOf} $class 
+ */
+function toggleArrow($class) {
+    $class.classList.toggle('arrow');
+
+    $class.classList.toggle('fa-chevron-down');
+    $class.classList.toggle('fa-chevron-up');
+}
+
 /* my body wrapper */
 const body = document.getElementById('body-wrapper');
 
@@ -98,3 +109,30 @@ switchMode.addEventListener("click", function() {
     }
     applyStoragedTheme(localStorage.getItem("themeIs"));
 })
+
+const sessionHead = document.getElementById('passed-sessions-head');
+const sessionContent = document.getElementsByClassName('passed-sessions-content');
+const arrow = document.getElementsByClassName('arrow');
+
+for (let i = 0; i < arrow.length; i++) {
+    const openArrow = arrow[i];
+    
+    openArrow.addEventListener('click', function() {
+
+        if (openArrow.classList.contains('fa-chevron-down')) {
+
+            for (let i = 0; i < sessionContent.length; i++) {
+                const openSession = sessionContent[i];
+                openSession.style.display = 'none';
+            } 
+
+        } else {
+
+            for (let i = 0; i < sessionContent.length; i++) {
+                const openSession = sessionContent[i];
+                openSession.style.display = 'flex';
+            } 
+
+        } toggleArrow(openArrow);
+    })
+}

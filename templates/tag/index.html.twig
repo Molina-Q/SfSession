@@ -25,7 +25,7 @@
 
     <div class="table-list">
         {% for tag in tags %}
-            <div class="table-row table-header">  
+            <div class="table-row table-header">
                 <h2 class="table-item">{{ tag }}</h2>
 
                 <a href="{{ path('update_tag', {id:tag.id}) }}">
