@@ -322,6 +322,16 @@ nav a:not(.nav-main) {
     right: 10px;
 }
 
+.fa-chevron-up, .fa-chevron-down {
+    font-size: 23px;
+
+    color: var(--secondary-color-text);
+
+    position: absolute;
+    top: 25%;
+    right: 10px;
+} 
+
 
 /************************* Form (flex + grid) ***************************/
 /************************************************************************/
@@ -447,8 +457,6 @@ div input[type=checkbox] {
 .wrap-update-user form div:nth-child(5), .wrap-register form div:nth-child(5) {
     padding-bottom: 25px;
 }
-
-
 
 /*************************** GridDetailsSession ***************************/
 /**************************************************************************/
