@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All of our incoming sessions{% endblock %}
-{% block metadesc %}Our sessions{% endblock %}
+{% block title %}Our sessions{% endblock %}
+{% block metadesc %}All of our passed and incoming sessions{% endblock %}
 {% block pageWrapper %}index-session{% endblock %}
 
 {% block body %}
@@ -20,8 +20,7 @@
     <div class="create-entities">
         <a href="{{ path('create_session') }}">Create session <b>+</b></a>
     </div>
-    {% endif %} 
-    
+    {% endif %}
 
     <div class="table-list">
 
@@ -29,26 +28,32 @@
             <p class="table-item">Incoming Sessions</p>
         </div>
 
-        {% for session in sessions %}
         <div class="table-row">
-            <a href="{{ path('details_session', {id: session.id}) }}" class="table-item ">
-                {{ session }}
-            </a>
-            
-            <p class="table-item">{{ session.showDates }}</p>
-            <p class="table-item">{{ session.slotFree }} Slot left ({{ session.nbSlot }} total)</p>
-            <p class="table-item">{{ session.Formation }}</p>
+        {% if sessions|length > 0 %}
+        
+            {% for session in sessions %} 
+                <a href="{{ path('details_session', {id: session.id}) }}" class="table-item ">
+                    {{ session }}
+                </a>
+                
+                <p class="table-item">{{ session.showDates }}</p>
+                <p class="table-item">{{ session.slotFree }} Slot ({{ session.nbSlot }} total)</p>
+                <p class="table-item">{{ session.Formation }}</p>
 
-            <a href="{{ path('update_session', {id: session.id}) }}">
-                <i class="fa-solid fa-pen-to-square"></i>
-            </a>
+                <a href="{{ path('update_session', {id: session.id}) }}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
 
-            <a href="{{ path('delete_session', {id: session.id}) }}" class="deleteIcon">
-                <i class="fa-solid fa-trash"></i>
-            </a>
+                <a href="{{ path('delete_session', {id: session.id}) }}" class="deleteIcon">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            {% endfor %}
+
+        {% else %}
+            <p class="table-item">There is no incoming sessions</p>
+        {% endif %}
         </div>  
-        {% endfor %}
-
+        
     </div>
 
     <div class="table-list">
@@ -56,7 +61,7 @@
         <div class="table-row table-header" id="passed-sessions-head">
             <p class="table-item">Passed Sessions</p>
 
-            <i class="fa-solid fa-chevron-down arrow"></i>
+            <i class="fa-solid fa-chevron-up arrow"></i>
         </div>
 
         {% for session in passed %}
@@ -70,10 +75,12 @@
             {% if session.slotFree == 0 %}
                 <p class="table-item"><b>Full</b></p>
             {% else %}
-                <p class="table-item">{{ session.slotFree }} Slot left ({{ session.nbSlot }} total)</p>
+                <p class="table-item">{{ session.slotFree }} Slot ({{ session.nbSlot }} total)</p>
             {% endif %}
 
-            <p class="table-item">{{ session.Formation }}</p>
+            <a href="{{ path('list_session', {id: session.formation.id}) }}" class="table-item">
+                {{ session.Formation }}
+            </a>
 
             <a href="{{ path('update_session', {id: session.id}) }}">
                 <i class="fa-solid fa-pen-to-square"></i>
