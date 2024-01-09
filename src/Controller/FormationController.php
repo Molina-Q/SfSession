@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FormationController extends AbstractController
 {
+    /* list of formation */
     #[Route('profile/formation', name: 'app_formation')]
     public function index(FormationRepository $formationRepository): Response
     {
@@ -24,6 +25,7 @@ class FormationController extends AbstractController
         ]);
     }
 
+    /* list of formation */
     #[Route('secretary/formation/create', name: 'create_formation')]
     public function create(
         FormationRepository $formationRepository,

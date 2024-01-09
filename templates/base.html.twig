@@ -26,16 +26,16 @@
         
                     {% if app.user %}
 
-                        <a href="{{ path('app_formation') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Formations</a>
+                        <a class="burger-items" href="{{ path('app_formation') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Formations</a>
                                     
-                        <a href="{{ path('app_session') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Sessions</a>
+                        <a class="burger-items" href="{{ path('app_session') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Sessions</a>
                                     
-                        <a href="{{ path('app_tag') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Tags&nbsp;&&nbsp;Modules</a>
+                        <a class="burger-items" href="{{ path('app_tag') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Tags&nbsp;&&nbsp;Modules</a>
                     
-                        <a href="{{ path('app_user') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Students</a>
+                        <a class="burger-items" href="{{ path('app_user') }}"><i class="fa-solid fa-caret-right"></i>&nbsp;Students</a>
                         
                         <div class="nav-main">
-                            <a href="{{ path('app_home') }}" class="nav-main">Profile</a>
+                            <a href="{{ path('details_user', {id: app.user.id}) }}" class="nav-main">Profile</a>
             
                             <a href="{{ path('app_logout') }}" class="nav-main">Logout</a>
                         </div>
@@ -52,6 +52,10 @@
 
                     <button id="switch-mode">
                         <i class="fa-solid fa-circle-half-stroke"></i>
+                    </button>
+
+                    <button id="burger-btn">
+                        <i class="fa-solid fa-bars"></i>
                     </button>
                 </nav>
             </header>

@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProgrammeController extends AbstractController
 {
+    /* route isnt used so it redirect elswhere */
     #[Route('profile/programme', name: 'app_programme')]
     public function index(): Response
     {
