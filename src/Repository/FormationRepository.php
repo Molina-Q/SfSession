@@ -45,4 +45,19 @@ class FormationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    // public function findFormationOrderedByDate($value) {
+    //     $entityManager = $this->getEntityManager();
+    //     $qb = $entityManager->createQueryBuilder();
+
+    //     $qb->select('se') /* alias de ce que je veux selectionner*/ 
+    //         ->from('App\Entity\Session', 'se') /* from comme en sql */
+    //         ->leftJoin('se.Formation', 'f');
+    //         ->where('f.id = :id')
+    //         ->orderBy('se.dateStart', 'DESC')
+    //         ->setParameter('id', $value);
+
+    //     $query = $qb->getQuery();
+    //     return $query->getResult();
+    // }
 }
