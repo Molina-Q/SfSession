@@ -38,14 +38,8 @@
                 
                 <p class="table-item">{{ session.showDates }}</p>
                 <p class="table-item">{{ session.slotFree }} Slot ({{ session.nbSlot }} total)</p>
-                <p class="table-item">{{ session.Formation }}</p>
-
-                <a href="{{ path('update_session', {id: session.id}) }}">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </a>
-
-                <a href="{{ path('delete_session', {id: session.id}) }}" class="deleteIcon">
-                    <i class="fa-solid fa-trash"></i>
+                <a href="{{ path('list_session', {id: session.formation.id}) }}" class="table-item">
+                    {{ session.Formation }}
                 </a>
             {% endfor %}
 
@@ -80,14 +74,6 @@
 
             <a href="{{ path('list_session', {id: session.formation.id}) }}" class="table-item">
                 {{ session.Formation }}
-            </a>
-
-            <a href="{{ path('update_session', {id: session.id}) }}">
-                <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-
-            <a href="{{ path('delete_session', {id: session.id}) }}" class="deleteIcon">
-                <i class="fa-solid fa-trash"></i>
             </a>
         </div>  
         {% endfor %}

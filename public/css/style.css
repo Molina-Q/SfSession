@@ -68,7 +68,8 @@ b {
     --primary-background: #131E1C;
     --secondary-background: #0A2E27;
     
-    --shadow:rgba(85, 85, 92, 0.25) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    --shadow:rgba(0, 129, 105, 0.527) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    --shadow-hover:rgba(1, 131, 107, 0.39) 0px 10px 23px -5px, rgba(0, 0, 0, 0.3) 0px 8px 12px -8px;
 }
 
 .light-mode {
@@ -84,7 +85,7 @@ b {
     --secondary-background: #FEFEFE;
 
     --shadow:rgba(50, 50, 93, 0.25) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    --shadow-hover:rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;;
+    --shadow-hover:rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 #switch-mode {
@@ -101,7 +102,6 @@ b {
 /************************* Header *************************/
 /**********************************************************/
 nav {
-    /* width: 250px; */
     min-height: 100vh;
     height: 100%;
     
@@ -113,13 +113,13 @@ nav {
 }
 
 nav a, nav button {
-    padding: 0 25px ;
+    padding: 0 15px ;
     text-decoration: none;
     color: var(--secondary-color-text);
 }
 
 nav .nav-main {
-    font-size: 25px;
+    font-size: 23px;
     font-weight: var(--weight-bold);
     margin: 20px 0 20px;  
     transition: 0.3s;
@@ -134,7 +134,7 @@ nav a:hover {
 }
 
 nav a:not(.nav-main) {
-    font-size: 20px;
+    font-size: 18px;
     margin: 5px 0;
     transition: 0.3s;
 }
@@ -149,20 +149,17 @@ nav a:not(.nav-main) {
 
 #wrapper a {
     text-decoration: none;
-    color: var(--secondary-color-text);
-
-    transition: 0.3s;
 }
 
-#wrapper a:hover {
-    text-decoration: none;
-    color: var(--primary-color-text);
+#wrapper input:focus-visible {
+    outline: none;
+}
 
-    transition: 0.3s;
+#wrapper select:focus-visible {
+    outline: none;
 }
 
 /* grid */
-
 [class*="wrap-"] {
     display: grid;
 
@@ -172,7 +169,6 @@ nav a:not(.nav-main) {
     grid-template-columns: auto;
     grid-template-rows: auto;
 }
-
 
 /************************* Table ***************************/
 /***********************************************************/
@@ -340,7 +336,6 @@ nav a:not(.nav-main) {
     cursor: pointer;
 } 
 
-
 /************************* Form (flex + grid) ***************************/
 /************************************************************************/
 .form-create {
@@ -358,7 +353,6 @@ nav a:not(.nav-main) {
     row-gap: 15px;
 
     box-shadow: rgba(50, 50, 93, 0.25) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-
 }
 
 .form-create div {
@@ -374,6 +368,8 @@ nav a:not(.nav-main) {
 [class*="form-input"] {
     height: 35px;
     font-size: 17px;
+
+    padding: 0 10px ;
 }
 
 .form-input-text { /* input text / number */
@@ -400,20 +396,18 @@ div input[type=checkbox] {
 }
 
 .form-btn-submit {
-    /* width: 80px; */
     height: 35px;
 
     color: var(--secondary-color-text);
     background-color: var(--primary-color);
-    border: 0;
-    border-radius: 5px;
 
+    border: 0;
+    border-radius: 2px;
     font-size: 16px;
 
+    align-self: center;
     cursor: pointer;
     transition: 0.3s;
-
-    align-self: center;
 }
 
 .form-btn-submit:hover {
@@ -515,9 +509,8 @@ div input[type=checkbox] {
     grid-column: 1 / -1;
 }
 
-
-/************************* HomePage ************************/
-/***********************************************************/
+/************************ HomePage ************************/
+/**********************************************************/
 .create-entities {
     height: calc(100% + 200px);
     margin-bottom: 15px ;
@@ -526,8 +519,6 @@ div input[type=checkbox] {
 }
 
 .create-entities a {
-    /* height: inherit; */
-    width: fit-content;
     font-size: 18px;
     color: var(--primary-color-text);
     text-decoration: none;
@@ -535,7 +526,7 @@ div input[type=checkbox] {
 }
 
 .create-entities a:hover {
-    font-size: 21px;
+    /* font-size: 21px; */
     color: var(--secondary-color-text);
     transition: 0.3s;
 }
@@ -559,7 +550,6 @@ div input[type=checkbox] {
     background-color: var(--secondary-background);
     border: 1px solid var(--primary-color);
 
-
     text-align: center;
     color: var(--primary-color-text);
     border-radius: 4px;
@@ -581,16 +571,16 @@ div input[type=checkbox] {
 .home-formation-items a {
     width: 100px;
     height: 40px;
-    border-radius: 4px;
-
+    
     margin-bottom: 8px;
-
+    
     align-self: center;
-
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    
+    border-radius: 4px;
     text-decoration: none;
     background-color: var(--primary-color);
     color: var(--secondary-color-text);
@@ -601,8 +591,8 @@ div input[type=checkbox] {
     color: var(--secondary-color-text);
 }
 
-/************************* indexSession ************************/
-/***************************************************************/
+/************************ indexSession ************************/
+/**************************************************************/
 #passed-sessions-head {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -610,15 +600,48 @@ div input[type=checkbox] {
 
 .passed-sessions-content {
     display: none;
-
     transform: translateY(0);
 }
 
-/************************* detailsSession ************************/
-/*****************************************************************/
+/************************ detailsSession ************************/
+/****************************************************************/
+.wrap-details-session .editIcon {
+    color: var(--alert-color);
+    font-size: 18px;
+}
+
+.wrap-details-session .deleteIcon {
+    color: var(--danger-color);
+    font-size: 18px;
+}
+
+#table-information {
+    height: fit-content;
+}
+
 #table-information .table-section {
     text-align: left;
     padding: 0 15%;
+}
+
+#table-information .section-date {
+    display: flex;
+    flex-direction: row;
+}
+
+/************************ indexSessionPerFormation ************************/
+/**************************************************************************/
+.wrap-list-session a {
+    color: var(--secondary-color-text);
+    width: fit-content;
+    transition: 0.3s;
+}
+
+.wrap-list-session a:hover {
+    color: var(--primary-color-text);
+
+    transition: 0.3s;
+
 }
 
 /**********************************************************************************/

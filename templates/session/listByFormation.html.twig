@@ -18,7 +18,9 @@
     {% endfor %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('create_session') }}">Create session <b>+</b></a>
+    <a href="{{ path('create_session') }}">
+        Create session <b>+</b>
+    </a>
     {% endif %} 
 
     <div class="table-list">

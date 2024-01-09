@@ -40,7 +40,6 @@ class RegisterSessionController extends AbstractController
         
         $entityManager->persist($registerSession);
         $entityManager->flush();
-        
 
         $this->addFlash('success', 'The user was successfully registered to the session');
         return $this->redirectToRoute('details_session', ['id' => $id_se ]);

@@ -8,6 +8,13 @@
 
     <h2 class="secondary-title">Details of the session</h2>
     <h1 class="primary-title">{{ session }}</h1>
+    <a href="{{ path('update_session', {id: session.id}) }}" class="editIcon">
+        edit session
+    </a>
+
+    <a href="{{ path('delete_session', {id: session.id}) }}" class="deleteIcon">
+        delete session
+    </a>
     
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
@@ -23,12 +30,16 @@
             <p class="table-item">Additionnal information</p>
         </div>
 
-        <div class="table-section">
-            <p><b>From</b></p> 
-            <p>{{ session.dateStart | date('d/m/Y') }}</p>
+        <div class="table-section section-date">
+            <div>
+                <p><b>From</b></p> 
+                <p>{{ session.dateStart | date('d/m/Y') }}</p>
+            </div>
 
-            <p><b>To</b></p> 
-            <p>{{ session.dateEnd | date('d/m/Y') }}</p>
+            <div>
+                <p><b>To</b></p> 
+                <p>{{ session.dateEnd | date('d/m/Y') }}</p>
+            </div>
         </div>
 
         <div class="table-section">
@@ -95,6 +106,8 @@
         {% endfor %}
     </div>
 
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARY') %}
+
     <div class="table-header row-unique header-student">
         <p class="table-item">Registered student</p>
     </div>   
@@ -123,7 +136,7 @@
                     <b>-</b>
                 </a>
                 {% endfor %}
-           
+        
             </div>  
             {% endfor %}
         
@@ -163,5 +176,6 @@
         {% endfor %}
 
     </div>
+    {% endif %}
 
 {% endblock %}
