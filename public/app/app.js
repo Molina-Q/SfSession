@@ -55,6 +55,45 @@ const switchMode = document.getElementById('switch-mode');
 /* my delete btn */
 const deleteIcon = document.getElementsByClassName('deleteIcon');
 
+/***** BurgerMenu *****/
+const nav = document.querySelector('NAV');
+/* icon  burger menu */
+const burgerBtn = document.getElementById('burger-btn');
+/* items inside the burger menu */
+const burgerItems = document.getElementsByClassName('burger-items');
+/* div menu */
+const burgerContent = document.createElement("div");
+burgerContent.classList.add('burger-content');
+nav.appendChild(burgerContent);
+console.log(burgerItems);
+
+// burgerContent.prepend(burgerItems[2]);
+// burgerContent.prepend(burgerItems[1]);
+// burgerContent.prepend(burgerItems[3]);
+// burgerContent.prepend(burgerItems[0]);
+
+// for (let i in burgerItems) {
+//     const openBurger = burgerItems[i];
+//     burgerContent.prepend(openBurger);
+// }
+window.addEventListener('load', function() {
+    for (let i = 0; i < burgerItems.length; i++) {
+        const openBurger = burgerItems[i];
+        burgerContent.prepend(openBurger);
+    }
+})
+
+
+// for (let i = 0; i < burgerItems.length; i++) {
+//     const openBurger = burgerItems[i];
+//     burgerContent.prepend(openBurger);
+// }
+
+// for (let i = 0; i < burgerItems.length; i++) {
+//     const openBurger = burgerItems[i];
+//     burgerContent.prepend(openBurger);
+// }
+
 /* ask the user to confirm his when clicking on the delete btn */
 for (let i = 0; i < deleteIcon.length; i++) {
     // openDelete is the <a href="" class="deleteIcon"> element i clicked
@@ -136,3 +175,8 @@ for (let i = 0; i < arrow.length; i++) {
         } toggleArrow(openArrow);
     })
 }
+
+
+
+
+
