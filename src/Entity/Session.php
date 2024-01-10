@@ -189,7 +189,7 @@ class Session
     }
 
     public function showDates() {
-        return $this->dateStart->format('d-m-Y').' To '.$this->dateEnd->format('d-m-Y');
+        return $this->dateStart->format('d/m/Y').' > '.$this->dateEnd->format('d/m/Y');
     }
 
     public function slotTaken() {

@@ -13,16 +13,17 @@
 
 <div class="table-list">
     <div class="table-row table-header">
-        <h2>Personal information</h1>
+        <h2 class="table-item">Personal information</h1>
 
-        <a href="">
+        <a href="{{ path('update_user', {id:user.id}) }}">
             <i class="fa-regular fa-pen-to-square"></i>
         </a>
 
-        <a href="" class="deleteIcon">
-            <i class="fa-regular fa-trash-can  "></i>
+        <a href="{{ path('delete_user', {id:user.id}) }}" class="deleteIcon">
+            <i class="fa-regular fa-trash-can"></i>
         </a>
     </div>
+
     <div class="table-free">
         <p class="table-item"><b>BirthDate:</b> {{ user.formatedBirthDate }} ({{ user.showAge }})</p>
         <p class="table-item"><b>Email:</b> {{ user.email }}</p>
@@ -30,18 +31,35 @@
         <p class="table-item"><b>City:</b> {{ user.city }}</p>
         <p class="table-item"><b>Address:</b> {{ user.address }}</p>
     </div>
-
-    <div class="table-list">
-        <div class="table-free">
-            {% for session in user.sessions %}
-            {{ session }}
-
-            {% endfor %}
-        </div>
-    </div>
-
 </div>
 
+<div class="table-list">
+    <div class="table-row table-header">
+        <h2 class="table-item">Your incoming sessions</h1>
+    </div>
+
+    {% if user.sessions|length > 0 %}
+
+        {% for registeredSessions in user.sessions %}
+        <div class="table-row">
+            <a href="{{ path('details_session', {id:registeredSessions.session.id}) }}" class="table-item">
+                {{ registeredSessions.session.title }}
+            </a>
+
+            <p class="table-item">{{ registeredSessions.session.showDates }}</p>
+
+            <a href="{{ path('list_session', {id:registeredSessions.session.formation.id}) }}" class="table-item">
+                {{ registeredSessions.session.formation }}
+            </a>
+        </div>
+        {% endfor %}
+
+    {% else %}
+    <div class="table-row">
+        <p class="table-item">You aren't registered to any incoming sessions</p>
+    </div>
+    {% endif %}
+</div>
     
 
 {% endblock %}
