@@ -23,17 +23,20 @@ class RegisterSessionController extends AbstractController
     public function create(
         int $id_se,
         int $id_us,
-        RegisterSessionRepository $registerSessionRepository,
         UserRepository $userRepository,
         SessionRepository $sessionRepository,
         EntityManagerInterface $entityManager
     ): Response
     {
+        $session = $sessionRepository->findOneById($id_se);
+        if($session->slotFree() <= 0) {
+            $this->addFlash('error', 'The session is full you cannot add more students');
+            return $this->redirectToRoute('details_session', ['id' => $id_se ]);
+        }
+
+        $user = $userRepository->findOneById($id_us);
 
         $registerSession = new RegisterSession();
-
-        $session = $sessionRepository->findOneById($id_se);
-        $user = $userRepository->findOneById($id_us);
         
         $registerSession->setSession($session);
         $registerSession->setStudent($user);
@@ -49,8 +52,6 @@ class RegisterSessionController extends AbstractController
     public function delete(
         int $id,
         RegisterSessionRepository $registerSessionRepository,
-        UserRepository $userRepository,
-        SessionRepository $sessionRepository,
         EntityManagerInterface $entityManager
     ): Response
     {
