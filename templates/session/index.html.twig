@@ -28,25 +28,33 @@
             <p class="table-item">Incoming Sessions</p>
         </div>
 
-        <div class="table-row">
         {% if sessions|length > 0 %}
         
             {% for session in sessions %} 
+            <div class="table-row">
                 <a href="{{ path('details_session', {id: session.id}) }}" class="table-item ">
                     {{ session }}
                 </a>
                 
                 <p class="table-item">{{ session.showDates }}</p>
-                <p class="table-item">{{ session.slotFree }} Slot ({{ session.nbSlot }} total)</p>
+
+                {% if session.slotFree == 0 %}
+                    <p class="table-item"><b>Full</b></p>
+                {% else %}
+                    <p class="table-item">{{ session.slotFree }} Slot ({{ session.nbSlot }} total)</p>
+                {% endif %}
+
                 <a href="{{ path('list_session', {id: session.formation.id}) }}" class="table-item">
                     {{ session.Formation }}
                 </a>
+            </div>  
             {% endfor %}
 
         {% else %}
+        <div class="table-row">
             <p class="table-item">There is no incoming sessions</p>
-        {% endif %}
         </div>  
+        {% endif %}
         
     </div>
 

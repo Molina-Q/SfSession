@@ -33,12 +33,12 @@
         <div class="table-section section-date">
             <div>
                 <p><b>From</b></p> 
-                <p>{{ session.dateStart | date('d/m/Y') }}</p>
+                <p>{{ session.dateStart|date('d/m/Y') }}</p>
             </div>
 
             <div>
                 <p><b>To</b></p> 
-                <p>{{ session.dateEnd | date('d/m/Y') }}</p>
+                <p>{{ session.dateEnd|date('d/m/Y') }}</p>
             </div>
         </div>
 
@@ -78,7 +78,7 @@
             <button type="submit" class="form-btn-submit" >Submit</button>
         {{ form_end(addProgrammeForm) }}
 
-    {% endif %} 
+    {% endif %}
 
     <div class="row-unique table-header">
         <p class="table-item">Module</p>
@@ -161,17 +161,21 @@
 
         {% for student in unregisteredUser %}
         <div class="table-row">
-                <a href="{{ path('details_user', {id: student.id}) }}" class="table-item ">
-                    {{ student }}
-                </a>
-                
-                <p class="table-item">{{ student.city }}</p>
-                <p class="table-item">{{ student.formatedBirthDate }}</p>
+            <a href="{{ path('details_user', {id: student.id}) }}" class="table-item ">
+                {{ student }}
+            </a>
             
-                
+            <p class="table-item">{{ student.city }}</p>
+            <p class="table-item">{{ student.formatedBirthDate }}</p>
+            
+            {% if session.slotFree <= 0 %}
+                <p class="table-item">Full</p>
+            {% else %}
                 <a href="{{ path('create_register_session', {id_se: session.id, id_us: student.id}) }}" class="table-item">
                     <b>+</b>
                 </a>
+            {% endif %}
+          
         </div>  
         {% endfor %}
 
