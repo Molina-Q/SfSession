@@ -938,4 +938,15 @@ and (max-device-width : 480px) {
         justify-content:space-evenly;
         flex-wrap: wrap;
     }
+
+    /************************* Header *************************/
+    /**********************************************************/
+    nav a, nav button {
+        padding: 0 5px;
+    }
+
+    .create-entities a{
+       width: 45%;
+    }
+
 }
