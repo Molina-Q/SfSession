@@ -30,7 +30,10 @@ class ResetPasswordFormType extends AbstractType
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options' => ['label' => 'Enter your password'],
-                'second_options' => ['label' => 'Confirm Password']
+                'second_options' => ['label' => 'Confirm Password'],
+                'attr' => [
+                    'class' => 'form-input-text'
+                ]
             ])
         ;
     }

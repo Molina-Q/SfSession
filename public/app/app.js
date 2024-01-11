@@ -18,7 +18,7 @@ function checkTheme() {
     }
 }
 
-/* set the current theme in the storage */ 
+/* set the current theme to the localstorage */ 
 function applyStoragedTheme($theme) {
    switch ($theme) {
     case "dark-mode":
@@ -84,8 +84,7 @@ if(compStyle.getPropertyValue("display") == "flex" ) {
     }
 }
 
-
-/* ask the user to confirm his when clicking on the delete btn */
+/* ask the user to confirm his choice when clicking on the delete btn */
 for (let i = 0; i < deleteIcon.length; i++) {
     // openDelete is the <a href="" class="deleteIcon"> element i clicked
     const openDelete = deleteIcon[i]; 

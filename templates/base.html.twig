@@ -39,15 +39,19 @@
             
                             <a href="{{ path('app_logout') }}" class="nav-main">Logout</a>
                         </div>
-                
+            
                     {% else %}
-                        <a href="{{ path('app_register') }}" class="nav-main">
-                            Register
-                        </a>
-        
-                        <a href="{{ path('app_login') }}" class="nav-main">
-                            Login
-                        </a>
+
+                        <div class="nav-main">
+                            <a href="{{ path('app_register') }}" class="nav-main">
+                                Register
+                            </a>
+            
+                            <a href="{{ path('app_login') }}" class="nav-main">
+                                Login
+                            </a>
+                        </div>
+                        
                     {% endif %}
 
                     <button id="switch-mode">

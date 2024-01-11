@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User!{% endblock %}
+{% block title %}List of user{% endblock %}
 {% block metadesc %}List of all our users{% endblock %}
 {% block pageWrapper %}index-user{% endblock %}
 
@@ -25,13 +25,13 @@
         <p class="table-item">{{ user.formatedBirthDate }}</p>
         <p class="table-item">{{ user.city }}</p>
 
-        <a href="{{ path('update_user', {id: user.id}) }}">
+        {# <a href="{{ path('update_user', {id: user.id}) }}">
             <i class="fa-regular fa-pen-to-square"></i>
         </a>
 
         <a href="{{ path('delete_user', {id: user.id}) }}" class="deleteIcon">
             <i class="fa-regular fa-trash-can"></i>
-        </a>
+        </a> #}
     </div>
     {% endfor %}
         

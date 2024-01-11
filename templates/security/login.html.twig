@@ -36,20 +36,20 @@
 
             <label for="inputPassword">Password</label>
             <input type="password" name="password" class="form-input-text" id="inputPassword" autocomplete="current-password" required>
-            
+
+            <a href="{{ path('forgot_password')}}">
+                <p>I forgot my password</p>
+            </a>
+
             <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
             >
         </div>
         
-        <button class="form-btn-submit" type="submit">
-            Log in
-        </button>
+        <button class="form-btn-submit" type="submit">Log in</button>
     </div>
 </form>
 
-<a href="{{ path('forgot_password')}}">
-    <p>I forgot my password</p>
-</a>
+
 
 {% endblock %}

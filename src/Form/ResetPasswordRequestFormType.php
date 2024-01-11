@@ -16,7 +16,7 @@ class ResetPasswordRequestFormType extends AbstractType
                 'label' => 'Enter your email',
                 'attr' => [
                     'placeholder' => 'exemple@email.fr',
-                    'class' => 'form-control'
+                    'class' => 'form-input-text'
                 ]
             ])
         ;

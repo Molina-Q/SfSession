@@ -59,7 +59,7 @@ class SecurityController extends AbstractController
         TokenGeneratorInterface $tokenGeneratorInterface, 
         EntityManagerInterface $entityManager): Response 
     {
-        $form = $this->createForm(ResetPasswordRequestFormType::class);
+        $form = $this->createForm(ResetPasswordRequestFormType::class, [], ['attr' => ['class' => 'form-create']]);
 
         $form->handleRequest($request);
 
@@ -117,7 +117,7 @@ class SecurityController extends AbstractController
 
         $user = $userRepository->findOneByResetToken($token);
         if($user) {
-            $form = $this->createForm(ResetPasswordFormType::class);
+            $form = $this->createForm(ResetPasswordFormType::class, [], ['attr' => ['class' => 'form-create']]);
 
             $form->handleRequest($request);
 
