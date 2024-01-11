@@ -36,14 +36,14 @@ function applyStoragedTheme($theme) {
 }
 
 /**
- * toggle the arrow's icon and their class name so they change visually
- * @param {HTMLCollectionOf} $class 
+ * toggle the arrow's icon and their className so they change visually
+ * @param {HTMLCollectionOf} arrowElement 
  */
-function toggleArrow($class) {
-    $class.classList.toggle('arrow');
+function toggleArrow(arrowElement) {
+    arrowElement.classList.toggle('arrow');
 
-    $class.classList.toggle('fa-chevron-down');
-    $class.classList.toggle('fa-chevron-up');
+    arrowElement.classList.toggle('fa-chevron-down');
+    arrowElement.classList.toggle('fa-chevron-up');
 }
 
 /* my body wrapper */
@@ -57,42 +57,33 @@ const deleteIcon = document.getElementsByClassName('deleteIcon');
 
 /***** BurgerMenu *****/
 const nav = document.querySelector('NAV');
+
 /* icon  burger menu */
 const burgerBtn = document.getElementById('burger-btn');
+
 /* items inside the burger menu */
-const burgerItems = document.getElementsByClassName('burger-items');
+const burgerItems = document.querySelectorAll('.burger-items'); // querySelectorAll instead of getByClassName bcs it doesnt work for some reason
+
 /* div menu */
 const burgerContent = document.createElement("div");
-burgerContent.classList.add('burger-content');
+burgerContent.setAttribute('id', 'burger-content');
 nav.appendChild(burgerContent);
-console.log(burgerItems);
 
-// burgerContent.prepend(burgerItems[2]);
-// burgerContent.prepend(burgerItems[1]);
-// burgerContent.prepend(burgerItems[3]);
-// burgerContent.prepend(burgerItems[0]);
+/* burger content style used to keep burgerItems outside of the div while in desktop mode */
+let compStyle = window.getComputedStyle(burgerContent);
 
-// for (let i in burgerItems) {
-//     const openBurger = burgerItems[i];
-//     burgerContent.prepend(openBurger);
-// }
-window.addEventListener('load', function() {
-    for (let i = 0; i < burgerItems.length; i++) {
-        const openBurger = burgerItems[i];
-        burgerContent.prepend(openBurger);
-    }
+window.addEventListener('resize', function() {
+    compStyle = window.getComputedStyle(burgerContent)
 })
 
+/* put all all of my burger items in the burger content div */
+if(compStyle.getPropertyValue("display") == "flex" ) {
+    for (let i = 0; i < burgerItems.length; i++) {
+        const openBurger = burgerItems[i];
+        burgerContent.appendChild(openBurger);
+    }
+}
 
-// for (let i = 0; i < burgerItems.length; i++) {
-//     const openBurger = burgerItems[i];
-//     burgerContent.prepend(openBurger);
-// }
-
-// for (let i = 0; i < burgerItems.length; i++) {
-//     const openBurger = burgerItems[i];
-//     burgerContent.prepend(openBurger);
-// }
 
 /* ask the user to confirm his when clicking on the delete btn */
 for (let i = 0; i < deleteIcon.length; i++) {
@@ -107,8 +98,8 @@ for (let i = 0; i < deleteIcon.length; i++) {
         function updateHref() { 
             openDelete.href = initialHref;
         }
-
         checkConfirm = confirm("Are you sure you want to delete this ?");
+
         // if check is false the href is changed and the delete() method isn't called, if true the delete() method will be called 
         if(!checkConfirm) {
             openDelete.href = "#";
@@ -153,20 +144,21 @@ const sessionHead = document.getElementById('passed-sessions-head');
 const sessionContent = document.getElementsByClassName('passed-sessions-content');
 const arrow = document.getElementsByClassName('arrow');
 
+/* open and closes the dropdown menu depending on its current state (open with the arrow up or closed with the arrow down ) */
 for (let i = 0; i < arrow.length; i++) {
     const openArrow = arrow[i];
     
     openArrow.addEventListener('click', function() {
 
         if (openArrow.classList.contains('fa-chevron-down')) {
-
+            // every items in the table disappear
             for (let i = 0; i < sessionContent.length; i++) {
                 const openSession = sessionContent[i];
                 openSession.style.display = 'none';
             } 
 
         } else {
-
+            // every items in the table appear
             for (let i = 0; i < sessionContent.length; i++) {
                 const openSession = sessionContent[i];
                 openSession.style.display = 'flex';
@@ -176,7 +168,12 @@ for (let i = 0; i < arrow.length; i++) {
     })
 }
 
+/* toggle the show and showItems class on click in order to open and close the burger menu */
+burgerBtn.addEventListener('click', function() {
+    burgerContent.classList.toggle('show');
 
-
-
-
+    for (let i = 0; i < burgerItems.length; i++) {
+        const openBurger = burgerItems[i];
+        openBurger.classList.toggle('showItems');
+    }
+})
