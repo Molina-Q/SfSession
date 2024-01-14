@@ -6,12 +6,15 @@ use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Programme;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class CreateProgrammeFormType extends AbstractType
 {
@@ -28,7 +31,7 @@ class CreateProgrammeFormType extends AbstractType
                     'class' => 'form-input-text',
                 ]
             ])
-    
+
             ->add('Module', EntityType::class, [
                 'class' => Module::class,
                 'choice_label' => 'label',
@@ -51,14 +54,6 @@ class CreateProgrammeFormType extends AbstractType
                     return $sub->where($sub->expr()->notIn('mo.id', $qb->getDQL()))
                         ->setParameter('id', $this->session_id)
                         ->orderBy('mo.label');
-
-                    // return $er->createQueryBuilder('m')
-                    //     ->leftJoin('m.programmes', 'p')
-                    //     // ->where($this->expr()->notIn('p.modules', $excludedModule));
-                    //     // ->where('p.Session = :session_id')
-                    //     ->where(':session_id NOT IN (p.Session)')
-                    //     // ->andWhere('m.id NOT IN (p.Module)')
-                    //     ->setParameter('session_id', $this->session_id);
                 },
             ])
         ;

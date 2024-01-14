@@ -146,7 +146,7 @@ class SessionController extends AbstractController
 
         $session = $sessionRepository->findOneById($id);
 
-        $form = $this->createForm(CreateSessionFormType::class, $session, ['attr' => ['class' => 'form-create']]);
+        $form = $this->createForm(UpdateSessionFormType::class, $session, ['attr' => ['class' => 'form-create']]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {

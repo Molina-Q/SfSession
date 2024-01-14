@@ -68,6 +68,6 @@ class Programme
     }
 
     public function __toString() {
-        return $this->Module->getLabel();
+        return $this->Module->getLabel()." | ".$this->duration." days";
     }
 }
