@@ -1,6 +1,7 @@
 /************************* General *************************/
 /***********************************************************/
 :root {
+    --warning-color: #f0c775;
     --danger-color: #ac1a1a;
 
     --shadow-btn: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -26,12 +27,10 @@ body {
 }
 
 #body-wrapper {
-    background-color: var(--primary-background);
-
     display: flex;
     flex-direction: row;
-
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    background-color: var(--primary-background);
     z-index: 99;
 }
 
@@ -69,9 +68,6 @@ b {
 
     --primary-background: #131E1C;
     --secondary-background: #0A2E27;
-    
-    /* --shadow:rgba(0, 207, 173, 0.527) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    --shadow-hover:rgba(0, 211, 172, 0.39) 0px 10px 23px -5px, rgba(0, 0, 0, 0.3) 0px 8px 12px -8px; */
 
     --shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     --shadow-hover: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -108,20 +104,19 @@ b {
     font-size: 20px;
 }
 
+
 /************************* BurgerMenu ***************************/
 /****************************************************************/
 nav #burger-btn {
     font-size: 22px;
     border: none;
     background: none;
-
     display: none; /* display only in tablet & phone */
 }
 
 #burger-content {
     display: flex;
     flex-direction: column;
-
     order: -1;
 }
 
@@ -133,7 +128,7 @@ nav #burger-btn {
 
     position: absolute;
     top: calc(30% - 25px);
-    right: calc(50% - 140px);
+    right: calc(50% - 140px); 
 
     background-color: var(--primary-background);
 
@@ -163,9 +158,7 @@ nav #burger-btn {
 .custom-confirm-btn { /* common class between buttons */
     width: 70px;
     height: 40px;
-
     font-size: 16px;
-
     border: 0;
     box-shadow: var(--shadow-btn);
 }
@@ -234,6 +227,10 @@ nav #burger-btn {
     color: var(--danger-color);
 }
 
+.wrap-login form div div a {
+    color: var(--secondary-color-text);
+}
+
 /************************* Header *************************/
 /**********************************************************/
 nav {
@@ -292,7 +289,6 @@ nav a:first-child {
     padding: 0.5em 0;
     font-size: var(--font-size-p);
     color: var(--secondary-color-text);
-
     flex: 1;
 }
 
@@ -302,11 +298,8 @@ nav a:first-child {
     justify-content: space-around;
 
     text-align: center;
-
     background-color: var(--secondary-background);
-
     border-radius: 4px;
-
     box-shadow: var(--shadow);
 }
 
@@ -314,17 +307,12 @@ nav a:first-child {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
     align-items: center;
-
     text-align: center;
-
     background-color: var(--secondary-background);
     position: relative;
 }
-
-/* .table-item:not(:first-child) {
-    border-left: 1px solid var(--primary-color);
-} */
 
 .wrap-details-user .table-list .table-item:not(:first-child) {
     border: 0;
@@ -345,9 +333,7 @@ nav a:first-child {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
     background-color: var(--secondary-background);
-
     position: relative;
 }
 
@@ -355,16 +341,13 @@ nav a:first-child {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
     background-color: var(--secondary-background);
-
     position: relative;
 }
 
 .table-section:not(:nth-child(3)) {
     display: flex;
     flex-direction: column;
-
     position: relative;
 }
 
@@ -372,7 +355,6 @@ nav a:first-child {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
     text-align: center;
 }
 
@@ -447,22 +429,22 @@ nav a:first-child {
     cursor: pointer;
 } 
 
+.item-full {
+    cursor: not-allowed;
+}
+
 /************************* Form (flex + grid) ***************************/
 /************************************************************************/
 .form-create {
     background-color: var(--secondary-background);
     padding: 10px 25px;
-
     border: 5px solid var(--primary-color);
     border-radius: 3px;   
-
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
-
     column-gap: 25px;
     row-gap: 15px;
-
     box-shadow: rgba(50, 50, 93, 0.25) 0px 3px 7px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
@@ -488,7 +470,6 @@ nav a:first-child {
 }
 
 .wrap-create-session .form-create div:has(>.form-input-date) { /* affect all div that do have a date input */
-    /* grid-row: 4; */
     grid-column: span 2;
 }
 
@@ -499,10 +480,8 @@ div input[type=checkbox] {
 
 .form-btn-submit {
     height: 35px;
-
     color: var(--secondary-color-text);
     background-color: var(--primary-color);
-
     border: 0;
     border-radius: 2px;
     font-size: 16px;
@@ -577,11 +556,8 @@ div input[type=checkbox] {
     color: var(--secondary-color-text);
 }
 
-.wrap-details-session h1 {
-    grid-column: 1 / -1;
-}
-
-.wrap-details-session h2 {
+.wrap-details-session h1, 
+.wrap-details-session h2 { /* primary and secondary title */
     grid-column: 1 / -1;
 }
 
@@ -674,9 +650,7 @@ div input[type=checkbox] {
 .home-formation-items a {
     width: 100px;
     height: 40px;
-    
     margin-bottom: 8px;
-    
     align-self: center;
     
     display: flex;
@@ -736,6 +710,10 @@ div input[type=checkbox] {
 #table-information .section-date {
     display: flex;
     flex-direction: row;
+}
+
+.duration-warning {
+    color: var(--warning-color);
 }
 
 /************************ indexSessionPerFormation ************************/
@@ -812,7 +790,6 @@ and (max-device-width : 768px) {
 
         border-radius: 2px;
 
-        /* background-color: var(--secondary-background); */
         background: radial-gradient(var(--secondary-background), var(--primary-background)) ;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
@@ -912,6 +889,12 @@ and (max-device-width : 768px) {
     .home-formation-items:hover {
         transform: translateY(0);
         box-shadow: var(--shadow);
+    }
+
+    /*************************** form(Flex & Grid) ***************************/
+    /*************************************************************************/  
+    .wrap-create-session .form-create div:has(>.form-input-date) { /* affect all div that do have a date input */
+        grid-column: 1 / -1;
     }
 
     /************************* Table ***************************/
@@ -1020,6 +1003,118 @@ and (max-device-width : 480px) {
     .create-entities a{
        width: 45%;
     }
- 
+
+    #wrapper.wrap-login a {
+        color: var(--secondary-color-text);
+    }
+
+    #body-wrapper {
+        background-color: var(--primary-background);
+    
+        display: flex;
+        flex-direction: column;
+
+        min-height: 100vh;
+        height: 100%;
+    }
+    
+    main {
+        flex: initial;
+    }
+    
+    .primary-title {
+        color: var(--primary-color-text);
+        font-size: var(--font-size-big);
+        font-weight: var(--weight-bold);
+
+        padding: 0 20px;
+    }
+    
+    .secondary-title {
+        color: var(--secondary-color-text);
+        font-size: var(--font-size-big);
+        font-weight:normal;
+
+        padding: 0 20px;
+    }
+    
+    b {
+        font-weight: var(--weight-black);
+        font-size: 18px;
+    }
+
+    /************************* BurgerMenu ***************************/
+    /****************************************************************/
+    nav #burger-btn {
+        display: initial;
+    }
+
+    #burger-content {
+        position: absolute;
+        top: 50px;
+        right: 0;
+
+        border-radius: 2px;
+        
+        background: radial-gradient(var(--secondary-background), var(--primary-background)) ;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+        z-index: 99;
+    }
+
+    #nav:last-child {
+        justify-content: flex-start;
+    }
+
+    #burger-content .burger-items {
+        align-self: flex-start;
+    }
+
+    .show {
+        width: 210px;
+        height: fit-content;
+    }
+
+    #burger-content .showItems {
+        display: initial;
+    }
+
+    /************************* Wrapper ***************************/
+    /*************************************************************/
+    #wrapper {
+        padding: 0 1%;
+    }
+
+    /************************* Header *************************/
+    /**********************************************************/
+    nav {
+        min-height: initial;
+        height: initial;
+        
+        flex: initial;
+        flex-direction: row;
+
+        position: relative;
+    }
+
+    nav a:first-child {
+        align-self: center;
+    }
+    
+    nav .nav-main {
+        font-size: 20px;
+        margin: 10px;  
+        flex-direction: row;
+    }
+    
+    nav a:not(.nav-main) {
+        display: none;
+        margin: 10px;
+    }
+
+    nav .fa-caret-right {
+        /* display: none; */
+    }
+
 
 }

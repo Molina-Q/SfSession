@@ -35,25 +35,67 @@ function applyStoragedTheme($theme) {
    }
 }
 
+
 function showCustomConfirm() {
-    wrapper.prepend(customConfirm);
-    customConfirm.appendChild(textConfirm);
+    customConfirm.showModal();
+    openCheck(customConfirm);
 
-    customConfirm.appendChild(buttonsConfirm);
-    buttonsConfirm.appendChild(btnConfirmYes);
-    buttonsConfirm.appendChild(btnConfirmNo);
+    // wrapper.prepend(customConfirm);
+    // customConfirm.appendChild(textConfirm);
 
-    body.appendChild(unclickableBack);
+    // customConfirm.appendChild(buttonsConfirm);
+    // buttonsConfirm.appendChild(btnConfirmYes);
+    // buttonsConfirm.appendChild(btnConfirmNo);
 
-    const buttons = document.getElementsByClassName('custom-confirm-btn');
+    // body.appendChild(unclickableBack);
+}
 
-    buttons.addEventListener('click', function(event) {
-        for (let i = 0; i < buttons.length; i++) {
-            const clickedBtn = buttons[i];
-            console.log(clickedBtn == btnConfirmYes ? true : false);
-            // return clickedBtn == btnConfirmYes ? true : false;
-        }
-    });
+function removeConfirm() {
+    // delete all of customConfirm children
+    while(buttonsConfirm.children.length > 0){
+        buttonsConfirm.removeChild(buttonsConfirm.childNodes[0]);
+    }
+    while(customConfirm.children.length > 0){
+        customConfirm.removeChild(customConfirm.childNodes[0]);
+    }
+
+    // delete the customConfirm itself and dark the background
+    wrapper.removeChild(customConfirm);
+    body.removeChild(unclickableBack);
+}
+
+function deleteConfirm(openDelete) {
+    // i store the string in his href
+    let initialHref = openDelete.href; 
+    let check = Boolean;
+
+    // function that give the <a> element his initial href
+    function updateHref() { 
+        openDelete.href = initialHref;
+    }
+
+    showCustomConfirm()
+    
+    for (let i = 0; i < buttons.length; i++) {
+        const openBtn = buttons[i];
+
+        openBtn.addEventListener('click', function() {
+
+            check = openBtn == btnConfirmYes ? true : false;
+
+            if(check) {
+                openDelete.href = "#";
+                setTimeout(updateHref, 2000); // write the initial href back after 2 seconds
+                console.log('confirm')
+                removeConfirm();
+
+            } else {
+                console.log('cancel')
+                removeConfirm();
+            }
+        });   
+            
+    }
 }
 
 /**
@@ -94,8 +136,9 @@ burgerContent.setAttribute('id', 'burger-content');
 nav.appendChild(burgerContent);
 
 /***** CustomConfirm *****/
-const customConfirm = document.createElement('div');
+const customConfirm = document.createElement('dialog');
 customConfirm.setAttribute('id', 'custom-confirm');
+customConfirm.setAttribute('tabindex', 'open');
 
 const textConfirm = document.createElement('p');
 textConfirm.classList.add('custom-confirm-text');
@@ -116,6 +159,17 @@ btnConfirmNo.setAttribute('id', 'custom-confirm-no');
 
 const unclickableBack = document.createElement('div');
 unclickableBack.classList.add('unclickable-background');
+
+const buttons = document.getElementsByClassName('custom-confirm-btn');
+
+/***** customConfirm box *****/ 
+// wrapper.prepend(customConfirm);
+// customConfirm.appendChild(textConfirm);
+
+// customConfirm.appendChild(buttonsConfirm);
+// buttonsConfirm.appendChild(btnConfirmYes);
+// buttonsConfirm.appendChild(btnConfirmNo);
+
 
 /* burger content style used to keep burgerItems outside of the div while in desktop mode */
 let compStyle = window.getComputedStyle(burgerContent);
@@ -138,14 +192,8 @@ for (let i = 0; i < deleteIcon.length; i++) {
     const openDelete = deleteIcon[i]; 
     
     openDelete.addEventListener("click", function() {
-        // i store the string in his href
-        let initialHref = openDelete.href; 
-
-        // function that give the <a> element his initial href
-        function updateHref() { 
-            openDelete.href = initialHref;
-        }
-        checkConfirm = showCustomConfirm();
+        deleteConfirm(openDelete)
+        
     })
 }
 

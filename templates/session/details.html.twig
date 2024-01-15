@@ -24,6 +24,8 @@
             </div>
         {% endfor %}
     {% endfor %}
+    
+    <p class="duration-warning">{{ session.indexDuration }}</p>
 
     <div id="table-information" class="table-list">
         <div class="table-row table-header">
@@ -40,6 +42,7 @@
                 <p><b>To</b></p> 
                 <p>{{ session.dateEnd|date('d/m/Y') }}</p>
             </div>
+
         </div>
 
         <div class="table-section">
@@ -65,16 +68,17 @@
             <strong>{{ session.Formation }}</strong>
         </div>
     </div>
+ 
 
     {% if is_granted('ROLE_ADMIN') %}
 
         {{ form_start(addProgrammeForm) }}
             <h3>Add Programme</h3>
+
             {{ form_errors(addProgrammeForm) }}
         
             {{ form_row(addProgrammeForm.Module) }}
             {{ form_row(addProgrammeForm.duration) }}
-
             <button type="submit" class="form-btn-submit" >Submit</button>
         {{ form_end(addProgrammeForm) }}
 
@@ -91,6 +95,7 @@
         <div class="table-row table-header">
             <p class="table-item">{{ tag }}</p>
         </div>
+
             {% for module in tag.modules %}
                 {% for programme in module.programmes %}
                     <div class="table-row">
@@ -103,7 +108,9 @@
                     </div>   
                 {% endfor %}
             {% endfor %}
+
         {% endfor %}
+
     </div>
 
     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARY') %}
@@ -124,7 +131,7 @@
         
             {% for student in registeredUser %}
             <div class="table-row">
-                <a href="{{ path('details_user', {id: student.id}) }}" class="table-item ">
+                <a href="{{ path('details_user', {id: student.id}) }}" class="table-item">
                     {{ student }}
                 </a>
                 
@@ -169,7 +176,7 @@
             <p class="table-item">{{ student.formatedBirthDate }}</p>
             
             {% if session.slotFree <= 0 %}
-                <p class="table-item">Full</p>
+                <p class="table-item item-full">Full</p>
             {% else %}
                 <a href="{{ path('create_register_session', {id_se: session.id, id_us: student.id}) }}" class="table-item">
                     <b>+</b>

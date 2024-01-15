@@ -206,5 +206,25 @@ class Session
         return $slotFree;
     }
 
+    public function indexDuration() {
+        $dateStart = $this->dateStart;
+        $dateEnd = $this->dateEnd;
+        
+        $nbDays = $dateStart->diff($dateEnd)->format("%a");
+        $duration = 0;
+
+        foreach ($this->programmes as $programme) {
+            $duration += $programme->getDuration();
+        }
+
+        if ($duration > $nbDays) {
+            return "Warning! the duration is too long, ".$duration." days are planned and ".$nbDays." days are available";
+        } elseif ($duration < $nbDays) {
+            return "Warning! the duration is too short, ".$duration." days are planned and ".$nbDays." days are available";
+        } else {
+            return ;
+        }
+    }
+
    
 }

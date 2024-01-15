@@ -68,7 +68,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
 
-        $qb->select('u')
+        $qb->select('u, se')
             ->from('App\Entity\User', 'u')
             ->leftJoin('u.sessions', 'se')
             ->where('se.Session = :id')
