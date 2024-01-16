@@ -122,31 +122,34 @@ nav #burger-btn {
 
 /************************* CustomConfirm ***************************/
 /*******************************************************************/
-#custom-confirm { /* div */    
-    width: 280px;
+#custom-confirm { /* cancel */    
+    width: 300px;
     height: 200px;
-
-    position: absolute;
-    top: calc(30% - 25px);
-    right: calc(50% - 140px); 
 
     background-color: var(--primary-background);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
     border-radius: 3px;
     box-shadow: var(--shadow-hover);
+    color: var(--secondary-color-text);
 
-    z-index: 99;
+    border: 1px solid var(--primary-color);
+
+    /* position: absolute; */
+    top: 15%;
+    left: calc(50% - 65px);
+}
+
+#custom-confirm::backdrop {
+    background-color: black;
+    opacity: 0.6;
+    border: none;
 }
 
 .custom-confirm-text { /* p */
     padding: 10%;
     font-size: 18px;
     text-align: center;
-    color: var(--alert-color);
+    color: var(--secondary-color-text);
 }
 
 #custom-confirm-buttons { /* div around btn */
@@ -158,9 +161,11 @@ nav #burger-btn {
 .custom-confirm-btn { /* common class between buttons */
     width: 70px;
     height: 40px;
-    font-size: 16px;
-    border: 0;
+    font-size: 15px;
+    font-weight: var(--weight-semi-bold);
+    border: none;
     box-shadow: var(--shadow-btn);
+    color: var(--secondary-color-text);
 }
 
 #custom-confirm-yes:hover,
@@ -171,11 +176,11 @@ nav #burger-btn {
 #custom-confirm-yes:active,
 #custom-confirm-no:active {
     filter: brightness(0.8);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 #custom-confirm-yes { /* btn confirm */
     background-color: var(--primary-color);
-    font-weight: var(--weight-medium);
 }
 
 #custom-confirm-no { /* btn cancel */

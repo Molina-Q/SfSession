@@ -1,19 +1,26 @@
 /* toggle the theme of the app to dark or light depending on the current active theme */
 function toggleTheme() {
     if(body.classList.contains("dark-mode")) {
+
         body.classList.remove("dark-mode");
         body.classList.add("light-mode");
+
     } else {
+
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
+
     }
 }
 
 /* return the current theme */
 function checkTheme() {
+
     if(body.classList.contains("dark-mode")) {
+
         return "dark-mode";
     } else {
+
         return "light-mode";
     }
 }
@@ -21,81 +28,61 @@ function checkTheme() {
 /* set the current theme to the localstorage */ 
 function applyStoragedTheme($theme) {
    switch ($theme) {
+
     case "dark-mode":
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
         break;
+
     case "light-mode":
         body.classList.remove("dark-mode");
         body.classList.add("light-mode");
         break;
    
     default:
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
         break;
    }
 }
 
+/**
+ * function called when clicking on a deleteBtn (all of them are trashcan icon or red elements)
+ * @param {MouseEvent} event 
+ * @param {Element} openDelete 
+ */
+function deleteConfirm(event, openDelete) {
 
-function showCustomConfirm() {
-    customConfirm.showModal();
-    openCheck(customConfirm);
-
-    // wrapper.prepend(customConfirm);
-    // customConfirm.appendChild(textConfirm);
-
-    // customConfirm.appendChild(buttonsConfirm);
-    // buttonsConfirm.appendChild(btnConfirmYes);
-    // buttonsConfirm.appendChild(btnConfirmNo);
-
-    // body.appendChild(unclickableBack);
-}
-
-function removeConfirm() {
-    // delete all of customConfirm children
-    while(buttonsConfirm.children.length > 0){
-        buttonsConfirm.removeChild(buttonsConfirm.childNodes[0]);
-    }
-    while(customConfirm.children.length > 0){
-        customConfirm.removeChild(customConfirm.childNodes[0]);
-    }
-
-    // delete the customConfirm itself and dark the background
-    wrapper.removeChild(customConfirm);
-    body.removeChild(unclickableBack);
-}
-
-function deleteConfirm(openDelete) {
-    // i store the string in his href
-    let initialHref = openDelete.href; 
-    let check = Boolean;
-
-    // function that give the <a> element his initial href
-    function updateHref() { 
-        openDelete.href = initialHref;
-    }
-
-    showCustomConfirm()
+    // stops the action of the clicked btn / link from taking place
+    event.preventDefault();
     
-    for (let i = 0; i < buttons.length; i++) {
-        const openBtn = buttons[i];
+    // function called when clicking on 'confirm'
+    // it closes the modal and remove the event for both btns
+    const confirmEvent = function(){
+        customConfirm.close(); 
+        btnConfirmYes.removeEventListener('click', confirmEvent, false);
+        console.log('confirm'); 
 
-        openBtn.addEventListener('click', function() {
-
-            check = openBtn == btnConfirmYes ? true : false;
-
-            if(check) {
-                openDelete.href = "#";
-                setTimeout(updateHref, 2000); // write the initial href back after 2 seconds
-                console.log('confirm')
-                removeConfirm();
-
-            } else {
-                console.log('cancel')
-                removeConfirm();
-            }
-        });   
-            
+        btnConfirmNo.removeEventListener('click', cancelEvent, false);
+        // redirect to the action that was stopped by the preventDefault
+        window.location.href = openDelete.href;
     }
+    // function called when clicking on 'cancel'
+    // it closes the modal and remove the event for both btns
+    const cancelEvent = function(){
+        customConfirm.close(); 
+        btnConfirmNo.removeEventListener('click', cancelEvent, false);
+        console.log('cancel'); 
+        
+        btnConfirmYes.removeEventListener('click', confirmEvent, false);
+    }
+    
+    // make the <dialog> element created earlier via DOM to appear as a Modal with confirm and cancel btns
+    customConfirm.showModal();
+
+    // event for each btns 
+    btnConfirmYes.addEventListener('click', confirmEvent, false)
+    btnConfirmNo.addEventListener('click', cancelEvent, false)
 }
 
 /**
@@ -103,6 +90,7 @@ function deleteConfirm(openDelete) {
  * @param {HTMLCollectionOf} arrowElement 
  */
 function toggleArrow(arrowElement) {
+
     arrowElement.classList.toggle('arrow');
 
     arrowElement.classList.toggle('fa-chevron-down');
@@ -136,40 +124,45 @@ burgerContent.setAttribute('id', 'burger-content');
 nav.appendChild(burgerContent);
 
 /***** CustomConfirm *****/
+/* dialog box */
 const customConfirm = document.createElement('dialog');
 customConfirm.setAttribute('id', 'custom-confirm');
-customConfirm.setAttribute('tabindex', 'open');
 
+/* text */
 const textConfirm = document.createElement('p');
 textConfirm.classList.add('custom-confirm-text');
 textConfirm.textContent = 'Do you really want to delete this ?';
 
+/* div containing btns */
 const buttonsConfirm = document.createElement('div');
 buttonsConfirm.setAttribute('id', 'custom-confirm-buttons');
 
+/* btn confirm */
 const btnConfirmYes = document.createElement('button');
 btnConfirmYes.textContent = "Confirm";
 btnConfirmYes.classList.add('custom-confirm-btn');
 btnConfirmYes.setAttribute('id', 'custom-confirm-yes');
 
+/* btn cancel */
 const btnConfirmNo = document.createElement('button');
 btnConfirmNo.textContent = "Cancel";
 btnConfirmNo.classList.add('custom-confirm-btn');
 btnConfirmNo.setAttribute('id', 'custom-confirm-no');
 
+/* dark background / useless */
 const unclickableBack = document.createElement('div');
 unclickableBack.classList.add('unclickable-background');
 
+/* array of my btns / potentially useless */
 const buttons = document.getElementsByClassName('custom-confirm-btn');
 
 /***** customConfirm box *****/ 
-// wrapper.prepend(customConfirm);
-// customConfirm.appendChild(textConfirm);
+wrapper.prepend(customConfirm); // the dialog is 
+customConfirm.appendChild(textConfirm);
 
-// customConfirm.appendChild(buttonsConfirm);
-// buttonsConfirm.appendChild(btnConfirmYes);
-// buttonsConfirm.appendChild(btnConfirmNo);
-
+customConfirm.appendChild(buttonsConfirm);
+buttonsConfirm.appendChild(btnConfirmYes);
+buttonsConfirm.appendChild(btnConfirmNo);
 
 /* burger content style used to keep burgerItems outside of the div while in desktop mode */
 let compStyle = window.getComputedStyle(burgerContent);
@@ -191,34 +184,11 @@ for (let i = 0; i < deleteIcon.length; i++) {
     // openDelete is the <a href="" class="deleteIcon"> element i clicked
     const openDelete = deleteIcon[i]; 
     
-    openDelete.addEventListener("click", function() {
-        deleteConfirm(openDelete)
-        
+    openDelete.addEventListener("click", function(event) {
+        console.log('echo event on delete btn');
+        deleteConfirm(event, openDelete);
     })
 }
-
-/* ask the user to confirm his choice when clicking on the delete btn */
-// for (let i = 0; i < deleteIcon.length; i++) {
-//     // openDelete is the <a href="" class="deleteIcon"> element i clicked
-//     const openDelete = deleteIcon[i]; 
-    
-//     openDelete.addEventListener("click", function() {
-//         // i store the string in his href
-//         let initialHref = openDelete.href; 
-
-//         // function that give the <a> element his initial href
-//         function updateHref() { 
-//             openDelete.href = initialHref;
-//         }
-//         checkConfirm = confirm("Are you sure you want to delete this ?");
-
-//         // if check is false the href is changed and the delete() method isn't called, if true the delete() method will be called 
-//         if(!checkConfirm) {
-//             openDelete.href = "#";
-//             setTimeout(updateHref, 2000); // write the initial href back after 2 seconds
-//         }
-//     })
-// }
 
 /*
 * check if there is a theme in the locale storage
@@ -251,6 +221,7 @@ switchMode.addEventListener("click", function() {
     }
     applyStoragedTheme(localStorage.getItem("themeIs"));
 })
+
 
 const sessionHead = document.getElementById('passed-sessions-head');
 const sessionContent = document.getElementsByClassName('passed-sessions-content');
