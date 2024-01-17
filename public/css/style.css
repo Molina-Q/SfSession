@@ -1,7 +1,6 @@
 /************************* General *************************/
 /***********************************************************/
 :root {
-    --warning-color: #f0c775;
     --danger-color: #ac1a1a;
 
     --shadow-btn: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -76,6 +75,8 @@ b {
     --shadow-hover: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
     --alert-color:#d3d3d3;
+    --warning-color: #f0c775;
+    
 }
 
 :root[data-theme="light-mode"] {
@@ -95,6 +96,7 @@ b {
     --shadow-hover:rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
     --alert-color:#2b2b2b;
+    --warning-color: #c56a02;
 }
 
 #switch-mode {
@@ -419,7 +421,7 @@ nav a:first-child {
     border-radius: 50%;
 
     position: absolute;
-    top: 25%;
+    top: 23%;
     right: 10px;
 }
 
@@ -561,6 +563,11 @@ div input[type=checkbox] {
 
 .wrap-details-session h1, 
 .wrap-details-session h2 { /* primary and secondary title */
+    grid-column: 1 / -1;
+}
+
+.wrap-details-session .duration-warning,
+.wrap-details-session .flash-success {
     grid-column: 1 / -1;
 }
 
