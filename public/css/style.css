@@ -56,7 +56,9 @@ b {
 }
 /************************* Dark & Light mode ***************************/
 /***********************************************************************/
-.dark-mode {
+:root[data-theme="dark-mode"] {
+    color-scheme: dark;
+
     --primary-color: #1F816F;
     
     --primary-color-text: #26D9B8;
@@ -76,7 +78,8 @@ b {
     --alert-color:#d3d3d3;
 }
 
-.light-mode {
+:root[data-theme="light-mode"] {
+    color-scheme: light;
     --primary-color: #e4e2e2;
     
     --primary-color-text: #3d3d3d;

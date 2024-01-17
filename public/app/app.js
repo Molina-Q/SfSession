@@ -5,18 +5,18 @@ function applyStoragedTheme($theme) {
    switch ($theme) {
 
     case "dark-mode":
-        body.setAttribute.remove("light-mode");
-        body.classList.add("dark-mode");
+        // body.classList.remove("light-mode");
+        document.documentElement.dataset.theme = "dark-mode";
         break;
 
     case "light-mode":
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode");
+        // body.classList.remove("dark-mode");
+        document.documentElement.dataset.theme = "light-mode";
         break;
    
     default:
-        body.classList.remove("light-mode");
-        body.classList.add("dark-mode");
+        // body.classList.remove("light-mode");
+        document.documentElement.dataset.theme = "dark-mode";
         break;
    }
 }
@@ -132,9 +132,9 @@ unclickableBack.classList.add('unclickable-background');
 const buttons = document.getElementsByClassName('custom-confirm-btn');
 
 /***** customConfirm box *****/ 
-wrapper.prepend(customConfirm); // the dialog is 
+wrapper.prepend(customConfirm); // the dialog box 
 customConfirm.appendChild(textConfirm);
-
+// the content of the dialog box
 customConfirm.appendChild(buttonsConfirm);
 buttonsConfirm.appendChild(btnConfirmYes);
 buttonsConfirm.appendChild(btnConfirmNo);
@@ -172,21 +172,14 @@ if(!localStorage.getItem("themeIs")) {
     localStorage.setItem("themeIs", 'dark-mode');
 }
 
-window.addEventListener("load", () => {
-    applyStoragedTheme(localStorage.getItem("themeIs"))
-});
-
+// when the light/dark mode is clicked this function is called
 switchMode.addEventListener("click", function() {
     switch (localStorage.getItem("themeIs")) {
         case "light-mode":
-                // toggleTheme();
-                localStorage.removeItem("themeIs");
                 localStorage.setItem("themeIs", "dark-mode");
             break;
 
         case "dark-mode":
-                // toggleTheme();
-                localStorage.removeItem("themeIs");
                 localStorage.setItem("themeIs", "light-mode");
             break;
 
@@ -197,7 +190,7 @@ switchMode.addEventListener("click", function() {
     applyStoragedTheme(localStorage.getItem("themeIs"));
 })
 
-
+// elements from dropwdown menu in passed sessions 
 const sessionHead = document.getElementById('passed-sessions-head');
 const sessionContent = document.getElementsByClassName('passed-sessions-content');
 const arrow = document.getElementsByClassName('arrow');
