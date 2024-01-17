@@ -23,6 +23,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
+    // index
     #[Route('profile/session', name: 'app_session')]
     public function index(SessionRepository $sessionRepository): Response
     {
@@ -37,6 +38,7 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // create the session
     #[Route('secretary/session/create', name: 'create_session')]
     public function create(
         SessionRepository $sessionRepository,
@@ -44,7 +46,6 @@ class SessionController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response
     {
-
         $session = new Session();
 
         $form = $this->createForm(CreateSessionFormType::class, $session, ['attr' => ['class' => 'form-create']]);
@@ -56,7 +57,7 @@ class SessionController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'The session '.$session->getTitle().' was successfully added');
-            return $this->redirectToRoute('create_session');
+            return $this->redirectToRoute('details_session', ['id' => $session->getId()]);
         }
 
         return $this->render('session/create.html.twig', [
@@ -64,6 +65,7 @@ class SessionController extends AbstractController
         ]);
     }
     
+    //details session
     #[Route('profile/session/{id}', name: 'details_session')]
     public function details(
         int $id,
@@ -116,6 +118,7 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // list of sessions by formation
     #[Route('profile/session/formation/{id}', name: 'list_session')]
     public function listByFormation(
         int $id,
@@ -135,6 +138,7 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // update session
     #[Route('secretary/session/update/{id}', name: 'update_session')]
     public function update(
         SessionRepository $sessionRepository,
@@ -163,6 +167,7 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // delete the session
     #[Route('admin/session/delete/{id}', name: 'delete_session')]
     public function delete(
         int $id,
@@ -176,7 +181,7 @@ class SessionController extends AbstractController
         $entityManager->remove($session);
         $entityManager->flush();
 
-        $this->addFlash('success', 'The session '.$session->getLabel().' was successfully deleted');
+        $this->addFlash('success', 'The session was successfully deleted');
         return $this->redirectToRoute('app_tag');
     }
 }

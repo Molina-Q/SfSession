@@ -54,7 +54,8 @@ b {
     font-weight: var(--weight-black);
     font-size: 18px;
 }
-
+/************************* Dark & Light mode ***************************/
+/***********************************************************************/
 .dark-mode {
     --primary-color: #1F816F;
     
@@ -103,7 +104,6 @@ b {
 #switch-mode i {
     font-size: 20px;
 }
-
 
 /************************* BurgerMenu ***************************/
 /****************************************************************/
@@ -729,6 +729,13 @@ div input[type=checkbox] {
     transition: 0.3s;
 }
 
+/************************ Tags & Modules ************************/
+/****************************************************************/
+.wrap-index-tag .table-item {
+    padding-left: 19%;
+    padding-right: 19%;
+}
+
 /********************************************************************************************************************************************************/
 /********************************************************************** Responsive **********************************************************************/
 /********************************************************************************************************************************************************/
@@ -777,6 +784,38 @@ and (max-device-width : 768px) {
         font-size: 18px;
     }
 
+    /************************* Header *************************/
+    /**********************************************************/
+    nav {
+        min-height: initial;
+        height: initial;
+        
+        flex: initial;
+        flex-direction: row;
+        justify-content: space-between;
+
+        position: relative;
+    }
+
+    nav a:first-child {
+        align-self: center;
+    }
+    
+    nav .nav-main {
+        font-size: 20px;
+        margin: 10px;  
+        flex-direction: row;
+    }
+    
+    nav a:not(.nav-main) {
+        display: none;
+        margin: 10px;
+    }
+
+    nav .fa-caret-right {
+        /* display: none; */
+    }
+
     /************************* CustomConfirm ***************************/
     /*******************************************************************/
     #custom-confirm { /* cancel */    
@@ -807,7 +846,8 @@ and (max-device-width : 768px) {
         top: 50px;
         right: 0;
 
-        border-radius: 2px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
 
         background: radial-gradient(var(--secondary-background), var(--primary-background)) ;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -816,11 +856,11 @@ and (max-device-width : 768px) {
     }
 
     #nav:last-child {
-        justify-content: flex-start;
+        justify-content: flex-end;
     }
 
     #burger-content .burger-items {
-        align-self: flex-start;
+        align-self: flex-end;
     }
 
     .show {
@@ -836,37 +876,6 @@ and (max-device-width : 768px) {
     /*************************************************************/
     #wrapper {
         padding: 0 1%;
-    }
-
-    /************************* Header *************************/
-    /**********************************************************/
-    nav {
-        min-height: initial;
-        height: initial;
-        
-        flex: initial;
-        flex-direction: row;
-
-        position: relative;
-    }
-
-    nav a:first-child {
-        align-self: center;
-    }
-    
-    nav .nav-main {
-        font-size: 20px;
-        margin: 10px;  
-        flex-direction: row;
-    }
-    
-    nav a:not(.nav-main) {
-        display: none;
-        margin: 10px;
-    }
-
-    nav .fa-caret-right {
-        /* display: none; */
     }
 
     /************************ HomePage ************************/
@@ -999,6 +1008,12 @@ and (max-device-width : 768px) {
         grid-column: 1 / -1;
     }
 
+    /*details user*/
+    .wrap-details-user .table-header {
+        padding-left: 19%;
+        padding-right: 19%;
+    }
+
 }
 
 /************************************************************ Phone ************************************************************/
@@ -1011,6 +1026,41 @@ and (max-device-width : 480px) {
     nav a, nav button {
         padding: 0 5px;
     }
+
+    nav {
+        min-height: initial;
+        height: initial;
+        
+        flex: initial;
+        flex-direction: row;
+        justify-content: space-between;
+
+        position: relative;
+    }
+
+    nav a:first-child {
+        align-self: center;
+    }
+    
+    nav .nav-main {
+        font-size: 17px;
+        margin: 8px;  
+        flex-direction: row;
+    }
+    
+    nav a:not(.nav-main) {
+        display: none;
+        margin: 10px;
+    }
+
+    nav .fa-caret-right {
+        /* display: none; */
+    }
+
+    #burger-btn {
+        
+    }
+
 
     /************************ HomePage ************************/
     /**********************************************************/
@@ -1042,18 +1092,10 @@ and (max-device-width : 480px) {
     }
     
     .primary-title {
-        color: var(--primary-color-text);
-        font-size: var(--font-size-big);
-        font-weight: var(--weight-bold);
-
         padding: 0 20px;
     }
     
     .secondary-title {
-        color: var(--secondary-color-text);
-        font-size: var(--font-size-big);
-        font-weight:normal;
-
         padding: 0 20px;
     }
     
@@ -1066,27 +1108,6 @@ and (max-device-width : 480px) {
     /****************************************************************/
     nav #burger-btn {
         display: initial;
-    }
-
-    #burger-content {
-        position: absolute;
-        top: 50px;
-        right: 0;
-
-        border-radius: 2px;
-        
-        background: radial-gradient(var(--secondary-background), var(--primary-background)) ;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-        z-index: 99;
-    }
-
-    #nav:last-child {
-        justify-content: flex-start;
-    }
-
-    #burger-content .burger-items {
-        align-self: flex-start;
     }
 
     .show {
@@ -1103,37 +1124,5 @@ and (max-device-width : 480px) {
     #wrapper {
         padding: 0 1%;
     }
-
-    /************************* Header *************************/
-    /**********************************************************/
-    nav {
-        min-height: initial;
-        height: initial;
-        
-        flex: initial;
-        flex-direction: row;
-
-        position: relative;
-    }
-
-    nav a:first-child {
-        align-self: center;
-    }
-    
-    nav .nav-main {
-        font-size: 20px;
-        margin: 10px;  
-        flex-direction: row;
-    }
-    
-    nav a:not(.nav-main) {
-        display: none;
-        margin: 10px;
-    }
-
-    nav .fa-caret-right {
-        /* display: none; */
-    }
-
 
 }

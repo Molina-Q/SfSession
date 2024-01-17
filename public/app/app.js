@@ -1,36 +1,11 @@
-/* toggle the theme of the app to dark or light depending on the current active theme */
-function toggleTheme() {
-    if(body.classList.contains("dark-mode")) {
-
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode");
-
-    } else {
-
-        body.classList.remove("light-mode");
-        body.classList.add("dark-mode");
-
-    }
-}
-
-/* return the current theme */
-function checkTheme() {
-
-    if(body.classList.contains("dark-mode")) {
-
-        return "dark-mode";
-    } else {
-
-        return "light-mode";
-    }
-}
 
 /* set the current theme to the localstorage */ 
 function applyStoragedTheme($theme) {
+
    switch ($theme) {
 
     case "dark-mode":
-        body.classList.remove("light-mode");
+        body.setAttribute.remove("light-mode");
         body.classList.add("dark-mode");
         break;
 
@@ -194,23 +169,23 @@ for (let i = 0; i < deleteIcon.length; i++) {
 * check if there is a theme in the locale storage
 */
 if(!localStorage.getItem("themeIs")) {
-    localStorage.setItem("themeIs", 'light-mode');
+    localStorage.setItem("themeIs", 'dark-mode');
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", () => {
     applyStoragedTheme(localStorage.getItem("themeIs"))
 });
 
 switchMode.addEventListener("click", function() {
     switch (localStorage.getItem("themeIs")) {
         case "light-mode":
-                toggleTheme();
+                // toggleTheme();
                 localStorage.removeItem("themeIs");
                 localStorage.setItem("themeIs", "dark-mode");
             break;
 
         case "dark-mode":
-                toggleTheme();
+                // toggleTheme();
                 localStorage.removeItem("themeIs");
                 localStorage.setItem("themeIs", "light-mode");
             break;
