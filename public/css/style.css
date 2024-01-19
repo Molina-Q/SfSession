@@ -1110,22 +1110,6 @@ and (max-device-width : 480px) {
         flex: initial;
     }
     
-    .primary-title {
-        color: var(--primary-color-text);
-        font-size: var(--font-size-big);
-        font-weight: var(--weight-bold);
-
-        padding: 0 20px;
-    }
-    
-    .secondary-title {
-        color: var(--secondary-color-text);
-        font-size: var(--font-size-big);
-        font-weight:normal;
-
-        padding: 0 20px;
-    }
-    
     b {
         font-weight: var(--weight-black);
         font-size: 18px;
