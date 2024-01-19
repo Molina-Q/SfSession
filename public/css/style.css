@@ -809,7 +809,6 @@ and (max-device-width : 768px) {
     }
     
     nav .nav-main {
-        font-size: 20px;
         margin: 10px;  
         flex-direction: row;
     }
@@ -1135,37 +1134,5 @@ and (max-device-width : 480px) {
     #wrapper {
         padding: 0 1%;
     }
-
-    /************************* Header *************************/
-    /**********************************************************/
-    nav {
-        min-height: initial;
-        height: initial;
-        
-        flex: initial;
-        flex-direction: row;
-
-        position: relative;
-    }
-
-    nav a:first-child {
-        align-self: center;
-    }
-    
-    nav .nav-main {
-        font-size: 20px;
-        margin: 10px;  
-        flex-direction: row;
-    }
-    
-    nav a:not(.nav-main) {
-        display: none;
-        margin: 10px;
-    }
-
-    nav .fa-caret-right {
-        /* display: none; */
-    }
-
 
 }
