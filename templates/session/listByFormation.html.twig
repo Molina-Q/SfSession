@@ -41,14 +41,6 @@
                 
                 <p class="table-item">{{ session.showDates }}</p>
                 <p class="table-item">{{ session.nbSlot }}</p>
-
-                <a href="{{ path('update_session', {id: session.id}) }}">
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </a>
-
-                <a href="{{ path('delete_formation', {id: formation.id}) }}">
-                    <i class="fa-regular fa-trash-can"></i>
-                </a>
             </div>
             {% endfor %}
 

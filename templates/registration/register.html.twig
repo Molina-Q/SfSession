@@ -27,6 +27,11 @@
         {{ form_row(registrationForm.agreeTerms) }}
   
         <button type="submit" class="form-btn-submit">Register</button>
+
+   
     {{ form_end(registrationForm) }}
 
+     <small>
+        The informations asked on this form are mandatory. Your first name, last name, email, date of birth, and address are processed in order to better target you for the training programs offered on our site. The only entities with a view on the data are ourselves and the training organizations to which you have agreed to register. Under the law "Data Protection Act" of January 6, 1978, you have the right to access and rectify the information concerning you. If you wish to exercise this right and obtain information about yourself, please contact the administrator at <u>admin@example.com</u>.
+    </small>
 {% endblock %}

@@ -51,19 +51,19 @@ class UpdateSessionFormType extends AbstractType
                 'class' => Formation::class,
                 'choice_label' => 'label',
             ])
-            ->add('programmes', CollectionType::class, [
-                'entry_type' => EntityType::class, 
-                'entry_options' => [
-                    'attr' => [
-                        'class' => 'form-input-text',
-                    ],
-                    'class' => Programme::class,
-                    'choice_label' => 'Module',
-                    'label' => 'Programmes',
+            // ->add('programmes', CollectionType::class, [
+            //     'entry_type' => EntityType::class, 
+            //     'entry_options' => [
+            //         'attr' => [
+            //             'class' => 'form-input-text',
+            //         ],
+            //         'class' => Programme::class,
+            //         'choice_label' => 'Module',
+            //         'label' => 'Programmes',
 
-                ],
-                // 'allow_add' => true,
-            ])
+            //     ],
+            //     // 'allow_add' => true,
+            // ])
         ;
     }
 
