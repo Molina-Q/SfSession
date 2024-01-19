@@ -704,7 +704,7 @@ div input[type=checkbox] {
 
 #table-information .table-section {
     text-align: left;
-    padding: 0 15%;
+    padding: 10px 15%;
 }
 
 #table-information .section-date {
@@ -714,6 +714,11 @@ div input[type=checkbox] {
 
 .duration-warning {
     color: var(--warning-color);
+}
+
+.wrap-details-session .deleteIcon, 
+.wrap-details-session .editIcon {
+    grid-column: 1 / -1;
 }
 
 /************************ indexSessionPerFormation ************************/
@@ -757,19 +762,11 @@ and (max-device-width : 768px) {
     }
     
     .primary-title {
-        color: var(--primary-color-text);
-        font-size: var(--font-size-big);
-        font-weight: var(--weight-bold);
-
-        padding: 0 20px;
+        text-align: center;
     }
     
     .secondary-title {
-        color: var(--secondary-color-text);
-        font-size: var(--font-size-big);
-        font-weight:normal;
-
-        padding: 0 20px;
+        text-align: center;
     }
     
     b {
@@ -835,7 +832,7 @@ and (max-device-width : 768px) {
     /************************* Wrapper ***************************/
     /*************************************************************/
     #wrapper {
-        padding: 0 1%;
+        padding: 0 3%;
     }
 
     /************************* Header *************************/
@@ -999,6 +996,13 @@ and (max-device-width : 768px) {
         grid-column: 1 / -1;
     }
 
+    /*************************** detailsSession ***************************/
+    /**************************************************************************/
+    .wrap-details-session .deleteIcon, 
+    .wrap-details-session .editIcon {
+        text-align: center;
+    }
+
 }
 
 /************************************************************ Phone ************************************************************/
@@ -1017,10 +1021,12 @@ and (max-device-width : 480px) {
     .create-entities {
         justify-content:space-evenly;
         flex-wrap: wrap;
+        width: fit-content;
     }
 
     .create-entities a{
-       width: 45%;
+       width: 46%;
+       /* flex: 1; */
     }
 
     #wrapper.wrap-login a {
@@ -1039,22 +1045,6 @@ and (max-device-width : 480px) {
     
     main {
         flex: initial;
-    }
-    
-    .primary-title {
-        color: var(--primary-color-text);
-        font-size: var(--font-size-big);
-        font-weight: var(--weight-bold);
-
-        padding: 0 20px;
-    }
-    
-    .secondary-title {
-        color: var(--secondary-color-text);
-        font-size: var(--font-size-big);
-        font-weight:normal;
-
-        padding: 0 20px;
     }
     
     b {
@@ -1121,7 +1111,7 @@ and (max-device-width : 480px) {
     }
     
     nav .nav-main {
-        font-size: 20px;
+        font-size: 17px;
         margin: 10px;  
         flex-direction: row;
     }
@@ -1130,10 +1120,5 @@ and (max-device-width : 480px) {
         display: none;
         margin: 10px;
     }
-
-    nav .fa-caret-right {
-        /* display: none; */
-    }
-
 
 }
