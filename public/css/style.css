@@ -824,19 +824,7 @@ and (max-device-width : 768px) {
 
     /************************* CustomConfirm ***************************/
     /*******************************************************************/
-    #custom-confirm { /* cancel */    
-        width: 300px;
-        height: 200px;
-
-        background-color: var(--primary-background);
-
-        border-radius: 3px;
-        box-shadow: var(--shadow-hover);
-        color: var(--secondary-color-text);
-
-        border: 1px solid var(--primary-color);
-
-        /* position: absolute; */
+    #custom-confirm { /* cancel */
         top: 15%;
         left: calc(50% - 140px);
     }
