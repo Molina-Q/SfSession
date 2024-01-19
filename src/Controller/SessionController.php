@@ -56,7 +56,6 @@ class SessionController extends AbstractController
             $entityManager->persist($session);
             $entityManager->flush();
 
-            $this->addFlash('success', 'The session '.$session->getTitle().' was successfully added');
             return $this->redirectToRoute('details_session', ['id' => $session->getId()]);
         }
 
@@ -182,6 +181,6 @@ class SessionController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'The session was successfully deleted');
-        return $this->redirectToRoute('app_tag');
+        return $this->redirectToRoute('app_session');
     }
 }

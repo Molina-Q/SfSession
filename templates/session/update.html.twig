@@ -28,10 +28,6 @@
         {{ form_row(updateSessionForm.dateEnd) }}
         {{ form_row(updateSessionForm.nb_slot) }}
 
-        {% for programmeField in updateSessionForm.programmes %}
-            {{ form_row(programmeField) }}  
-        {% endfor %}
-
         <button type="submit" class="form-btn-submit" >Submit</button>
     {{ form_end(updateSessionForm) }}
 
